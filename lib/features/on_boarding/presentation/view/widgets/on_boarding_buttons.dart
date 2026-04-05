@@ -36,7 +36,7 @@ class OnBoardingButtons extends StatelessWidget {
           return Column(
             children: [
               ButtonClass.customFillButton(
-                text: AppStrings.createAccount,
+                text: AppStrings.createAnAccount,
                 onPressed: () {
                   AppNavigation.pushReplacementScreen(context, '/SignUp');
                 },
@@ -44,7 +44,9 @@ class OnBoardingButtons extends StatelessWidget {
               SizedBox(height: 8.h),
               ButtonClass.customNonFillButton(
                 text: AppStrings.login,
-                onPressed: () {},
+                onPressed: () {
+                  AppNavigation.pushReplacementScreen(context, '/SignIn');
+                },
               ),
               SizedBox(height: 20.h),
             ],

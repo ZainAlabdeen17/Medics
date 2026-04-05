@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/auth_state.dart';
-import 'package:medics/features/auth/presentation/view/widgets/sign_up_footer.dart';
+import 'package:medics/features/auth/presentation/view/widgets/auth_footer.dart';
 import 'package:medics/features/auth/presentation/view/widgets/sign_up_form.dart';
 import 'package:medics/features/auth/presentation/view/widgets/auth_header.dart';
 
@@ -25,7 +25,7 @@ class SignUpView extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: AuthHeader(
                       text1: AppStrings.medics,
-                      text2: AppStrings.createAccount,
+                      text2: AppStrings.createAnAccount,
                       text3: AppStrings.excited,
                     ),
                   ),
@@ -35,7 +35,9 @@ class SignUpView extends StatelessWidget {
                       height: state.password.isNotEmpty ? 210.h : 282.h,
                     ),
                   ),
-                  SliverToBoxAdapter(child: SignUpFooter()),
+                  SliverToBoxAdapter(child: AuthFooter(text1 : AppStrings.alreadyHaveAccount , text2: AppStrings.login,onTap: () {
+                    Navigator.pushReplacementNamed(context, '/SignIn');
+                  },)),
                 ],
               ),
             ),

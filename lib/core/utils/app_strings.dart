@@ -18,6 +18,7 @@ class AppStrings {
       "Connect with doctors, manage appointments, access care whenever you need it.";
 
   // Auth Screens
+  static const String createAnAccount = "Create an account";
   static const String createAccount = "Create an account";
   static const String excited = "Excited to have you on board!";
   static const String emailLabel = "Email";
@@ -27,6 +28,9 @@ class AppStrings {
   static const String alreadyHaveAccount = "Already have an account? ";
   static const String login = "Log in";
   static const String min8CharactersLength = 'Min 8 characters length';
+  static const String niceToHaveYou = 'Nice to have you back!';
+  static const String areYouNewHere = 'Are you new here?';
+  static const String forgotPassWord = 'Forgot your password?';
 
   static const String min2Numbers = 'Min 2 number';
 
