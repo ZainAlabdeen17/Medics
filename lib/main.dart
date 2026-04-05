@@ -18,7 +18,7 @@ class MedicsApp extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           routerConfig: route,
-          theme: ThemeData(scaffoldBackgroundColor: AppColors.surfacePrimary),
+          theme: ThemeData(scaffoldBackgroundColor: AppColors.scaffoldColor),
         );
       },
     );

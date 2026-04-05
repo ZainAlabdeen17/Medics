@@ -1,11 +1,11 @@
 import 'package:go_router/go_router.dart';
 
-class Navgation {
+class AppNavigation {
   static void pushScreen(context, String path) {
     GoRouter.of(context).push(path);
   }
 
-  static void pushReplacement(context, String path) {
+  static void pushReplacementScreen(context, String path) {
     GoRouter.of(context).pushReplacement(path);
   }
 

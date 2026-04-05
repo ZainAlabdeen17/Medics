@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medics/core/functions/navgation.dart';
+import 'package:medics/core/functions/app_navigation.dart';
 import 'package:medics/core/utils/app_assets.dart';
-import 'package:medics/core/utils/app_colors.dart';
-import 'package:medics/core/utils/app_strings.dart';
-import 'package:medics/core/utils/app_text_styles.dart';
+
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -17,7 +15,9 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    Navgation.delayedPushScreen(context, '/OnBoarding');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      AppNavigation.delayedPushScreen(context, '/OnBoarding');
+    });
   }
 
   @override
@@ -27,8 +27,8 @@ class _SplashViewState extends State<SplashView> {
         padding: EdgeInsets.symmetric(horizontal: 40.w),
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 305.h),
               Container(
                 width: 150.w,
                 height: 150.h,
@@ -39,10 +39,15 @@ class _SplashViewState extends State<SplashView> {
                   ),
                 ),
               ),
-              SizedBox(height: 47.h),
-              Text(
-                AppStrings.medics,
-                style: AppTextStyles.head.copyWith(color: AppColors.textAccent),
+              const SizedBox(height: 47),
+              const Text(
+                "Medics",
+                style: TextStyle(
+                  fontFamily: "Syne",
+                  fontSize: 64,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff2b6f71),
+                ),
               ),
             ],
           ),

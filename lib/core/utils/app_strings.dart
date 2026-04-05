@@ -26,14 +26,22 @@ class AppStrings {
   static const String passwordHint = "Create password";
   static const String alreadyHaveAccount = "Already have an account? ";
   static const String login = "Log in";
+  static const String min8CharactersLength = 'Min 8 characters length';
+
+  static const String min2Numbers = 'Min 2 number';
+
+  static const String min1UppercaseLetter = 'Min 1 uppercase letter';
 
   // Verification & Success
   static const String codeSent = "Code sent to email";
+  static const String confirm = "Confirm";
   static const String codeSentSub =
       "A verification code has been sent to your email. Please enter it to verify your profile.";
-  static const String otpExpiry = "This OTP will be available during 00:59sec";
+  static const String otpExpiry =
+      "This OTP will be available shortly, please wait.";
   static const String successfullyVerified = "Successfully verified";
   static const String successSub =
       "Fill in your personal information to simplify doctor communication, book appointments faster, and get personalized care.";
   static const String completeCard = "Complete patient card";
+  static const String resend = "Resend code";
 }

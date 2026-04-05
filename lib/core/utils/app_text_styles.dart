@@ -36,6 +36,12 @@ class AppTextStyles {
     fontSize: 14.sp,
     height: 20 / 14,
   );
+  static final TextStyle headOtp = TextStyle(
+    fontFamily: "Times New Roman",
+    fontWeight: FontWeight.w400,
+    fontSize: 24.sp,
+
+  );
   //
   static final TextStyle body1 = TextStyle(
     fontFamily: fontFamily,

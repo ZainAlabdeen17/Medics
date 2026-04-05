@@ -15,6 +15,8 @@ class ButtonClass {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.btnPrimary,
+          disabledBackgroundColor: AppColors.btnDisabled,
+          disabledForegroundColor: AppColors.textStaticWhite,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32.r),
           ),

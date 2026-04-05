@@ -4,6 +4,7 @@ import 'package:medics/core/utils/app_palette.dart';
 class AppColors {
   AppColors._();
   // --- Text Colors ---
+  static const Color scaffoldColor = Color(0xffecf3f3);
   static const Color textAccent = AppPalette.primary600;
   static const Color textPrimary = AppPalette.grey900;
   static const Color textSecondary = AppPalette.grey600;
