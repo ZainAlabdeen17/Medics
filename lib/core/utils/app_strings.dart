@@ -31,6 +31,7 @@ class AppStrings {
   static const String niceToHaveYou = 'Nice to have you back!';
   static const String areYouNewHere = 'Are you new here?';
   static const String forgotPassWord = 'Forgot your password?';
+  static const String keepMeSignedIn = 'Keep me signed in';
 
   static const String min2Numbers = 'Min 2 number';
 

@@ -9,6 +9,7 @@ import 'package:medics/core/widgets/custom_fill_button.dart';
 import 'package:medics/core/widgets/custom_text_field.dart';
 import 'package:medics/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/auth_state.dart';
+import 'package:medics/features/auth/presentation/view/widgets/auth_footer.dart';
 import 'package:medics/features/auth/presentation/view/widgets/password_requerment_item.dart';
 
 class SignInForm extends StatelessWidget {
@@ -16,7 +17,7 @@ class SignInForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   BlocBuilder<AuthCubit, AuthState>(
+    return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         AuthCubit authCubit = BlocProvider.of(context);
         final passwordValidator = state.passwordValidator;
@@ -81,6 +82,28 @@ class SignInForm extends StatelessWidget {
                   ),
                 ],
               ),
+            SizedBox(height: 8.h),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                AuthFooter(
+                  text1: "",
+                  text2: AppStrings.forgotPassWord,
+                  onTap: () {
+                    AppNavigation.pushReplacementScreen(context, '/ForgetPassword');
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 16.h),
+            Row(
+              children: [
+                Checkbox(value: false, onChanged: (value) {}),
+                Text(style: AppTextStyles.link1, AppStrings.keepMeSignedIn ,),
+              ],
+            ),
+
             SizedBox(height: 32.h),
             CustomFillButton(
               text: AppStrings.login,
