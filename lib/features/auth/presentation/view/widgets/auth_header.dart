@@ -19,20 +19,25 @@ class AuthHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 56.h),
-        Text(
-          text1,
-          style: AppTextStyles.head1.copyWith(
-            fontSize: 30.sp,
-            color: AppColors.textAccent,
+        SizedBox(
+          width: 375.w,
+          height: 50.h,
+          child: Padding(
+            padding: EdgeInsets.only(top: 12.h),
+            child: Text(
+              text1,
+              style: AppTextStyles.head1.copyWith(color: AppColors.textAccent),
+            ),
           ),
         ),
-        SizedBox(height: 8.h),
-        Text(
-          text2,
-          style: AppTextStyles.head1.copyWith(color: AppColors.textPrimary),
+
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.h),
+          child: Text(
+            text2,
+            style: AppTextStyles.head1.copyWith(color: AppColors.textPrimary),
+          ),
         ),
-        SizedBox(height: 8.h),
         Text(
           text3,
           style: AppTextStyles.body2.copyWith(color: AppColors.textSecondary),

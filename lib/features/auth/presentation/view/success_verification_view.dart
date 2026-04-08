@@ -12,51 +12,53 @@ class SuccessVerificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(child: SizedBox(height: 142.h)),
-            SliverToBoxAdapter(
-              child: Container(
-                width: 320.w,
-                height: 344.h,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(Assets.assetsImagesVerificationSuccess),
-                    fit: BoxFit.fill,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(16.w),
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: SizedBox(height: 98.h)),
+              SliverToBoxAdapter(
+                child: Container(
+                  width: 320.w,
+                  height: 344.h,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(Assets.assetsImagesVerificationSuccess),
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
               ),
-            ),
-            SliverToBoxAdapter(child: SizedBox(height: 63.h)),
-            SliverToBoxAdapter(
-              child: Text(
-                AppStrings.successfullyVerified,
-                style: AppTextStyles.head1.copyWith(
-                  color: AppColors.textPrimary,
+              SliverToBoxAdapter(child: SizedBox(height: 63.h)),
+              SliverToBoxAdapter(
+                child: Text(
+                  AppStrings.successfullyVerified,
+                  style: AppTextStyles.head1.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
-            ),
-            SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-            SliverToBoxAdapter(
-              child: Text(
-                AppStrings.successSub,
-                style: AppTextStyles.body1.copyWith(
-                  color: AppColors.textSecondary,
+              SliverToBoxAdapter(child: SizedBox(height: 8.h)),
+              SliverToBoxAdapter(
+                child: Text(
+                  AppStrings.successSub,
+                  style: AppTextStyles.body1.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
-            ),
-            SliverToBoxAdapter(child: SizedBox(height: 32.h)),
-            SliverToBoxAdapter(
-              child: ButtonClass.customFillButton(
-                text: AppStrings.completeCard,
-                onPressed: () {},
+              SliverToBoxAdapter(child: SizedBox(height: 32.h)),
+              SliverToBoxAdapter(
+                child: ButtonClass.customFillButton(
+                  text: AppStrings.completeCard,
+                  onPressed: () {},
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
