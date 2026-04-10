@@ -9,6 +9,10 @@ class AppNavigation {
     GoRouter.of(context).pushReplacement(path);
   }
 
+  static void goToScreen(context, String path) {
+    GoRouter.of(context).go(path);
+  }
+
   static void popScreen(context) {
     GoRouter.of(context).pop();
   }

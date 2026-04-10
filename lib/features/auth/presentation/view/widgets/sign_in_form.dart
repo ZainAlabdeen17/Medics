@@ -91,7 +91,10 @@ class SignInForm extends StatelessWidget {
                   text1: "",
                   text2: AppStrings.forgotPassWord,
                   onTap: () {
-                    AppNavigation.pushReplacementScreen(context, '/ForgetPassword');
+                    AppNavigation.pushReplacementScreen(
+                      context,
+                      '/ForgetPassword',
+                    );
                   },
                 ),
               ],
@@ -100,7 +103,7 @@ class SignInForm extends StatelessWidget {
             Row(
               children: [
                 Checkbox(value: false, onChanged: (value) {}),
-                Text(style: AppTextStyles.link1, AppStrings.keepMeSignedIn ,),
+                Text(style: AppTextStyles.link1, AppStrings.keepMeSignedIn),
               ],
             ),
 
@@ -111,7 +114,7 @@ class SignInForm extends StatelessWidget {
               onPressed: state.isFormValid
                   ? () {
                       state.isFormValid
-                          ? AppNavigation.pushReplacementScreen(context, "/Otp")
+                          ? AppNavigation.goToScreen(context, "/Home")
                           : null;
                     }
                   : null,
