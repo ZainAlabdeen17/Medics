@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
     this.errorText,
     this.obscureText = false,
     this.suffixIcon,
+    this.prefixIcon,
     this.hasError = false,
     this.validator,
     this.onChanged,
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
   final String? errorText;
   final bool obscureText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final bool hasError;
   final String Function(String?)? validator;
   final Function(String)? onChanged;
@@ -26,53 +28,64 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      //
-      validator: validator ?? (value) => null,
-      //
-      onChanged: onChanged,
-      //
-      onTap: onTap,
-      //
-      obscureText: obscureText,
-      obscuringCharacter: '*',
-      //
-      cursorColor: AppColors.textStaticBlack,
-      cursorHeight: 20.h,
-      //
-      style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
-      //
-      decoration: InputDecoration(
+    return SizedBox(
+      width: 343.w,
+      child: TextFormField(
         //
-        hintText: hintText,
-        hintStyle: AppTextStyles.body1.copyWith(color: AppColors.textSecondary),
+        validator: validator ?? (value) => null,
         //
-        errorText: errorText,
-        errorStyle: AppTextStyles.body3.copyWith(color: AppColors.textRed),
+        onChanged: onChanged,
         //
-        filled: true,
-        fillColor: AppColors.surfaceBlur,
+        onTap: onTap,
         //
-        suffixIcon: suffixIcon,
+        obscureText: obscureText,
+        obscuringCharacter: '*',
         //
-        contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+        cursorColor: AppColors.textStaticBlack,
+        cursorHeight: 20.h,
         //
-        border: customOutlineInputBorder(
-          hasError ? AppColors.borderRed : AppColors.borderBlack,
+        style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+        //
+        decoration: InputDecoration(
+          //
+          hintText: hintText,
+          hintStyle: AppTextStyles.body1.copyWith(color: AppColors.textSecondary),
+          //
+          errorText: errorText,
+          errorStyle: AppTextStyles.body3.copyWith(color: AppColors.textRed),
+          //
+          filled: true,
+          fillColor: AppColors.surfaceBlur,
+          //
+          suffixIcon: suffixIcon,
+          //
+          prefixIcon: prefixIcon,
+          prefixIconConstraints: BoxConstraints(
+            minWidth: 48.w,
+            minHeight: 24.h,
+          ),
+          //
+          prefixIconColor: AppColors.iconGrey,
+          //
+          contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+          //
+          border: customOutlineInputBorder(
+            hasError ? AppColors.borderRed : AppColors.borderBlack,
+          ),
+          //
+          focusedBorder: customOutlineInputBorder(
+            hasError ? AppColors.borderRed : AppColors.borderBlack,
+          ),
+          //
+          enabledBorder: customOutlineInputBorder(
+            hasError ? AppColors.borderRed : AppColors.borderBlack,
+          ),
+          //
+          errorBorder: customOutlineInputBorder(AppColors.borderRed),
+          //
+          focusedErrorBorder: customOutlineInputBorder(AppColors.borderRed),
+          //
         ),
-        //
-        focusedBorder: customOutlineInputBorder(
-          hasError ? AppColors.borderRed : AppColors.borderBlack,
-        ),
-        //
-        enabledBorder: customOutlineInputBorder(
-          hasError ? AppColors.borderRed : AppColors.borderBlack,
-        ),
-        //
-        errorBorder: customOutlineInputBorder(AppColors.borderRed),
-        //
-        focusedErrorBorder: customOutlineInputBorder(AppColors.borderRed),
-        //
       ),
     );
   }

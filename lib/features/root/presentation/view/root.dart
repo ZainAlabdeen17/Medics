@@ -18,18 +18,19 @@ class Root extends StatelessWidget {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Stack(
-            children: [
-              Positioned.fill(child: navigationShell),
-              Positioned(
-                left: 16.w,
-                right: 16.w,
-                bottom: 16.h,
+        body: Stack(
+          children: [
+            Positioned.fill(child: navigationShell),
+            Positioned(
+              left: 16.w,
+              right: 16.w,
+              bottom: 0.h,
+              child: SafeArea(
+                minimum: EdgeInsets.only(bottom: 30.h),
                 child: CustomNavbar(navigationShell: navigationShell),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
