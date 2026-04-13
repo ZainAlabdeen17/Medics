@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/features/home/presentation/view/widgets/home_header.dart';
 import 'package:medics/features/home/presentation/view/widgets/home_search_field.dart';
 import 'package:medics/features/home/presentation/view/widgets/our_doctors_section.dart';
@@ -19,7 +21,15 @@ class HomeView extends StatelessWidget {
             slivers: [
               SliverToBoxAdapter(child: HomeHeader()),
               SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-              SliverToBoxAdapter(child: HomeSearchField()),
+              SliverToBoxAdapter(
+                child: HomeSearchField(
+                  hintText: AppStrings.startTyping,
+                  onTap: () {
+                    context.push("/Doctors");
+                  },
+                  readOnly: true,
+                ),
+              ),
               SliverToBoxAdapter(child: PopularSpecializationsSection()),
               SliverToBoxAdapter(child: SizedBox(height: 12.h)),
               SliverToBoxAdapter(child: OurDoctorsSection()),

@@ -5,6 +5,7 @@ import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
 import 'package:medics/features/auth/presentation/view/success_verification_view.dart';
 import 'package:medics/features/auth/presentation/view/widgets/forget_password.dart';
 import 'package:medics/features/chat/presentation/view/chat_view.dart';
+import 'package:medics/features/doctor/presentation/view/doctors_view.dart';
 import 'package:medics/features/home/presentation/view/home_view.dart';
 import 'package:medics/features/medical_records/presentation/view/medical_records_view.dart';
 import 'package:medics/features/on_boarding/presentation/view/on_boarding_view.dart';
@@ -28,6 +29,12 @@ GoRouter route = GoRouter(
       path: "/ForgetPassword",
       builder: (context, state) => ForgetPassword(),
     ),
+    GoRoute(
+      path: "/Specializations",
+      builder: (context, state) => const SpecializationsView(),
+    ),
+    GoRoute(path: "/Doctors", builder: (context, state) => const DoctorsView()),
+    //
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return Root(navigationShell: navigationShell);
@@ -61,6 +68,5 @@ GoRouter route = GoRouter(
         ),
       ],
     ),
-    GoRoute(path: "/Specializations", builder: (context, state) => const SpecializationsView()),
   ],
 );

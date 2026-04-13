@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/functions/app_navigation.dart';
 import 'package:medics/core/utils/app_assets.dart';
 
-
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -48,6 +47,8 @@ class _SplashViewState extends State<SplashView> {
                   fontWeight: FontWeight.w600,
                   color: Color(0xff2b6f71),
                 ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
             ],
           ),

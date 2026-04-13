@@ -14,19 +14,23 @@ class GeneralHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 48.h,
-      width: 375.w,
+      width: double.infinity,
       child: Padding(
         padding: EdgeInsets.only(top: 12.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Stack(
+          alignment: Alignment.center,
           children: [
-            GestureDetector(
-              onTap: () {
-                AppNavigation.popScreen(context);
-              },
-              child: SvgPicture.asset(Assets.assetsImagesIconsGeneralArrowLeft),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: GestureDetector(
+                onTap: () {
+                  AppNavigation.popScreen(context);
+                },
+                child: SvgPicture.asset(
+                  Assets.assetsImagesIconsGeneralArrowLeft,
+                ),
+              ),
             ),
-            SizedBox(width: 94.w),
             Text(
               title,
               style: AppTextStyles.head3.copyWith(color: AppColors.textPrimary),

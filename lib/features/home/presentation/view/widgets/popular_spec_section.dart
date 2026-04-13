@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medics/core/functions/app_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/features/specialization/data/specialization_model.dart';
 import 'package:medics/features/home/presentation/view/widgets/section_header.dart';
@@ -16,7 +16,7 @@ class PopularSpecializationsSection extends StatelessWidget {
         SectionHeader(
           title: AppStrings.popularSpecializations,
           onTap: () {
-            AppNavigation.pushScreen(context, "/Specializations");
+            context.push("/Specializations");
           },
         ),
         SizedBox(height: 12.h),

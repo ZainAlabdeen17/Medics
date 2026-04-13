@@ -76,4 +76,6 @@ class AppStrings {
   static const String neurologist = "Neurologist";
   static const String geneticist = "Geneticist";
   static const String radiologist = "Radiologist";
+  //doctors
+  static const String startTypingName = "Start Type Name";
 }

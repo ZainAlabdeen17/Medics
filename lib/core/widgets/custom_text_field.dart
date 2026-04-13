@@ -15,6 +15,8 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.onChanged,
     this.onTap,
+    this.readOnly = false,
+    this.autoFocus = false,
   });
   final String hintText;
   final String? errorText;
@@ -25,6 +27,8 @@ class CustomTextField extends StatelessWidget {
   final String Function(String?)? validator;
   final Function(String)? onChanged;
   final VoidCallback? onTap;
+  final bool readOnly;
+  final bool autoFocus;
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +50,16 @@ class CustomTextField extends StatelessWidget {
         //
         style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
         //
+        readOnly: readOnly,
+        //
+        autofocus: autoFocus,
+        //
         decoration: InputDecoration(
           //
           hintText: hintText,
-          hintStyle: AppTextStyles.body1.copyWith(color: AppColors.textSecondary),
+          hintStyle: AppTextStyles.body1.copyWith(
+            color: AppColors.textSecondary,
+          ),
           //
           errorText: errorText,
           errorStyle: AppTextStyles.body3.copyWith(color: AppColors.textRed),
@@ -67,7 +77,10 @@ class CustomTextField extends StatelessWidget {
           //
           prefixIconColor: AppColors.iconGrey,
           //
-          contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 20.w,
+            vertical: 16.h,
+          ),
           //
           border: customOutlineInputBorder(
             hasError ? AppColors.borderRed : AppColors.borderBlack,

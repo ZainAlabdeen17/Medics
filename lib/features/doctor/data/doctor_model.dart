@@ -13,31 +13,56 @@ class DoctorModel {
     required this.image,
     required this.rating,
   });
+  static List<DoctorModel> getDoctors() {
+    return [
+      DoctorModel(
+        name: "Dr. Mia Miller",
+        specialization: AppStrings.neurologist,
+        image: Assets.assetsImagesDoctorsDoctor1,
+        rating: 5.0,
+      ),
+      DoctorModel(
+        name: "Dr. Norah Still",
+        specialization: AppStrings.cardiologist,
+        image: Assets.assetsImagesDoctorsDoctor2,
+        rating: 4.9,
+      ),
+      DoctorModel(
+        name: "Dr. Helena Fox",
+        specialization: AppStrings.radiologist,
+        image: Assets.assetsImagesDoctorsDoctor3,
+        rating: 4.8,
+      ),
+      DoctorModel(
+        name: "Dr. Andrew Miller",
+        specialization: AppStrings.dentist,
+        image: Assets.assetsImagesDoctorsDoctor4,
+        rating: 3.2,
+      ),
+      DoctorModel(
+        name: "Dr. Jack Bucly",
+        specialization: AppStrings.pulmonologist,
+        image: Assets.assetsImagesDoctorsDoctor7,
+        rating: 4.1,
+      ),
+      DoctorModel(
+        name: "Dr. Nina Swan",
+        specialization: AppStrings.gynecologist,
+        image: Assets.assetsImagesDoctorsDoctor8,
+        rating: 3.7,
+      ),
+      DoctorModel(
+        name: "Dr. Noa Brown",
+        specialization: AppStrings.urologist,
+        image: Assets.assetsImagesDoctorsDoctor6,
+        rating: 5.0,
+      ),
+      DoctorModel(
+        name: "Dr. Sara Palm",
+        specialization: AppStrings.traumatologist,
+        image: Assets.assetsImagesDoctorsDoctor5,
+        rating: 4.3,
+      ),
+    ];
+  }
 }
-
-final List<DoctorModel> doctors = [
-  DoctorModel(
-    name: "Dr. Mia Miller",
-    specialization: AppStrings.neurologist,
-    image: Assets.assetsImagesDoctorsDoctor1,
-    rating: 5.0,
-  ),
-  DoctorModel(
-    name: "Dr. Norah Still",
-    specialization: AppStrings.cardiologist,
-    image: Assets.assetsImagesDoctorsDoctor2,
-    rating: 4.9,
-  ),
-  DoctorModel(
-    name: "Dr. Helena Fox",
-    specialization: AppStrings.radiologist,
-    image: Assets.assetsImagesDoctorsDoctor3,
-    rating: 4.8,
-  ),
-  DoctorModel(
-    name: "Dr. Andrew Miller",
-    specialization: AppStrings.dentist,
-    image: Assets.assetsImagesDoctorsDoctor4,
-    rating: 3.2,
-  ),
-];

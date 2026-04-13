@@ -42,6 +42,10 @@ class Assets {
   /// assets/images/icons/general/arrow-left.svg
   static const String assetsImagesIconsGeneralArrowLeft = "assets/images/icons/general/arrow-left.svg";
 
+  /// Assets for assetsImagesIconsGeneralFilter
+  /// assets/images/icons/general/filter.svg
+  static const String assetsImagesIconsGeneralFilter = "assets/images/icons/general/filter.svg";
+
   /// Assets for assetsImagesIconsGeneralNotification
   /// assets/images/icons/general/notification.svg
   static const String assetsImagesIconsGeneralNotification = "assets/images/icons/general/notification.svg";

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/features/doctor/data/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/view/widgets/doctor_item.dart';
@@ -7,13 +8,18 @@ import 'package:medics/features/home/presentation/view/widgets/section_header.da
 
 class OurDoctorsSection extends StatelessWidget {
   const OurDoctorsSection({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final List<DoctorModel> doctors = DoctorModel.getDoctors();
     return Column(
       children: [
         SizedBox(height: 12.h),
-        SectionHeader(title: AppStrings.ourDoctors, onTap: () {}),
+        SectionHeader(
+          title: AppStrings.ourDoctors,
+          onTap: () {
+            context.push("/Doctors");
+          },
+        ),
         SizedBox(height: 12.h),
         SizedBox(
           height: 530.h,
@@ -25,7 +31,7 @@ class OurDoctorsSection extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 16.w,
               mainAxisSpacing: 28.h,
-              childAspectRatio: 166.w / 250.h,
+              mainAxisExtent: 250.h,
             ),
             itemBuilder: (context, index) {
               return DoctorItem(
