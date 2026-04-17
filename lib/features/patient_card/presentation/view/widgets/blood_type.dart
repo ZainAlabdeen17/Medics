@@ -30,11 +30,11 @@ class _BloodTypeState extends State<BloodType> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             _buildBloodCard("O(I)"),
-            SizedBox(width: 12),
+            SizedBox(width: 12.w),
             _buildBloodCard("A(II)"),
-            SizedBox(width: 12),
+            SizedBox(width: 12.w),
             _buildBloodCard("B(III)"),
-            SizedBox(width: 12),
+            SizedBox(width: 12.w),
             _buildBloodCard("AB(IV)"),
           ],
         ),
@@ -43,7 +43,7 @@ class _BloodTypeState extends State<BloodType> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             _buildButtonRh("+"),
-            SizedBox(width: 12),
+            SizedBox(width: 12.w),
             _buildButtonRh("-"),
           ],
         ),
@@ -78,7 +78,7 @@ class _BloodTypeState extends State<BloodType> {
                   : AppColors.borderAccent,
               size: 32,
             ),
-            const SizedBox(height: 8),
+             SizedBox(height: 8.h),
             Text(
               name,
               style: AppTextStyles.head3.copyWith(
@@ -120,7 +120,7 @@ class _BloodTypeState extends State<BloodType> {
                   : AppColors.borderAccent,
               size: 32,
             ),
-            const SizedBox(height: 8),
+             SizedBox(height: 8.h),
             Text(
               "RH$name",
               style: AppTextStyles.head3.copyWith(
