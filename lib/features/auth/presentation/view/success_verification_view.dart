@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medics/core/functions/app_navigation.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
@@ -53,7 +54,9 @@ class SuccessVerificationView extends StatelessWidget {
             SliverToBoxAdapter(
               child: ButtonClass.customFillButton(
                 text: AppStrings.completeCard,
-                onPressed: () {},
+                onPressed: () {
+                    AppNavigation.pushReplacementScreen(context, "/Patient");
+                },
               ),
             ),
           ],
