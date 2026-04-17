@@ -49,4 +49,5 @@ class AppColors {
   static const Color iconGreen = AppPalette.success500;
   static const Color iconGrey = AppPalette.grey600;
   static const Color iconGreyDisabled = AppPalette.grey200;
+  static const Color iconStaticWhite = AppPalette.white;
 }

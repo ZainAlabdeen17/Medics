@@ -120,3 +120,4 @@ app.*.symbols
 /.idea
 /android/lib
 devtools_options.yaml
+**/lib/core/network

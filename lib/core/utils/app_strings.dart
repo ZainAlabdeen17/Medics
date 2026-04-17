@@ -110,4 +110,44 @@ class AppStrings {
   static const String save = "Save";
 
   
+
+  // Home Screen
+  static const String hello = "Hello, ";
+  static const String startTyping = "Start typing";
+  static const String seeAll = "See all";
+  static const String popularSpecializations = "Popular Specializations";
+  static const String specializations = "Specializations";
+  static const String ourDoctors = "Our Doctors";
+  static const String services = "Services";
+  static const String appointments = "Appointments";
+  static const String faq = "FAQ";
+  static const String supportChat = "Support Chat";
+
+  // Specializations
+  static const String generalPractitioner = "General Practitioner";
+  static const String pulmonologist = "Pulmonologist";
+  static const String gastroenterologist = "Gastroenterologist";
+  static const String otolaryngologist = "Otolaryngologist";
+  static const String dentist = "Dentist";
+  static const String cardiologist = "Cardiologist";
+  static const String ophthalmologist = "Ophthalmologist";
+  static const String urologist = "Urologist";
+  static const String hepatologist = "Hepatologist";
+  static const String traumatologist = "Traumatologist";
+  static const String gynecologist = "Gynecologist";
+  static const String neurologist = "Neurologist";
+  static const String geneticist = "Geneticist";
+  static const String radiologist = "Radiologist";
+  //doctors
+  static const String startTypingName = "Start Type Name";
+  //filter
+  static const String cancel = "Cancel";
+  static const String filter = "Filter";
+  static const String apply = "Apply";
+  static const String showAll = "Show all";
+  static const String showLess = "Show less";
+  static const String experience = "Experience";
+  static const String gender = "Gender";
+  static const String resetFilter = "Reset Filter";
+
 }

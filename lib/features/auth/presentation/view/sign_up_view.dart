@@ -19,27 +19,38 @@ class SignUpView extends StatelessWidget {
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           return Scaffold(
-            body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: AuthHeader(
-                      text1: AppStrings.medics,
-                      text2: AppStrings.createAnAccount,
-                      text3: AppStrings.excited,
+            body: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: AuthHeader(
+                        text1: AppStrings.medics,
+                        text2: AppStrings.createAnAccount,
+                        text3: AppStrings.excited,
+                      ),
                     ),
-                  ),
-                  SliverToBoxAdapter(child: SignUpForm()),
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: state.password.isNotEmpty ? 210.h : 282.h,
+                    SliverToBoxAdapter(child: SignUpForm()),
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: state.password.isNotEmpty ? 210.h : 282.h,
+                      ),
                     ),
-                  ),
-                  SliverToBoxAdapter(child: AuthFooter(text1 : AppStrings.alreadyHaveAccount , text2: AppStrings.login,onTap: () {
-                    AppNavigation.pushReplacementScreen(context, '/SignIn');
-                  },)),
-                ],
+                    SliverToBoxAdapter(
+                      child: AuthFooter(
+                        text1: AppStrings.alreadyHaveAccount,
+                        text2: AppStrings.login,
+                        onTap: () {
+                          AppNavigation.pushReplacementScreen(
+                            context,
+                            '/SignIn',
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

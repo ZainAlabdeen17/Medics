@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:medics/core/functions/app_navigation.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
@@ -91,7 +92,10 @@ class SignInForm extends StatelessWidget {
                   text1: "",
                   text2: AppStrings.forgotPassWord,
                   onTap: () {
-                    AppNavigation.pushReplacementScreen(context, '/ForgetPassword');
+                    AppNavigation.pushReplacementScreen(
+                      context,
+                      '/ForgetPassword',
+                    );
                   },
                 ),
               ],
@@ -100,7 +104,7 @@ class SignInForm extends StatelessWidget {
             Row(
               children: [
                 Checkbox(value: false, onChanged: (value) {}),
-                Text(style: AppTextStyles.link1, AppStrings.keepMeSignedIn ,),
+                Text(style: AppTextStyles.link1, AppStrings.keepMeSignedIn),
               ],
             ),
 
@@ -111,7 +115,7 @@ class SignInForm extends StatelessWidget {
               onPressed: state.isFormValid
                   ? () {
                       state.isFormValid
-                          ? AppNavigation.pushReplacementScreen(context, "/Otp")
+                          ? context.go("/Home")
                           : null;
                     }
                   : null,
