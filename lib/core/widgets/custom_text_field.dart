@@ -33,7 +33,6 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 343.w,
       child: TextFormField(
         //
         validator: validator ?? (value) => null,
