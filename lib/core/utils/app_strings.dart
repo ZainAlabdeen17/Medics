@@ -78,4 +78,13 @@ class AppStrings {
   static const String radiologist = "Radiologist";
   //doctors
   static const String startTypingName = "Start Type Name";
+  //filter
+  static const String cancel = "Cancel";
+  static const String filter = "Filter";
+  static const String apply = "Apply";
+  static const String showAll = "Show all";
+  static const String showLess = "Show less";
+  static const String experience = "Experience";
+  static const String gender = "Gender";
+  static const String resetFilter = "Reset Filter";
 }

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/features/doctor/data/doctor_model.dart';
-import 'package:medics/features/doctor/presentation/view/widgets/doctor_item.dart';
+import 'package:medics/features/doctor/presentation/widgets/doctor_item.dart';
 import 'package:medics/features/home/presentation/view/widgets/section_header.dart';
 
 class OurDoctorsSection extends StatelessWidget {

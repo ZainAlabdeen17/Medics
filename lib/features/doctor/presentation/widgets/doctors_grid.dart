@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/features/doctor/data/doctor_model.dart';
-import 'package:medics/features/doctor/presentation/view/widgets/doctor_item.dart';
+import 'package:medics/features/doctor/presentation/widgets/doctor_item.dart';
 
 class DoctorsGrid extends StatelessWidget {
   const DoctorsGrid({super.key});

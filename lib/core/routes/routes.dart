@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medics/features/auth/presentation/view/otp_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_in_view.dart';
@@ -5,7 +6,9 @@ import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
 import 'package:medics/features/auth/presentation/view/success_verification_view.dart';
 import 'package:medics/features/auth/presentation/view/widgets/forget_password.dart';
 import 'package:medics/features/chat/presentation/view/chat_view.dart';
+import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
 import 'package:medics/features/doctor/presentation/view/doctors_view.dart';
+import 'package:medics/features/doctor/presentation/view/filter_view.dart';
 import 'package:medics/features/home/presentation/view/home_view.dart';
 import 'package:medics/features/medical_records/presentation/view/medical_records_view.dart';
 import 'package:medics/features/on_boarding/presentation/view/on_boarding_view.dart';
@@ -34,6 +37,13 @@ GoRouter route = GoRouter(
       builder: (context, state) => const SpecializationsView(),
     ),
     GoRoute(path: "/Doctors", builder: (context, state) => const DoctorsView()),
+    GoRoute(
+      path: "/Filter",
+      builder: (context, state) {
+        final cubit = state.extra as FilterCubit;
+        return BlocProvider.value(value: cubit, child: const FilterView());
+      },
+    ),
     //
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
