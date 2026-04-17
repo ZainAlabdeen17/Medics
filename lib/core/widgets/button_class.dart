@@ -7,9 +7,10 @@ class ButtonClass {
   static Widget customFillButton({
     required String text,
     VoidCallback? onPressed,
+    int width = 0,
   }) {
     return SizedBox(
-      width: double.infinity,
+      width: width == 0 ? double.infinity : width.w,
       height: 56.h,
       child: ElevatedButton(
         onPressed: onPressed,
@@ -32,9 +33,11 @@ class ButtonClass {
   static Widget customNonFillButton({
     required String text,
     VoidCallback? onPressed,
+    int width = 0,
+    
   }) {
     return SizedBox(
-      width: double.infinity,
+      width: width == 0 ? double.infinity : width.w,
       height: 56.h,
       child: ElevatedButton(
         onPressed: onPressed,

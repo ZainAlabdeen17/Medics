@@ -43,7 +43,7 @@ class OnBoardingButtons extends StatelessWidget {
               ),
               SizedBox(height: 8.h),
               ButtonClass.customNonFillButton(
-                text: AppStrings.login,
+                 text: AppStrings.login,
                 onPressed: () {
                   AppNavigation.pushReplacementScreen(context, '/SignIn');
                 },

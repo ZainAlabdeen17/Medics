@@ -5,6 +5,7 @@ import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
 import 'package:medics/features/auth/presentation/view/success_verification_view.dart';
 import 'package:medics/features/auth/presentation/view/widgets/forget_password.dart';
 import 'package:medics/features/on_boarding/presentation/view/on_boarding_view.dart';
+import 'package:medics/features/patient_card/presentation/view/patient_view.dart';
 import 'package:medics/features/splash/presentation/view/splash_view.dart';
 
 GoRouter route = GoRouter(
@@ -16,5 +17,6 @@ GoRouter route = GoRouter(
     GoRoute(path: "/SuccessVerification", builder: (context, state) => SuccessVerificationView()),
     GoRoute(path: "/SignIn", builder: (context, state) => SignInView()),
     GoRoute(path: "/ForgetPassword", builder: (context, state) => ForgetPassword()),
+    GoRoute(path: "/Patient", builder: (context, state) => PatientView()),
   ],
 );
