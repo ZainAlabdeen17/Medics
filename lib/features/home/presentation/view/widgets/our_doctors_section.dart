@@ -34,12 +34,7 @@ class OurDoctorsSection extends StatelessWidget {
               mainAxisExtent: 250.h,
             ),
             itemBuilder: (context, index) {
-              return DoctorItem(
-                doctorName: doctors[index].name,
-                doctorSpecialization: doctors[index].specialization,
-                image: doctors[index].image,
-                rating: doctors[index].rating,
-              );
+              return DoctorItem(doctor: doctors[index]);
             },
           ),
         ),

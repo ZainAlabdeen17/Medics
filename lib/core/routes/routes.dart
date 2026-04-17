@@ -7,6 +7,7 @@ import 'package:medics/features/auth/presentation/view/success_verification_view
 import 'package:medics/features/auth/presentation/view/widgets/forget_password.dart';
 import 'package:medics/features/chat/presentation/view/chat_view.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
+import 'package:medics/features/doctor/presentation/view/doctor_details_view.dart';
 import 'package:medics/features/doctor/presentation/view/doctors_view.dart';
 import 'package:medics/features/doctor/presentation/view/filter_view.dart';
 import 'package:medics/features/home/presentation/view/home_view.dart';
@@ -50,6 +51,10 @@ GoRouter route = GoRouter(
         final cubit = state.extra as FilterCubit;
         return BlocProvider.value(value: cubit, child: const FilterView());
       },
+    ),
+    GoRoute(
+      path: "/DoctorDetails",
+      builder: (context, state) => const DoctorDetailsView(),
     ),
     //
     StatefulShellRoute.indexedStack(

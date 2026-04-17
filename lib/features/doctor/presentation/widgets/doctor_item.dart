@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
+import 'package:medics/features/doctor/data/doctor_model.dart';
 
 class DoctorItem extends StatelessWidget {
-  const DoctorItem({
-    super.key,
-    required this.doctorName,
-    required this.doctorSpecialization,
-    required this.image,
-    required this.rating,
-  });
-  final String doctorName;
-  final String doctorSpecialization;
-  final String image;
-  final double rating;
+  const DoctorItem({super.key, required this.doctor});
+  final DoctorModel doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +35,7 @@ class DoctorItem extends StatelessWidget {
                     height: 141.h,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(image),
+                        image: AssetImage(doctor.image),
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(24.r),
@@ -77,7 +70,7 @@ class DoctorItem extends StatelessWidget {
                             // padding: EdgeInsets.only(top: 2.5.h, bottom: 4.h),
                             padding: EdgeInsets.only(bottom: 4.h),
                             child: Text(
-                              "$rating",
+                              "${doctor.rating}",
                               style: TextStyle(
                                 color: AppColors.textSecondary,
                                 fontFamily: "Syne",
@@ -95,7 +88,7 @@ class DoctorItem extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               Text(
-                doctorName,
+                doctor.name,
                 style: AppTextStyles.head3.copyWith(
                   color: AppColors.textPrimary,
                 ),
@@ -104,7 +97,7 @@ class DoctorItem extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Text(
-                doctorSpecialization,
+                doctor.specialization,
                 style: AppTextStyles.body2.copyWith(
                   color: AppColors.textSecondary,
                 ),
@@ -115,18 +108,23 @@ class DoctorItem extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          height: 44.h,
-          width: 44.w,
-          decoration: BoxDecoration(
-            color: AppColors.surfaceAccent,
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: SizedBox(
-              height: 24.h,
-              width: 24.w,
-              child: SvgPicture.asset(Assets.assetsImagesIconsGeneralArrow),
+        GestureDetector(
+          onTap: () {
+            context.push("/DoctorDetails");
+          },
+          child: Container(
+            height: 44.h,
+            width: 44.w,
+            decoration: BoxDecoration(
+              color: AppColors.surfaceAccent,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: SizedBox(
+                height: 24.h,
+                width: 24.w,
+                child: SvgPicture.asset(Assets.assetsImagesIconsGeneralArrow),
+              ),
             ),
           ),
         ),

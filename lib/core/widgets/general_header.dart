@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:medics/core/functions/app_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
@@ -24,7 +24,7 @@ class GeneralHeader extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: GestureDetector(
                 onTap: () {
-                  AppNavigation.popScreen(context);
+                  context.pop();
                 },
                 child: SvgPicture.asset(
                   Assets.assetsImagesIconsGeneralArrowLeft,
