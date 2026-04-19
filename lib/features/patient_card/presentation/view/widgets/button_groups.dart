@@ -21,7 +21,7 @@ class _ButtonGroupsState extends State<ButtonGroups> {
         SizedBox(width: 12),
         _buildButton(text: "No"),
         SizedBox(width: 12),
-        _buildButton(text: "Occasionally" , width: 159),
+        Expanded(child: _buildButton(text: "Occasionally" , width: 159)),
       ],
     );
   }
