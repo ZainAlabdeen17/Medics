@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
@@ -29,13 +31,13 @@ class _BloodTypeState extends State<BloodType> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildBloodCard("O(I)"),
-            SizedBox(width: 12.w),
-            _buildBloodCard("A(II)"),
-            SizedBox(width: 12.w),
-            _buildBloodCard("B(III)"),
-            SizedBox(width: 12.w),
-            _buildBloodCard("AB(IV)"),
+            Expanded(child: _buildBloodCard("O(I)")),
+            SizedBox(width: 8.w),
+            Expanded(child: _buildBloodCard("A(II)")),
+            SizedBox(width: 8.w),
+            Expanded(child: _buildBloodCard("B(III)")),
+            SizedBox(width: 8.w),
+            Expanded(child: _buildBloodCard("AB(IV)")),
           ],
         ),
         SizedBox(height: 12.h),
@@ -71,14 +73,17 @@ class _BloodTypeState extends State<BloodType> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.water_drop_outlined,
-              color: isSelected
-                  ? AppColors.borderBlack
-                  : AppColors.borderAccent,
-              size: 32,
+            SizedBox(
+              height: 32.h,
+              width: 32.w,
+              child: SvgPicture.asset(
+                Assets.assetsImagesIconsGeneralDroplet,
+                color: isSelected
+                    ? AppColors.borderBlack
+                    : AppColors.borderAccent,
+              ),
             ),
-             SizedBox(height: 8.h),
+            SizedBox(height: 8.h),
             Text(
               name,
               style: AppTextStyles.head3.copyWith(
@@ -120,7 +125,7 @@ class _BloodTypeState extends State<BloodType> {
                   : AppColors.borderAccent,
               size: 32,
             ),
-             SizedBox(height: 8.h),
+            SizedBox(height: 8.h),
             Text(
               "RH$name",
               style: AppTextStyles.head3.copyWith(

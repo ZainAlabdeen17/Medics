@@ -50,6 +50,14 @@ class Assets {
   /// assets/images/icons/general/check.svg
   static const String assetsImagesIconsGeneralCheck = "assets/images/icons/general/check.svg";
 
+  /// Assets for assetsImagesIconsGeneralDrop
+  /// assets/images/icons/general/drop.svg
+  static const String assetsImagesIconsGeneralDrop = "assets/images/icons/general/drop.svg";
+
+  /// Assets for assetsImagesIconsGeneralDroplet
+  /// assets/images/icons/general/droplet.svg
+  static const String assetsImagesIconsGeneralDroplet = "assets/images/icons/general/droplet.svg";
+
   /// Assets for assetsImagesIconsGeneralFavourite
   /// assets/images/icons/general/favourite.svg
   static const String assetsImagesIconsGeneralFavourite = "assets/images/icons/general/favourite.svg";

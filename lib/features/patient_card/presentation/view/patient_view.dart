@@ -39,10 +39,11 @@ class _PatientViewState extends State<PatientView> {
       backgroundColor: AppColors.scaffoldColor,
       bottomNavigationBar: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: 16.w ,vertical: 8.h),
           child: ButtonClass.customFillButton(
             text: AppStrings.next,
             onPressed: nextPage,
+            
           ),
         ),
       ),

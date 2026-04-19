@@ -14,68 +14,70 @@ class PersonalData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          AppStrings.personalData,
-          style: AppTextStyles.head1.copyWith(color: AppColors.textPrimary),
-        ),
-        SizedBox(height: 8.h),
-        Text(
-          AppStrings.personalDataSub,
-          style: AppTextStyles.head2.copyWith(
-            color: AppColors.textSecondary,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w400,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            AppStrings.personalData,
+            style: AppTextStyles.head1.copyWith(color: AppColors.textPrimary),
           ),
-        ),
-        SizedBox(height: 16.h),
-
-        Text(
-          AppStrings.firstName,
-          style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
-        ),
-        SizedBox(height: 4.h),
-        CustomTextField(hintText: AppStrings.enterYourFirstName),
-        SizedBox(height: 12.h),
-
-        Text(
-          AppStrings.lastName,
-          style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
-        ),
-        SizedBox(height: 4.h),
-        CustomTextField(hintText: AppStrings.enterYourLastName),
-        SizedBox(height: 12.h),
-
-        Text(
-          AppStrings.dateOfBirth,
-          style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
-        ),
-        SizedBox(height: 4.h),
-        TextFieldDate(hintText: AppStrings.ddMmYyyy),
-        SizedBox(height: 12.h),
-
-        Text(
-          AppStrings.phoneNumber,
-          style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
-        ),
-        SizedBox(height: 4.h),
-        TextFieldPhoneNumber(hintText: AppStrings.phoneNumberField),
-        SizedBox(height: 12.h),
-
-        Text(
-          AppStrings.city,
-          style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
-        ),
-        SizedBox(height: 4.h),
-        TextFieldCity(
-          hintText: AppStrings.enterCity,
-          onTap: () {
-            showSearch(context: context, delegate: CitySearchDelegate());
-          },
-        ),
-      ],
+          SizedBox(height: 8.h),
+          Text(
+            AppStrings.personalDataSub,
+            style: AppTextStyles.head2.copyWith(
+              color: AppColors.textSecondary,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          SizedBox(height: 16.h),
+      
+          Text(
+            AppStrings.firstName,
+            style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+          ),
+          SizedBox(height: 4.h),
+          CustomTextField(hintText: AppStrings.enterYourFirstName),
+          SizedBox(height: 12.h),
+      
+          Text(
+            AppStrings.lastName,
+            style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+          ),
+          SizedBox(height: 4.h),
+          CustomTextField(hintText: AppStrings.enterYourLastName),
+          SizedBox(height: 12.h),
+      
+          Text(
+            AppStrings.dateOfBirth,
+            style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+          ),
+          SizedBox(height: 4.h),
+          TextFieldDate(hintText: AppStrings.ddMmYyyy),
+          SizedBox(height: 12.h),
+      
+          Text(
+            AppStrings.phoneNumber,
+            style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+          ),
+          SizedBox(height: 4.h),
+          TextFieldPhoneNumber(hintText: AppStrings.phoneNumberField),
+          SizedBox(height: 12.h),
+      
+          Text(
+            AppStrings.city,
+            style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+          ),
+          SizedBox(height: 4.h),
+          TextFieldCity(
+            hintText: AppStrings.enterCity,
+            onTap: () {
+              showSearch(context: context, delegate: CitySearchDelegate());
+            },
+          ),
+        ],
+      ),
     );
   }
 }

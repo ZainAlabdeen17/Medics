@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/routes/routes.dart';
@@ -17,7 +16,7 @@ class MedicsApp extends StatelessWidget {
       designSize: const Size(375, 812),
       builder: (context, child) {
         return MaterialApp.router(
-          builder: DevicePreview.appBuilder,
+         builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
           routerConfig: route,
           theme: ThemeData(scaffoldBackgroundColor: AppColors.scaffoldColor),
