@@ -5,7 +5,7 @@ import 'package:medics/core/routes/routes.dart';
 import 'package:medics/core/utils/app_colors.dart';
 
 void main() {
-  runApp(DevicePreview(enabled: true, builder: (context) => MedicsApp()));
+  runApp(DevicePreview(enabled: false, builder: (context) => MedicsApp()));
 }
 
 class MedicsApp extends StatelessWidget {

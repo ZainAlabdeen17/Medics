@@ -18,7 +18,7 @@ class ServicesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 24.h),
+        SizedBox(height: 32.h),
         Text(
           AppStrings.services,
           style: AppTextStyles.head2.copyWith(color: AppColors.textPrimary),

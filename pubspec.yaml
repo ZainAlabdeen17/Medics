@@ -28,7 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  intl_phone_field: ^3.2.0 
+  intl_phone_field: ^3.2.0
   cupertino_icons: ^1.0.8
   dio: ^5.9.2
   flutter:
@@ -79,6 +79,9 @@ flutter:
           weight: 500
         - asset: assets/fonts/Syne-SemiBold.ttf
           weight: 600
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter_28pt-Thin.ttf
 
   #
   # For details regarding fonts from package dependencies,

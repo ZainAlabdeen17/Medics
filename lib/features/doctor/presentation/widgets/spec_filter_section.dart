@@ -59,24 +59,25 @@ class SpecFilterSection extends StatelessWidget {
               onTap: () {
                 context.read<FilterCubit>().toggleShowAll();
               },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  state.showAll
-                      ? Text(
-                          AppStrings.showLess,
-                          style: AppTextStyles.head3.copyWith(
-                            color: AppColors.textAccent,
-                          ),
-                        )
-                      : Text(
-                          AppStrings.showAll,
-                          style: AppTextStyles.head3.copyWith(
-                            color: AppColors.textAccent,
-                          ),
+              child: state.showAll
+                  ? Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        AppStrings.showLess,
+                        style: AppTextStyles.head3.copyWith(
+                          color: AppColors.textAccent,
                         ),
-                ],
-              ),
+                      ),
+                    )
+                  : Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        AppStrings.showAll,
+                        style: AppTextStyles.head3.copyWith(
+                          color: AppColors.textAccent,
+                        ),
+                      ),
+                    ),
             ),
             SizedBox(height: 20.h),
           ],

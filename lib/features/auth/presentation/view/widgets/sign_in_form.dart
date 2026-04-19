@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medics/core/functions/app_navigation.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
@@ -10,8 +9,6 @@ import 'package:medics/core/widgets/custom_fill_button.dart';
 import 'package:medics/core/widgets/custom_text_field.dart';
 import 'package:medics/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/auth_state.dart';
-import 'package:medics/features/auth/presentation/view/widgets/auth_footer.dart';
-import 'package:medics/features/auth/presentation/view/widgets/password_requerment_item.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({super.key});
@@ -21,7 +18,6 @@ class SignInForm extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         AuthCubit authCubit = BlocProvider.of(context);
-        final passwordValidator = state.passwordValidator;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -61,62 +57,14 @@ class SignInForm extends StatelessWidget {
               onChanged: (password) {
                 authCubit.onPasswordChanged(password);
               },
-              hasError:
-                  !passwordValidator!.isValid && state.password.isNotEmpty,
+              hasError: state.password.isEmpty,
             ),
-            if (state.password.isNotEmpty)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 12.h),
-                  PasswordRequirementItem(
-                    isValid: passwordValidator.hasMinLength,
-                    text: AppStrings.min8CharactersLength,
-                  ),
-                  PasswordRequirementItem(
-                    isValid: passwordValidator.hasUppercase,
-                    text: AppStrings.min1UppercaseLetter,
-                  ),
-                  PasswordRequirementItem(
-                    isValid: passwordValidator.hasTwoNumbers,
-                    text: AppStrings.min2Numbers,
-                  ),
-                ],
-              ),
-            SizedBox(height: 8.h),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                AuthFooter(
-                  text1: "",
-                  text2: AppStrings.forgotPassWord,
-                  onTap: () {
-                    AppNavigation.pushReplacementScreen(
-                      context,
-                      '/ForgetPassword',
-                    );
-                  },
-                ),
-              ],
-            ),
-            SizedBox(height: 16.h),
-            Row(
-              children: [
-                Checkbox(value: false, onChanged: (value) {}),
-                Text(style: AppTextStyles.link1, AppStrings.keepMeSignedIn),
-              ],
-            ),
-
             SizedBox(height: 32.h),
             CustomFillButton(
               text: AppStrings.login,
-
               onPressed: state.isFormValid
                   ? () {
-                      state.isFormValid
-                          ? context.go("/Home")
-                          : null;
+                      state.isFormValid ? context.go("/Home") : null;
                     }
                   : null,
             ),

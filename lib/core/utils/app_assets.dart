@@ -19,8 +19,8 @@ class Assets {
   static const String assetsImagesDoctorsDoctor4 = "assets/images/doctors/doctor4.png";
 
   /// Assets for assetsImagesDoctorsDoctor5
-  /// assets/images/doctors/doctor5.jpg
-  static const String assetsImagesDoctorsDoctor5 = "assets/images/doctors/doctor5.jpg";
+  /// assets/images/doctors/doctor5.png
+  static const String assetsImagesDoctorsDoctor5 = "assets/images/doctors/doctor5.png";
 
   /// Assets for assetsImagesDoctorsDoctor6
   /// assets/images/doctors/doctor6.png

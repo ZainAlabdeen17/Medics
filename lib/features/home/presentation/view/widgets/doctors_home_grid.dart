@@ -1,16 +1,16 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/features/doctor/data/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_item.dart';
 
-class DoctorsGrid extends StatelessWidget {
-  const DoctorsGrid({super.key});
+class DoctorsHomeGrid extends StatelessWidget {
+  const DoctorsHomeGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
     final List<DoctorModel> doctors = DoctorModel.getDoctors();
     return SliverGrid.builder(
-      itemCount: doctors.length,
+      itemCount: 6,
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200.w,
         crossAxisSpacing: 16.w,

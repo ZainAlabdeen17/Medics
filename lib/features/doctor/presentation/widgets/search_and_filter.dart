@@ -10,15 +10,14 @@ class SearchAndFilter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(
-          width: 280.w,
+        Expanded(
           child: HomeSearchField(
             hintText: AppStrings.startTypingName,
             autoFocus: false,
           ),
         ),
+        SizedBox(width: 8.w),
         const FilterButton(),
       ],
     );

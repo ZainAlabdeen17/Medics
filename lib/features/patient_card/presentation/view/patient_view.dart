@@ -32,6 +32,7 @@ class _PatientViewState extends State<PatientView> {
       curve: Curves.easeInOut,
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +57,12 @@ class _PatientViewState extends State<PatientView> {
                 child: PageView(
                   controller: _controller,
                   physics: const NeverScrollableScrollPhysics(),
-                  children: [PersonalData(), EmergencyContact(), HealthAssessment(),LifeStyleInformation()],
+                  children: [
+                    PersonalData(),
+                    EmergencyContact(),
+                    HealthAssessment(),
+                    LifeStyleInformation(),
+                  ],
                 ),
               ),
             ],

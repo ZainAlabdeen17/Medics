@@ -17,20 +17,30 @@ class OnBoardingButtons extends StatelessWidget {
     return BlocBuilder<OnBoaardingCubit, OnBoardingState>(
       builder: (context, state) {
         if (state is NextButtonState) {
-          return CustomFillButton(
-            text: AppStrings.next,
-            onPressed: () => controller.nextPage(
-              duration: Duration(milliseconds: 300),
-              curve: Curves.bounceInOut,
-            ),
+          return Column(
+            children: [
+              CustomFillButton(
+                text: AppStrings.next,
+                onPressed: () => controller.nextPage(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.bounceInOut,
+                ),
+              ),
+              SizedBox(height: 20.h),
+            ],
           );
         } else if (state is GetStartedButtonState) {
-          return CustomFillButton(
-            text: AppStrings.getStarted,
-            onPressed: () => controller.nextPage(
-              duration: Duration(milliseconds: 300),
-              curve: Curves.bounceInOut,
-            ),
+          return Column(
+            children: [
+              CustomFillButton(
+                text: AppStrings.getStarted,
+                onPressed: () => controller.nextPage(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.bounceInOut,
+                ),
+              ),
+              SizedBox(height: 20.h),
+            ],
           );
         } else {
           return Column(
@@ -43,7 +53,7 @@ class OnBoardingButtons extends StatelessWidget {
               ),
               SizedBox(height: 8.h),
               ButtonClass.customNonFillButton(
-                 text: AppStrings.login,
+                text: AppStrings.login,
                 onPressed: () {
                   AppNavigation.pushReplacementScreen(context, '/SignIn');
                 },
