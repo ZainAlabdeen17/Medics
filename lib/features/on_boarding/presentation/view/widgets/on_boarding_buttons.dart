@@ -7,6 +7,7 @@ import 'package:medics/core/widgets/button_class.dart';
 import 'package:medics/core/widgets/custom_fill_button.dart';
 import 'package:medics/features/on_boarding/presentation/cubit/on_boaarding_cubit.dart';
 import 'package:medics/features/on_boarding/presentation/cubit/on_boarding_state.dart';
+import 'package:medics/core/database/cache/cache_helper.dart';
 
 class OnBoardingButtons extends StatelessWidget {
   const OnBoardingButtons({super.key, required this.controller});
@@ -21,10 +22,11 @@ class OnBoardingButtons extends StatelessWidget {
             children: [
               CustomFillButton(
                 text: AppStrings.next,
-                onPressed: () => controller.nextPage(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
-                ),
+                onPressed:
+                    () => controller.nextPage(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                    ),
               ),
               SizedBox(height: 20.h),
             ],
@@ -34,10 +36,11 @@ class OnBoardingButtons extends StatelessWidget {
             children: [
               CustomFillButton(
                 text: AppStrings.getStarted,
-                onPressed: () => controller.nextPage(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
-                ),
+                onPressed:
+                    () => controller.nextPage(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                    ),
               ),
               SizedBox(height: 20.h),
             ],
@@ -48,6 +51,7 @@ class OnBoardingButtons extends StatelessWidget {
               ButtonClass.customFillButton(
                 text: AppStrings.createAnAccount,
                 onPressed: () {
+                  CacheHelper().saveData(key: "onBoardingVisted", value: true);
                   AppNavigation.pushReplacementScreen(context, '/SignUp');
                 },
               ),
@@ -55,6 +59,7 @@ class OnBoardingButtons extends StatelessWidget {
               ButtonClass.customNonFillButton(
                 text: AppStrings.login,
                 onPressed: () {
+                  CacheHelper().saveData(key: "onBoardingVisted", value: true);
                   AppNavigation.pushReplacementScreen(context, '/SignIn');
                 },
               ),
