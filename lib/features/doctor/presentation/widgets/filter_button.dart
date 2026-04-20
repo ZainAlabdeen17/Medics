@@ -23,8 +23,8 @@ class FilterButton extends StatelessWidget {
             alignment: Alignment(0.9, -0.9),
             children: [
               Container(
-                width: 55.w,
-                height: 55.h,
+                width: 56.w,
+                height: 56.h,
                 decoration: BoxDecoration(
                   color: AppColors.surfaceBlur,
                   border: Border.all(color: AppColors.borderBlack, width: 1.w),

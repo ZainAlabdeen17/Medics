@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/routes/routes.dart';
 import 'package:medics/core/utils/app_colors.dart';
+import 'package:medics/core/database/cache/cache_helper.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  CacheHelper().init();
   runApp(DevicePreview(enabled: true, builder: (context) => MedicsApp()));
 }
 

@@ -22,7 +22,6 @@ class FilterHeader extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pop();
               },
-
               child: Text(
                 AppStrings.cancel,
                 style: AppTextStyles.head3.copyWith(

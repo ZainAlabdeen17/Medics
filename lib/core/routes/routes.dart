@@ -6,6 +6,7 @@ import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
 import 'package:medics/features/auth/presentation/view/success_verification_view.dart';
 import 'package:medics/features/auth/presentation/view/widgets/forget_password.dart';
 import 'package:medics/features/chat/presentation/view/chat_view.dart';
+import 'package:medics/features/doctor/data/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
 import 'package:medics/features/doctor/presentation/view/doctor_details_view.dart';
 import 'package:medics/features/doctor/presentation/view/doctors_view.dart';
@@ -54,7 +55,10 @@ GoRouter route = GoRouter(
     ),
     GoRoute(
       path: "/DoctorDetails",
-      builder: (context, state) => const DoctorDetailsView(),
+      builder: (context, state) {
+        final doctor = state.extra as DoctorModel;
+        return DoctorDetailsView(doctor: doctor);
+      },
     ),
     //
     StatefulShellRoute.indexedStack(
@@ -90,6 +94,5 @@ GoRouter route = GoRouter(
         ),
       ],
     ),
-
   ],
 );

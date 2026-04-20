@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/functions/app_navigation.dart';
 import 'package:medics/core/utils/app_assets.dart';
+import 'package:medics/core/database/cache/cache_helper.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -15,7 +16,11 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      AppNavigation.delayedPushScreen(context, '/OnBoarding');
+      if (CacheHelper().getData(key: "onBoardingVisted")) {
+        AppNavigation.delayedPushScreen(context, '/SignUp');
+      } else {
+        AppNavigation.delayedPushScreen(context, '/OnBoarding');
+      }
     });
   }
 

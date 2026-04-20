@@ -5,6 +5,8 @@ import 'package:medics/features/auth/presentation/cubit/auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthState());
+  String? signInemail;
+  String? signInPassword;
   void onEmailChanged(String email) {
     emit(
       state.copyWith(
@@ -24,7 +26,16 @@ class AuthCubit extends Cubit<AuthState> {
       state.copyWith(password: password, passwordValidator: passwordValidator),
     );
   }
+
   void toggleObscurePassword() {
     emit(state.copyWith(obscurePassword: !state.obscurePassword));
+  }
+
+  void onEmailChangeForSignIn(String? email) {
+    emit(state.copyWith(email: email));
+  }
+
+  void onPasswordChangeForSignIn(String? password) {
+    emit(state.copyWith(password: password));
   }
 }
