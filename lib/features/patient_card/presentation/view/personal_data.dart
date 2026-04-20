@@ -4,10 +4,7 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/core/widgets/custom_text_field.dart';
-import 'package:medics/features/patient_card/presentation/view/widgets/city_search_delegate.dart';
-import 'package:medics/features/patient_card/presentation/view/widgets/text_field_city.dart';
 import 'package:medics/features/patient_card/presentation/view/widgets/text_field_date.dart';
-import 'package:medics/features/patient_card/presentation/view/widgets/text_field_phone_number.dart';
 
 class PersonalData extends StatelessWidget {
   const PersonalData({super.key});
@@ -62,7 +59,7 @@ class PersonalData extends StatelessWidget {
             style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
           ),
           SizedBox(height: 4.h),
-          TextFieldPhoneNumber(hintText: AppStrings.phoneNumberField),
+          CustomTextField(hintText: AppStrings.phoneNumberField),
           SizedBox(height: 12.h),
       
           Text(
@@ -70,11 +67,8 @@ class PersonalData extends StatelessWidget {
             style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
           ),
           SizedBox(height: 4.h),
-          TextFieldCity(
+          CustomTextField(
             hintText: AppStrings.enterCity,
-            onTap: () {
-              showSearch(context: context, delegate: CitySearchDelegate());
-            },
           ),
         ],
       ),

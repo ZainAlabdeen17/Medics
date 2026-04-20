@@ -18,6 +18,7 @@ class PatientView extends StatefulWidget {
 
 class _PatientViewState extends State<PatientView> {
   final PageController _controller = PageController(initialPage: 0);
+ 
 
   void nextPage() {
     _controller.nextPage(
@@ -40,7 +41,7 @@ class _PatientViewState extends State<PatientView> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w ,vertical: 8.h),
           child: ButtonClass.customFillButton(
-            text: AppStrings.next,
+           text:  AppStrings.next ,
             onPressed: nextPage,
             
           ),

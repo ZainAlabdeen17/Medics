@@ -11,45 +11,48 @@ class LifeStyleInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          AppStrings.lifeStyleInformation,
-          style: AppTextStyles.head1.copyWith(color: AppColors.textPrimary),
-        ),
-        SizedBox(height: 8.h),
-        Text(
-          AppStrings.lifeStyleInformationSub,
-          style: AppTextStyles.head2.copyWith(
-            color: AppColors.textSecondary,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w400,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            AppStrings.lifeStyleInformation,
+            style: AppTextStyles.head1.copyWith(color: AppColors.textPrimary),
           ),
-        ),
-        SizedBox(height: 16.h),
-
-        Text(
-          AppStrings.smoking,
-          style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
-        ),
-        SizedBox(height: 12.h),
-        ButtonGroups(),
-        SizedBox(height: 16.h),
-        Text(
-          AppStrings.alcohol,
-          style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
-        ),
-        SizedBox(height: 12.h),
-        ButtonGroups(),
-        SizedBox(height: 16.h),
-        Text(
-          AppStrings.activityLevel,
-          style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
-        ),
-        SizedBox(height: 12.h),
-        ActivityLevelGroups(),
-      ],
+          SizedBox(height: 8.h),
+          Text(
+            AppStrings.lifeStyleInformationSub,
+            style: AppTextStyles.head2.copyWith(
+              color: AppColors.textSecondary,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          SizedBox(height: 16.h),
+      
+      
+          Text(
+            AppStrings.smoking,
+            style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+          ),
+          SizedBox(height: 12.h),
+          ButtonGroups(),
+          SizedBox(height: 16.h),
+          Text(
+            AppStrings.alcohol,
+            style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+          ),
+          SizedBox(height: 12.h),
+          ButtonGroups(),
+          SizedBox(height: 16.h),
+          Text(
+            AppStrings.activityLevel,
+            style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+          ),
+          SizedBox(height: 12.h),
+          ActivityLevelGroups(),
+        ],
+      ),
     );
   }
 }
