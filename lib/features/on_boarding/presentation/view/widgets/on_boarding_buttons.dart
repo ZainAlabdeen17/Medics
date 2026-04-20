@@ -23,7 +23,7 @@ class OnBoardingButtons extends StatelessWidget {
                 text: AppStrings.next,
                 onPressed: () => controller.nextPage(
                   duration: Duration(milliseconds: 300),
-                  curve: Curves.bounceInOut,
+                  curve: Curves.easeIn,
                 ),
               ),
               SizedBox(height: 20.h),
@@ -36,7 +36,7 @@ class OnBoardingButtons extends StatelessWidget {
                 text: AppStrings.getStarted,
                 onPressed: () => controller.nextPage(
                   duration: Duration(milliseconds: 300),
-                  curve: Curves.bounceInOut,
+                  curve: Curves.easeIn,
                 ),
               ),
               SizedBox(height: 20.h),

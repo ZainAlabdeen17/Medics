@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/routes/routes.dart';
@@ -7,7 +8,7 @@ void main() {
   runApp(DevicePreview(enabled: false, builder: (context) => MedicsApp()));
 }
 
-class MedicsApp extends StatelessWidget {
+class MedicsApp extends StatelessWidget { 
   const MedicsApp({super.key});
 
   @override

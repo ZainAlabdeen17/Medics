@@ -78,6 +78,7 @@ class _BloodTypeState extends State<BloodType> {
               width: 32.w,
               child: SvgPicture.asset(
                 Assets.assetsImagesIconsGeneralDroplet,
+                // ignore: deprecated_member_use
                 color: isSelected
                     ? AppColors.borderBlack
                     : AppColors.borderAccent,

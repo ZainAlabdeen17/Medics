@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final bool hasError;
-  final String Function(String?)? validator;
+  final String? Function(String?)? validator;
   final Function(String)? onChanged;
   final VoidCallback? onTap;
   final bool readOnly;
