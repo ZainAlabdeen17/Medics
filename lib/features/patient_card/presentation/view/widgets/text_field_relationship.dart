@@ -51,36 +51,38 @@ class _TextFieldRelationshipState extends State<TextFieldRelationship> {
               width: 375.w,
               padding: EdgeInsets.all(16),
 
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(height: 8),
-                  Center(
-                    child: Text(
-                      "Select your relationship",
-                      style: AppTextStyles.head3.copyWith(
-                        color: AppColors.textPrimary,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 8),
+                    Center(
+                      child: Text(
+                        "Select your relationship",
+                        style: AppTextStyles.head3.copyWith(
+                          color: AppColors.textPrimary,
+                        ),
                       ),
                     ),
-                  ),
-                  _buildRelationshipOption(AppStrings.spouse, setModalState),
-
-                  _buildRelationshipOption(AppStrings.parent, setModalState),
-
-                  _buildRelationshipOption(AppStrings.child, setModalState),
-
-                  _buildRelationshipOption(AppStrings.friend, setModalState),
-
-                  _buildRelationshipOption(AppStrings.other, setModalState),
-                 SizedBox(height: 12.h),
-                  ButtonClass.customFillButton(
-                    text: AppStrings.save,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
+                    _buildRelationshipOption(AppStrings.spouse, setModalState),
+                
+                    _buildRelationshipOption(AppStrings.parent, setModalState),
+                
+                    _buildRelationshipOption(AppStrings.child, setModalState),
+                
+                    _buildRelationshipOption(AppStrings.friend, setModalState),
+                
+                    _buildRelationshipOption(AppStrings.other, setModalState),
+                   SizedBox(height: 12.h),
+                    ButtonClass.customFillButton(
+                      text: AppStrings.save,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                ),
               ),
             );
           },

@@ -5,7 +5,7 @@ import 'package:medics/core/routes/routes.dart';
 import 'package:medics/core/utils/app_colors.dart';
 
 void main() {
-  runApp(DevicePreview(enabled: false, builder: (context) => MedicsApp()));
+  runApp(DevicePreview(enabled: true, builder: (context) => MedicsApp()));
 }
 
 class MedicsApp extends StatelessWidget { 
@@ -17,7 +17,7 @@ class MedicsApp extends StatelessWidget {
       designSize: const Size(375, 812),
       builder: (context, child) {
         return MaterialApp.router(
-         builder: DevicePreview.appBuilder,
+          builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
           routerConfig: route,
           theme: ThemeData(scaffoldBackgroundColor: AppColors.scaffoldColor),
