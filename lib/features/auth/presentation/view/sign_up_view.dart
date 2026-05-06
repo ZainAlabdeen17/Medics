@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/functions/app_navigation.dart';
 import 'package:medics/core/utils/app_strings.dart';
-import 'package:medics/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:medics/features/auth/presentation/cubit/auth_state.dart';
+import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_cubit.dart';
+import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_state.dart';
 import 'package:medics/features/auth/presentation/view/widgets/auth_footer.dart';
 import 'package:medics/features/auth/presentation/view/widgets/sign_up_form.dart';
 import 'package:medics/features/auth/presentation/view/widgets/auth_header.dart';
@@ -15,8 +15,8 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit(),
-      child: BlocBuilder<AuthCubit, AuthState>(
+      create: (context) => ValidationCubit(),
+      child: BlocBuilder<ValidationCubit, ValidationState>(
         builder: (context, state) {
           return Scaffold(
             body: SafeArea(

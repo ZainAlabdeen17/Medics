@@ -6,7 +6,7 @@ import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_state.dart';
-import 'package:medics/features/doctor/presentation/widgets/custom_check_box.dart';
+import 'package:medics/features/doctor/presentation/widgets/filter_widgets/custom_check_box.dart';
 import 'package:medics/features/specialization/data/specialization_model.dart';
 
 class SpecFilterSection extends StatelessWidget {

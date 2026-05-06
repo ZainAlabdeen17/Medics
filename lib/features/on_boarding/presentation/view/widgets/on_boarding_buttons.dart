@@ -49,9 +49,9 @@ class OnBoardingButtons extends StatelessWidget {
             children: [
               ButtonClass.customFillButton(
                 text: AppStrings.createAnAccount,
-                onPressed: () async {
-                  await getIt<CacheHelper>().saveData(
-                    key: "onBoardingVisted",
+                onPressed: () {
+                  getIt<CacheHelper>().saveData(
+                    key: "onBoardingVisited",
                     value: true,
                   );
                   AppNavigation.pushReplacementScreen(context, '/SignUp');
@@ -60,9 +60,9 @@ class OnBoardingButtons extends StatelessWidget {
               SizedBox(height: 8.h),
               ButtonClass.customNonFillButton(
                 text: AppStrings.login,
-                onPressed: () async {
-                  await getIt<CacheHelper>().saveData(
-                    key: "onBoardingVisted",
+                onPressed: () {
+                  getIt<CacheHelper>().saveData(
+                    key: "onBoardingVisited",
                     value: true,
                   );
                   AppNavigation.pushReplacementScreen(context, '/SignIn');

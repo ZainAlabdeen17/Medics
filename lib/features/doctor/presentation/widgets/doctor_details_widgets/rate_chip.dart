@@ -35,12 +35,7 @@ class RateChip extends StatelessWidget {
           SizedBox(width: 4.w),
           Text(
             "$rating",
-            style: AppTextStyles.body1.copyWith(
-              color: AppColors.textSecondary,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w600,
-              fontSize: 14.sp,
-            ),
+            style: AppTextStyles.num1.copyWith(color: AppColors.textSecondary),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),

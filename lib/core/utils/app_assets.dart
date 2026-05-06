@@ -38,6 +38,34 @@ class Assets {
   /// assets/images/doctors/doctor9.png
   static const String assetsImagesDoctorsDoctor9 = "assets/images/doctors/doctor9.png";
 
+  /// Assets for assetsImagesIconsAboutDoctorDiploma
+  /// assets/images/icons/about_doctor/diploma.svg
+  static const String assetsImagesIconsAboutDoctorDiploma = "assets/images/icons/about_doctor/diploma.svg";
+
+  /// Assets for assetsImagesIconsAboutDoctorFile
+  /// assets/images/icons/about_doctor/file.svg
+  static const String assetsImagesIconsAboutDoctorFile = "assets/images/icons/about_doctor/file.svg";
+
+  /// Assets for assetsImagesIconsAboutDoctorGraduationScroll
+  /// assets/images/icons/about_doctor/graduation-scroll.svg
+  static const String assetsImagesIconsAboutDoctorGraduationScroll = "assets/images/icons/about_doctor/graduation-scroll.svg";
+
+  /// Assets for assetsImagesIconsAboutDoctorHospital
+  /// assets/images/icons/about_doctor/hospital.svg
+  static const String assetsImagesIconsAboutDoctorHospital = "assets/images/icons/about_doctor/hospital.svg";
+
+  /// Assets for assetsImagesIconsAboutDoctorMortarboard
+  /// assets/images/icons/about_doctor/mortarboard.svg
+  static const String assetsImagesIconsAboutDoctorMortarboard = "assets/images/icons/about_doctor/mortarboard.svg";
+
+  /// Assets for assetsImagesIconsAboutDoctorNote
+  /// assets/images/icons/about_doctor/note.svg
+  static const String assetsImagesIconsAboutDoctorNote = "assets/images/icons/about_doctor/note.svg";
+
+  /// Assets for assetsImagesIconsAboutDoctorStethoscope
+  /// assets/images/icons/about_doctor/stethoscope.svg
+  static const String assetsImagesIconsAboutDoctorStethoscope = "assets/images/icons/about_doctor/stethoscope.svg";
+
   /// Assets for assetsImagesIconsGeneralArrow
   /// assets/images/icons/general/arrow.svg
   static const String assetsImagesIconsGeneralArrow = "assets/images/icons/general/arrow.svg";
@@ -66,9 +94,21 @@ class Assets {
   /// assets/images/icons/general/filter.svg
   static const String assetsImagesIconsGeneralFilter = "assets/images/icons/general/filter.svg";
 
+  /// Assets for assetsImagesIconsGeneralHide
+  /// assets/images/icons/general/hide.svg
+  static const String assetsImagesIconsGeneralHide = "assets/images/icons/general/hide.svg";
+
   /// Assets for assetsImagesIconsGeneralNotification
   /// assets/images/icons/general/notification.svg
   static const String assetsImagesIconsGeneralNotification = "assets/images/icons/general/notification.svg";
+
+  /// Assets for assetsImagesIconsGeneralProfile
+  /// assets/images/icons/general/profile.svg
+  static const String assetsImagesIconsGeneralProfile = "assets/images/icons/general/profile.svg";
+
+  /// Assets for assetsImagesIconsGeneralReview
+  /// assets/images/icons/general/review.svg
+  static const String assetsImagesIconsGeneralReview = "assets/images/icons/general/review.svg";
 
   /// Assets for assetsImagesIconsGeneralSearch
   /// assets/images/icons/general/search.svg
@@ -77,6 +117,10 @@ class Assets {
   /// Assets for assetsImagesIconsGeneralStar
   /// assets/images/icons/general/star.svg
   static const String assetsImagesIconsGeneralStar = "assets/images/icons/general/star.svg";
+
+  /// Assets for assetsImagesIconsGeneralView
+  /// assets/images/icons/general/view.svg
+  static const String assetsImagesIconsGeneralView = "assets/images/icons/general/view.svg";
 
   /// Assets for assetsImagesIconsNavbarAcArchive
   /// assets/images/icons/navbar/ac_archive.svg

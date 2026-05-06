@@ -4,23 +4,21 @@ enum AuthStatus { initial, loading, success, failure }
 
 const _empty = Object();
 
-class AuthState {
+class ValidationState {
   final String email;
   final String password;
   final Object? emailError;
   final PasswordValidator? passwordValidator;
   final AuthStatus status;
   final Object? errorMessage;
-  final bool obscurePassword;
 
-  AuthState({
+  ValidationState({
     this.email = '',
     this.password = '',
     this.emailError,
     this.passwordValidator = const PasswordValidator(),
     this.status = AuthStatus.initial,
     this.errorMessage,
-    this.obscurePassword = true,
   });
   bool get isFormValid =>
       email.isNotEmpty &&
@@ -28,16 +26,15 @@ class AuthState {
       emailError == null &&
       passwordValidator != null &&
       passwordValidator!.isValid;
-  AuthState copyWith({
+  ValidationState copyWith({
     String? email,
     String? password,
     Object? emailError = _empty,
     PasswordValidator? passwordValidator,
     AuthStatus? status,
     Object? errorMessage = _empty,
-    bool? obscurePassword,
   }) {
-    return AuthState(
+    return ValidationState(
       email: email ?? this.email,
       password: password ?? this.password,
       emailError: emailError == _empty
@@ -48,7 +45,6 @@ class AuthState {
       errorMessage: errorMessage == _empty
           ? this.errorMessage
           : errorMessage as String?,
-      obscurePassword: obscurePassword ?? this.obscurePassword,
     );
   }
 }

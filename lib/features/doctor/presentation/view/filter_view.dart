@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medics/features/doctor/presentation/widgets/exper_and_gen_filter_section.dart';
-import 'package:medics/features/doctor/presentation/widgets/filter_header.dart';
-import 'package:medics/features/doctor/presentation/widgets/reset_filter_section.dart';
-import 'package:medics/features/doctor/presentation/widgets/spec_filter_section.dart';
+import 'package:medics/features/doctor/presentation/widgets/filter_widgets/exper_and_gen_filter_section.dart';
+import 'package:medics/features/doctor/presentation/widgets/filter_widgets/filter_header.dart';
+import 'package:medics/features/doctor/presentation/widgets/filter_widgets/reset_filter_section.dart';
+import 'package:medics/features/doctor/presentation/widgets/filter_widgets/spec_filter_section.dart';
 
 class FilterView extends StatelessWidget {
   const FilterView({super.key});

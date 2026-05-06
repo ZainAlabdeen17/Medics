@@ -109,8 +109,6 @@ class AppStrings {
   static const String other = "Other";
   static const String save = "Save";
 
-  
-
   // Home Screen
   static const String hello = "Hello, ";
   static const String startTyping = "Start typing";
@@ -149,5 +147,23 @@ class AppStrings {
   static const String experience = "Experience";
   static const String gender = "Gender";
   static const String resetFilter = "Reset Filter";
+  //book doctor
+  static const String bookAppointment = "Book appointment";
+  static const String price = "Price";
+  static const String oneHourConsultation = "One hour consultation";
+  static const String availability = "Availability";
+  static const String selectTime = "Select Time";
+  static const String bookNow = "Book Now";
 
+  //about doctor
+  static const String generalInformation = "General information";
+  static const String currentWorkingPlace = "Current working place";
+  static const String education = "Education";
+  static const String certification = "Certification";
+  static const String training = "Training";
+  static const String licensure = "Licensure";
+  //reviews
+  static const String review = "Review";
+  static const String reviews = "Reviews";
+  static const String leaveAReview = "Leave a review";
 }

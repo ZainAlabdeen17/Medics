@@ -16,13 +16,11 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (await getIt<CacheHelper>().getData(key: "onBoardingVisted") != null) {
-        if (await getIt<CacheHelper>().getData(key: "onBoardingVisted")) {
-          AppNavigation.delayedPushScreen(context, '/SignUp');
-        } else {
-          AppNavigation.delayedPushScreen(context, '/OnBoarding');
-        }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      bool onBoardingVisited =
+          getIt<CacheHelper>().getData(key: "onBoardingVisited") ?? false;
+      if (onBoardingVisited) {
+        AppNavigation.delayedPushScreen(context, '/SignUp');
       } else {
         AppNavigation.delayedPushScreen(context, '/OnBoarding');
       }

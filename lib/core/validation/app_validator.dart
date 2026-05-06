@@ -53,4 +53,24 @@ class AppValidator {
 
     return null;
   }
+
+  static String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'password is requiered!';
+    }
+
+    if (value.length <= 8) {
+      return 'password is too short!';
+    }
+
+    if (!value.contains(RegExp(r'[A-Z]'))) {
+      return 'password must contain at least one upper case later';
+    }
+
+    int digitCount = value.replaceAll(RegExp(r'[^0-9]'), '').length;
+    if (digitCount < 2) {
+      return 'password must have two numbers at least';
+    }
+    return null;
+  }
 }

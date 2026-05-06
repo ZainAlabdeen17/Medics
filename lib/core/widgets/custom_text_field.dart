@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
     this.onTap,
     this.readOnly = false,
     this.autoFocus = false,
+    this.controller,
   });
   final String hintText;
   final String? errorText;
@@ -29,6 +30,7 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final bool readOnly;
   final bool autoFocus;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {

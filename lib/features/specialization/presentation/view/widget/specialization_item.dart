@@ -19,7 +19,7 @@ class SpecializationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 56.h,
-      width: 343.w,
+      width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.surfaceBlur,
         borderRadius: BorderRadius.circular(100.r),
@@ -28,25 +28,21 @@ class SpecializationItem extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                SvgPicture.asset(icon, width: 32.w, height: 32.h),
-                SizedBox(width: 8.w),
-                Text(
-                  specializationName,
-                  style: AppTextStyles.head3.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-              ],
+            SvgPicture.asset(icon, width: 32.w, height: 32.h),
+            SizedBox(width: 8.w),
+            Text(
+              specializationName,
+              style: AppTextStyles.head3.copyWith(color: AppColors.textPrimary),
+              overflow: TextOverflow.ellipsis,
             ),
+            Spacer(),
             Text(
               "$doctorsCount doctors",
               style: AppTextStyles.body2.copyWith(
                 color: AppColors.textSecondary,
               ),
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),

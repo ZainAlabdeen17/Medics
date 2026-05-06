@@ -40,7 +40,6 @@ class AppTextStyles {
     fontFamily: "Times New Roman",
     fontWeight: FontWeight.w400,
     fontSize: 24.sp,
-
   );
   //
   static final TextStyle body1 = TextStyle(
@@ -74,5 +73,17 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     fontSize: 14.sp,
     height: 20 / 14,
+  );
+  static final TextStyle num1 = TextStyle(
+    fontFamily: "Inter",
+    fontWeight: FontWeight.w800,
+    fontSize: 14.sp,
+    height: 24 / 16,
+  );
+  static final TextStyle num2 = TextStyle(
+    fontFamily: "Inter",
+    fontWeight: FontWeight.w800,
+    fontSize: 16.sp,
+    height: 24 / 16,
   );
 }

@@ -14,6 +14,8 @@ class SuccessVerificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: true,
+        bottom: false,
         child: Padding(
           padding: EdgeInsets.all(16.w),
           child: CustomScrollView(
@@ -51,15 +53,15 @@ class SuccessVerificationView extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-            
-            SliverToBoxAdapter(child: SizedBox(height: 32.h)),
-            SliverToBoxAdapter(
-              child: ButtonClass.customFillButton(
-                text: AppStrings.completeCard,
-                onPressed: () {
-                    AppNavigation.pushReplacementScreen(context, "/Patient");
-                },)
 
+              SliverToBoxAdapter(child: SizedBox(height: 32.h)),
+              SliverToBoxAdapter(
+                child: ButtonClass.customFillButton(
+                  text: AppStrings.completeCard,
+                  onPressed: () {
+                    AppNavigation.pushReplacementScreen(context, "/Patient");
+                  },
+                ),
               ),
             ],
           ),

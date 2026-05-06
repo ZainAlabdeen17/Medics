@@ -21,12 +21,7 @@ class IdChip extends StatelessWidget {
       ),
       child: Text(
         "ID: $id",
-        style: AppTextStyles.body1.copyWith(
-          color: AppColors.textSecondary,
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w600,
-          fontSize: 14.sp,
-        ),
+        style: AppTextStyles.num1.copyWith(color: AppColors.textSecondary),
       ),
     );
   }

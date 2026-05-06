@@ -16,6 +16,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: CustomScrollView(

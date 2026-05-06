@@ -5,7 +5,7 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/on_boarding/data/on_boarding_item_model.dart';
 import 'package:medics/features/on_boarding/presentation/cubit/on_boaarding_cubit.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:medics/features/on_boarding/presentation/view/widgets/custom_page_indicator.dart';
 
 class OnBoardingBody extends StatelessWidget {
   const OnBoardingBody({super.key, required this.controller});
@@ -35,23 +35,15 @@ class OnBoardingBody extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 40.h),
-              SmoothPageIndicator(
-                controller: controller,
-                count: listOnBoardingItem.length,
-                effect: ExpandingDotsEffect(
-                  activeDotColor: AppColors.surfaceAccent,
-                  dotColor: AppColors.borderPrimary,
-                  dotHeight: 4.h,
-                  dotWidth: 15.w,
-                  spacing: 8.w,
-                ),
-              ),
+              CustomPageIndicator(controller: controller),
               SizedBox(height: 32.h),
               Text(
                 listOnBoardingItem[index].title,
                 style: AppTextStyles.head1.copyWith(
                   color: AppColors.textPrimary,
                 ),
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
               ),
               SizedBox(height: 8.h),
               Text(
@@ -60,6 +52,8 @@ class OnBoardingBody extends StatelessWidget {
                   color: AppColors.textSecondary,
                 ),
                 textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 6,
               ),
             ],
           );

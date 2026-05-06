@@ -6,7 +6,7 @@ import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/doctor/data/doctor_model.dart';
-import 'package:medics/features/doctor/presentation/widgets/rate_chip.dart';
+import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/rate_chip.dart';
 
 class DoctorItem extends StatelessWidget {
   const DoctorItem({super.key, required this.doctor});
@@ -35,32 +35,44 @@ class DoctorItem extends StatelessWidget {
                 Stack(
                   alignment: AlignmentDirectional.bottomEnd,
                   children: [
-                    Container(
-                      width: 141.w,
-                      height: 141.h,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(doctor.image),
-                          fit: BoxFit.cover,
+                    Hero(
+                      tag: doctor.id,
+                      child: Container(
+                        width: 141.w,
+                        height: 141.h,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(doctor.image),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.circular(24.r),
                         ),
-                        borderRadius: BorderRadius.circular(24.r),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 8.w, bottom: 8.h),
-                      child: RateChip(rating: doctor.rating),
+                      child: Hero(
+                        tag: "${doctor.id},${doctor.rating}",
+                        child: RateChip(rating: doctor.rating),
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(height: 12.h),
-                Text(
-                  doctor.name,
-                  style: AppTextStyles.head3.copyWith(
-                    color: AppColors.textPrimary,
+                Hero(
+                  tag: doctor.name,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Text(
+                      doctor.name,
+                      style: AppTextStyles.head3.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
                 ),
                 Text(
                   doctor.specialization,

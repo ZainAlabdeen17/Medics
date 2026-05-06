@@ -10,7 +10,7 @@ class DoctorsHomeGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<DoctorModel> doctors = DoctorModel.getDoctors();
     return SliverGrid.builder(
-      itemCount: 6,
+      itemCount: 4,
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200.w,
         crossAxisSpacing: 16.w,

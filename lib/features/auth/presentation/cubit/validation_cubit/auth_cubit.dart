@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medics/core/validation/app_validator.dart';
 import 'package:medics/core/validation/password_validator.dart';
-import 'package:medics/features/auth/presentation/cubit/auth_state.dart';
+import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_state.dart';
 
-class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthState());
+class ValidationCubit extends Cubit<ValidationState> {
+  ValidationCubit() : super(ValidationState());
   String? signInemail;
   String? signInPassword;
   void onEmailChanged(String email) {
@@ -25,10 +25,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(
       state.copyWith(password: password, passwordValidator: passwordValidator),
     );
-  }
-
-  void toggleObscurePassword() {
-    emit(state.copyWith(obscurePassword: !state.obscurePassword));
   }
 
   void onEmailChangeForSignIn(String? email) {
