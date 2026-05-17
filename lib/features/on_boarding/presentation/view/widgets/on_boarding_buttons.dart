@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/functions/app_navigation.dart';
+import 'package:medics/core/services/service_locator.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/widgets/button_class.dart';
 import 'package:medics/core/widgets/custom_fill_button.dart';
@@ -22,11 +23,10 @@ class OnBoardingButtons extends StatelessWidget {
             children: [
               CustomFillButton(
                 text: AppStrings.next,
-                onPressed:
-                    () => controller.nextPage(
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.easeIn,
-                    ),
+                onPressed: () => controller.nextPage(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeIn,
+                ),
               ),
               SizedBox(height: 20.h),
             ],
@@ -36,11 +36,10 @@ class OnBoardingButtons extends StatelessWidget {
             children: [
               CustomFillButton(
                 text: AppStrings.getStarted,
-                onPressed:
-                    () => controller.nextPage(
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.easeIn,
-                    ),
+                onPressed: () => controller.nextPage(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeIn,
+                ),
               ),
               SizedBox(height: 20.h),
             ],
@@ -50,16 +49,22 @@ class OnBoardingButtons extends StatelessWidget {
             children: [
               ButtonClass.customFillButton(
                 text: AppStrings.createAnAccount,
-                onPressed: () {
-                  CacheHelper().saveData(key: "onBoardingVisted", value: true);
+                onPressed: () async {
+                  await getIt<CacheHelper>().saveData(
+                    key: "onBoardingVisted",
+                    value: true,
+                  );
                   AppNavigation.pushReplacementScreen(context, '/SignUp');
                 },
               ),
               SizedBox(height: 8.h),
               ButtonClass.customNonFillButton(
                 text: AppStrings.login,
-                onPressed: () {
-                  CacheHelper().saveData(key: "onBoardingVisted", value: true);
+                onPressed: () async {
+                  await getIt<CacheHelper>().saveData(
+                    key: "onBoardingVisted",
+                    value: true,
+                  );
                   AppNavigation.pushReplacementScreen(context, '/SignIn');
                 },
               ),
