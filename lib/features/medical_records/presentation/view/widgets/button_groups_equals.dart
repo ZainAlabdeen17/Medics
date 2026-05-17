@@ -3,31 +3,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 
-class ButtonGroups extends StatefulWidget {
-  final String text1;
+class ButtonGroupsEquals extends StatefulWidget {
+   final String text1;
   final String text2;
   final String text3;
-  const ButtonGroups({
-    super.key,
-    required this.text1,
-    required this.text2,
-    required this.text3,
-  });
+  const ButtonGroupsEquals({super.key, required this.text1, required this.text2, required this.text3});
 
   @override
-  State<ButtonGroups> createState() => _ButtonGroupsState();
+  State<ButtonGroupsEquals> createState() => _ButtonGroupsState();
 }
 
-class _ButtonGroupsState extends State<ButtonGroups> {
+class _ButtonGroupsState extends State<ButtonGroupsEquals> {
   String selectedGroup = "";
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _buildButton(text: widget.text1),
+        Expanded(child: _buildButton(text: widget.text1)),
         SizedBox(width: 12),
-        _buildButton(text: widget.text2),
+        Expanded(child: _buildButton(text: widget.text2)),
         SizedBox(width: 12),
         Expanded(child: _buildButton(text: widget.text3, width: 159)),
       ],
@@ -59,7 +54,6 @@ class _ButtonGroupsState extends State<ButtonGroups> {
           style: AppTextStyles.head3.copyWith(
             color: isSelected ? AppColors.borderBlack : AppColors.borderAccent,
           ),
-          overflow: TextOverflow.ellipsis,
         ),
       ),
     );

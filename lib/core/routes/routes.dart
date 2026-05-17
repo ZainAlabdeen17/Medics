@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medics/features/auth/presentation/view/otp_view.dart';
@@ -13,7 +14,17 @@ import 'package:medics/features/doctor/presentation/view/doctors_view.dart';
 import 'package:medics/features/doctor/presentation/view/filter_view.dart';
 import 'package:medics/features/doctor/presentation/view/inside_tabs/inside_review_tab/review_form_view.dart';
 import 'package:medics/features/home/presentation/view/home_view.dart';
+import 'package:medics/features/medical_records/presentation/cubit/health_cubit.dart';
+import 'package:medics/features/medical_records/presentation/view/anamnesis.dart';
+import 'package:medics/features/medical_records/presentation/view/body_parameters.dart';
+import 'package:medics/features/medical_records/presentation/view/health_metrics.dart';
+import 'package:medics/features/medical_records/presentation/view/lab_report.dart';
+import 'package:medics/features/medical_records/presentation/view/life_style.dart';
 import 'package:medics/features/medical_records/presentation/view/medical_records_view.dart';
+import 'package:medics/features/medical_records/presentation/view/medication_details.dart';
+import 'package:medics/features/medical_records/presentation/view/notes.dart';
+import 'package:medics/features/medical_records/presentation/view/prescription.dart';
+import 'package:medics/features/medical_records/presentation/view/visit_summeries.dart';
 import 'package:medics/features/on_boarding/presentation/view/on_boarding_view.dart';
 
 import 'package:medics/features/patient_card/presentation/view/patient_view.dart';
@@ -30,6 +41,35 @@ GoRouter route = GoRouter(
     GoRoute(path: "/OnBoarding", builder: (context, state) => OnBoardingView()),
     GoRoute(path: "/SignUp", builder: (context, state) => SignUpView()),
     GoRoute(path: "/Otp", builder: (context, state) => OtpView()),
+    GoRoute(path: "/LabReport", builder: (context, state) => LabReport()),
+    ShellRoute(
+      builder: (context, state, child) {
+        return BlocProvider(create: (_) => HealthCubit(), child: child);
+      },
+      routes: [
+        GoRoute(
+          path: "/HealthMetrics",
+          builder: (context, state) => HealthMetrics(),
+        ),
+        GoRoute(
+          path: "/BodyParameters",
+          builder: (context, state) => BodyParameters(),
+        ),
+        GoRoute(path: "/Anamnesis", builder: (context, state) => Anamnesis()),
+        GoRoute(path: "/LifeStyle", builder: (context, state) => LifeStyle()),
+        GoRoute(path: "/Notes", builder: (context, state) => Notes()),
+      ],
+    ),
+    GoRoute(
+      path: "/VisitSummeries",
+      builder: (context, state) => VisitSummeries(),
+    ),
+
+    GoRoute(path: "/Prescription", builder: (context, state) => Prescription()),
+    GoRoute(
+      path: "/MedicationDetails",
+      builder: (context, state) => MedicationDetails(),
+    ),
     GoRoute(
       path: "/SuccessVerification",
       builder: (context, state) => SuccessVerificationView(),

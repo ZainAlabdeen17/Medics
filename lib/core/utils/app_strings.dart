@@ -169,4 +169,65 @@ class AppStrings {
   static const String reviewForm = "Review form";
   static const String overallRating = "Overall rating";
   static const String tellUsAboutYourVisit = "Tell us about your visit...";
+  //medical records
+  static const String medicalRecords = "Medical records";
+  static const String prescription = "Prescription";
+  static const String lapReports = "Lap reports";
+  static const String healthMetrics = "Health metrics";
+  static const String visitSummeries = "Visit summeries";
+  static const String byDate = "By date";
+  static const String completeBloodCount = "Complete Blood Count (CBC)";
+  static const String lipidPanel = "Lipid Panel";
+  static const String thyroidFunctionTest = "Thyroid Function Test";
+
+  static const String resultsWillBe = "Results will be";
+  static const String normalResults = "Normal Results";
+  static const String requiresAttention = "Requires Attention";
+  static const String followUpNeeded = "Follow-Up Needed";
+
+  static const String viewReport = "View report";
+  static const String download = "Download";
+
+  static const String dateExample = "02 Jan, 2024";
+  static const String resultsDateExample = "03 Jan, 2024";
+
+  //Prescriptions
+  static const String startTypingMedicationName =
+      "Start typing medication name";
+  static const String medicationDetails = "Medication details";
+  static const String name = "Name :";
+  static const String duration = "Duration :";
+  static const String dosage = "Dosage :";
+  static const String frequency = "Frequency :";
+  static const String prescibedBy = "Prescibed by :";
+  static const String specialInstructions = "Special Instructions";
+  static const String storage = "Storage :";
+  static const String sideEffects = "Side Effects :";
+  static const String allergyWarning = "Allergy Warning:";
+
+  ////////////Health Metrics
+
+  static const String lifestyle = "Lifestyle";
+  static const String anamnesis = "Anamnesis";
+  static const String notes = "Notes";
+  static const String add = "Add";
+  static const String bodyParameters = "Body parameters";
+  static const String height = "Your height (sm)";
+  static const String weight = "Your weight (kg)";
+  static const String oxygenSaturation = "Oxygen Saturation (%)";
+  static const String heartRate = "Heart rate (bpm)";
+
+  static const String waterIntake = "Water intake (l)";
+  static const String waterLessThan1 = "<1";
+  static const String water1to1_5 = "1-1,5";
+  static const String waterMoreThan1_5 = ">1,5";
+
+  static const String activityLight = "Light (sports 1–3 days a week)";
+  static const String activityModerate = "Moderate (sports 3–5 days a week)";
+  static const String activityVeryActive =
+      "Very Active (sports 6–7 days a week)";
+  static const String sleep = "Sleep (h)";
+  static const String peanuts = "Peanuts";
+  static const String notesForYourDoctor =
+      "I’ve been having headaches almost every day, mostly in the afternoon. They are mild to moderate and usually go away after I take some painkillers.";
 }

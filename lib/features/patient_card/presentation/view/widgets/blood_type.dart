@@ -7,24 +7,41 @@ import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 
 class BloodType extends StatefulWidget {
-  const BloodType({super.key});
+  final String initialBloodType;
+  final String initialRh;
+  final Function(String) onBloodTypeChanged;
+  final Function(String) onRhChanged;
+
+  const BloodType({
+    super.key,
+    required this.onBloodTypeChanged,
+    required this.onRhChanged,
+    required this.initialBloodType,
+    required this.initialRh,
+  });
 
   @override
   State<BloodType> createState() => _BloodTypeState();
 }
 
 class _BloodTypeState extends State<BloodType> {
-  String selectedGroup1 = "B(III)";
-  String selectedGroup2 = "RH+";
-  String typeBlood = "";
-  String typeRH = "";
+  late String selectedBloodType;
+  late String selectedRh;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedBloodType = widget.initialBloodType;
+    selectedRh = widget.initialRh;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "${AppStrings.bloodType}  $typeBlood$typeRH",
+          "${AppStrings.bloodType}  $selectedBloodType$selectedRh",
           style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
         ),
         SizedBox(height: 16.h),
@@ -41,27 +58,29 @@ class _BloodTypeState extends State<BloodType> {
           ],
         ),
         SizedBox(height: 12.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildButtonRh("+"),
-            SizedBox(width: 12.w),
-            _buildButtonRh("-"),
-          ],
+        SizedBox(
+          height: 56.h,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(child: _buildButtonRh("+")),
+              SizedBox(width: 12.w),
+              Expanded(child: _buildButtonRh("-")),
+            ],
+          ),
         ),
       ],
     );
   }
 
   Widget _buildBloodCard(String name) {
-    String fullLabel = name;
-    bool isSelected = selectedGroup1 == fullLabel;
+    bool isSelected = selectedBloodType == name;
     return GestureDetector(
       onTap: () {
         setState(() {
-          selectedGroup1 = fullLabel;
-          typeBlood = fullLabel;
+          selectedBloodType = name;
         });
+        widget.onBloodTypeChanged(name);
       },
       child: Container(
         width: 76,
@@ -78,19 +97,14 @@ class _BloodTypeState extends State<BloodType> {
               width: 32.w,
               child: SvgPicture.asset(
                 Assets.assetsImagesIconsGeneralDroplet,
-                // ignore: deprecated_member_use
-                color: isSelected
-                    ? AppColors.borderBlack
-                    : AppColors.borderAccent,
+                color: isSelected ? AppColors.borderBlack : AppColors.borderAccent,
               ),
             ),
             SizedBox(height: 8.h),
             Text(
               name,
               style: AppTextStyles.head3.copyWith(
-                color: isSelected
-                    ? AppColors.borderBlack
-                    : AppColors.borderAccent,
+                color: isSelected ? AppColors.borderBlack : AppColors.borderAccent,
               ),
             ),
           ],
@@ -100,14 +114,13 @@ class _BloodTypeState extends State<BloodType> {
   }
 
   Widget _buildButtonRh(String name) {
-    String fullLabel = name;
-    bool isSelected = selectedGroup2 == fullLabel;
+    bool isSelected = selectedRh == name;
     return GestureDetector(
       onTap: () {
         setState(() {
-          selectedGroup2 = fullLabel;
-          typeRH = fullLabel;
+          selectedRh = name;
         });
+        widget.onRhChanged(name);
       },
       child: Container(
         width: 76,
@@ -116,26 +129,12 @@ class _BloodTypeState extends State<BloodType> {
           color: isSelected ? AppColors.borderAccent : AppColors.borderBlack,
           borderRadius: BorderRadius.circular(25),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.water_drop_outlined,
-              color: isSelected
-                  ? AppColors.borderBlack
-                  : AppColors.borderAccent,
-              size: 32,
-            ),
-            SizedBox(height: 8.h),
-            Text(
-              "RH$name",
-              style: AppTextStyles.head3.copyWith(
-                color: isSelected
-                    ? AppColors.borderBlack
-                    : AppColors.borderAccent,
-              ),
-            ),
-          ],
+        alignment: Alignment.center,
+        child: Text(
+          "RH $name",
+          style: AppTextStyles.head3.copyWith(
+            color: isSelected ? AppColors.borderBlack : AppColors.borderAccent,
+          ),
         ),
       ),
     );

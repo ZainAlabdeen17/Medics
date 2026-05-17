@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     required this.hintText,
+    this.controller,
     this.errorText,
     this.obscureText = false,
     this.suffixIcon,
@@ -17,9 +18,10 @@ class CustomTextField extends StatelessWidget {
     this.onTap,
     this.readOnly = false,
     this.autoFocus = false,
-    this.controller,
+    this.keyboardType,
   });
   final String hintText;
+  final TextEditingController? controller;
   final String? errorText;
   final bool obscureText;
   final Widget? suffixIcon;
@@ -30,13 +32,15 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final bool readOnly;
   final bool autoFocus;
-  final TextEditingController? controller;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextFormField(
         controller: controller,
+        //
+
         //
         validator: validator ?? (value) => null,
         //

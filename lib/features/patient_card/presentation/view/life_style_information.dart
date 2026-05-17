@@ -36,14 +36,14 @@ class LifeStyleInformation extends StatelessWidget {
             style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
           ),
           SizedBox(height: 12.h),
-          ButtonGroups(),
+          ButtonGroups(text1:AppStrings.yes,text2: AppStrings.no, text3:AppStrings.occasionally),
           SizedBox(height: 16.h),
           Text(
             AppStrings.alcohol,
             style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
           ),
           SizedBox(height: 12.h),
-          ButtonGroups(),
+          ButtonGroups(text1:AppStrings.yes,text2: AppStrings.no, text3:AppStrings.occasionally),
           SizedBox(height: 16.h),
           Text(
             AppStrings.activityLevel,

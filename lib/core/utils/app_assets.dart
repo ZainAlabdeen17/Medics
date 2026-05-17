@@ -74,9 +74,25 @@ class Assets {
   /// assets/images/icons/general/arrow-left.svg
   static const String assetsImagesIconsGeneralArrowLeft = "assets/images/icons/general/arrow-left.svg";
 
+  /// Assets for assetsImagesIconsGeneralCalendar
+  /// assets/images/icons/general/calendar.svg
+  static const String assetsImagesIconsGeneralCalendar = "assets/images/icons/general/calendar.svg";
+
   /// Assets for assetsImagesIconsGeneralCheck
   /// assets/images/icons/general/check.svg
   static const String assetsImagesIconsGeneralCheck = "assets/images/icons/general/check.svg";
+
+  /// Assets for assetsImagesIconsGeneralDoctor
+  /// assets/images/icons/general/doctor.svg
+  static const String assetsImagesIconsGeneralDoctor = "assets/images/icons/general/doctor.svg";
+
+  /// Assets for assetsImagesIconsGeneralDosage
+  /// assets/images/icons/general/dosage.svg
+  static const String assetsImagesIconsGeneralDosage = "assets/images/icons/general/dosage.svg";
+
+  /// Assets for assetsImagesIconsGeneralDownload
+  /// assets/images/icons/general/download.svg
+  static const String assetsImagesIconsGeneralDownload = "assets/images/icons/general/download.svg";
 
   /// Assets for assetsImagesIconsGeneralDrop
   /// assets/images/icons/general/drop.svg
@@ -97,6 +113,25 @@ class Assets {
   /// Assets for assetsImagesIconsGeneralHide
   /// assets/images/icons/general/hide.svg
   static const String assetsImagesIconsGeneralHide = "assets/images/icons/general/hide.svg";
+  /// Assets for assetsImagesIconsGeneralFrame
+  /// assets/images/icons/general/Frame.svg
+  static const String assetsImagesIconsGeneralFrame = "assets/images/icons/general/Frame.svg";
+
+  /// Assets for assetsImagesIconsGeneralFrequency
+  /// assets/images/icons/general/frequency.svg
+  static const String assetsImagesIconsGeneralFrequency = "assets/images/icons/general/frequency.svg";
+
+  /// Assets for assetsImagesIconsGeneralMedication
+  /// assets/images/icons/general/medication.svg
+  static const String assetsImagesIconsGeneralMedication = "assets/images/icons/general/medication.svg";
+
+  /// Assets for assetsImagesIconsGeneralMicroscope
+  /// assets/images/icons/general/microscope.svg
+  static const String assetsImagesIconsGeneralMicroscope = "assets/images/icons/general/microscope.svg";
+
+  /// Assets for assetsImagesIconsGeneralNote
+  /// assets/images/icons/general/note.svg
+  static const String assetsImagesIconsGeneralNote = "assets/images/icons/general/note.svg";
 
   /// Assets for assetsImagesIconsGeneralNotification
   /// assets/images/icons/general/notification.svg
@@ -109,6 +144,13 @@ class Assets {
   /// Assets for assetsImagesIconsGeneralReview
   /// assets/images/icons/general/review.svg
   static const String assetsImagesIconsGeneralReview = "assets/images/icons/general/review.svg";
+  /// Assets for assetsImagesIconsGeneralPlus
+  /// assets/images/icons/general/plus.svg
+  static const String assetsImagesIconsGeneralPlus = "assets/images/icons/general/plus.svg";
+
+  /// Assets for assetsImagesIconsGeneralReturn
+  /// assets/images/icons/general/return.svg
+  static const String assetsImagesIconsGeneralReturn = "assets/images/icons/general/return.svg";
 
   /// Assets for assetsImagesIconsGeneralSearch
   /// assets/images/icons/general/search.svg
@@ -117,6 +159,10 @@ class Assets {
   /// Assets for assetsImagesIconsGeneralStar
   /// assets/images/icons/general/star.svg
   static const String assetsImagesIconsGeneralStar = "assets/images/icons/general/star.svg";
+
+  /// Assets for assetsImagesIconsGeneralTracker
+  /// assets/images/icons/general/tracker.svg
+  static const String assetsImagesIconsGeneralTracker = "assets/images/icons/general/tracker.svg";
 
   /// Assets for assetsImagesIconsGeneralView
   /// assets/images/icons/general/view.svg

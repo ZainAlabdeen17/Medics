@@ -8,6 +8,7 @@ class ButtonClass {
     required String text,
     VoidCallback? onPressed,
     int width = 0,
+    Widget? prefixIcon,
   }) {
     return SizedBox(
       width: width == 0 ? double.infinity : width.w,
@@ -22,10 +23,7 @@ class ButtonClass {
             borderRadius: BorderRadius.circular(32.r),
           ),
         ),
-        child: Text(
-          text,
-          style: AppTextStyles.head3.copyWith(color: AppColors.textStaticWhite),
-        ),
+        child: _buildButtonChild(text, prefixIcon, true),
       ),
     );
   }
@@ -34,7 +32,7 @@ class ButtonClass {
     required String text,
     VoidCallback? onPressed,
     int width = 0,
-    
+    Widget? prefixIcon,
   }) {
     return SizedBox(
       width: width == 0 ? double.infinity : width.w,
@@ -48,11 +46,41 @@ class ButtonClass {
             side: BorderSide(color: AppColors.borderAccent, width: 1.w),
           ),
         ),
-        child: Text(
-          text,
-          style: AppTextStyles.head3.copyWith(color: AppColors.textAccent),
-        ),
+        child: _buildButtonChild(text, prefixIcon, false),
       ),
     );
+  }
+
+  static Widget _buildButtonChild(String text, Widget? prefixIcon, bool fill) {
+    if (prefixIcon == null) {
+      return Text(
+        text,
+        style: AppTextStyles.head3.copyWith(
+          color: _getTextColorForFillButton(fill),
+        ),
+      );
+    }
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        prefixIcon,
+        SizedBox(width: 4.w),
+        Expanded(
+          child: Text(
+            text,
+            style: AppTextStyles.head3.copyWith(
+              color: _getTextColorForFillButton(fill),
+              fontSize: 12.sp,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+
+  static Color _getTextColorForFillButton(bool fill) {
+    return fill ? AppColors.textStaticWhite : AppColors.textAccent;
   }
 }
