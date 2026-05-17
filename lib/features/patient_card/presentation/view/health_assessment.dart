@@ -8,7 +8,12 @@ import 'package:medics/features/patient_card/presentation/view/widgets/blood_typ
 import 'package:medics/features/patient_card/presentation/view/widgets/small_custom_text_field.dart';
 
 class HealthAssessment extends StatelessWidget {
-  const HealthAssessment({super.key});
+
+ 
+  String selectedBloodType = "B(III)";
+  String selectedRh = "+";
+    HealthAssessment({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,17 @@ class HealthAssessment extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16.h),
-         BloodType(),
+     BloodType(
+      /////////////////////////must use setState()
+                            initialBloodType: selectedBloodType,
+                          initialRh: selectedRh,
+                      onBloodTypeChanged: (type) {
+                          selectedBloodType = type;
+                      },
+                      onRhChanged: (rh) {
+                          selectedRh = rh;
+                      },
+                    ),
           SizedBox(height: 16.h),
           Text(
             AppStrings.allergies,
