@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/widgets/general_header.dart';
-import 'package:medics/features/medical_records/presentation/view/widgets/health_metrics_listTile.dart';
+import 'package:medics/features/medical_records/presentation/view/widgets/health_metrics_list_tile.dart';
 
 class HealthMetrics extends StatelessWidget {
   const HealthMetrics({super.key});

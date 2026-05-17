@@ -7,6 +7,7 @@ import 'package:medics/core/widgets/custom_text_field.dart';
 import 'package:medics/features/patient_card/presentation/view/widgets/blood_type.dart';
 import 'package:medics/features/patient_card/presentation/view/widgets/small_custom_text_field.dart';
 
+// ignore: must_be_immutable
 class HealthAssessment extends StatelessWidget {
 
  
