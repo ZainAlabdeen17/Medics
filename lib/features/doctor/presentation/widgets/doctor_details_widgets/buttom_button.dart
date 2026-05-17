@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/widgets/custom_fill_button.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_cubit.dart';
@@ -19,11 +18,7 @@ class BottomBotton extends StatelessWidget {
             padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 10.h),
             child: CustomFillButton(
               text: AppStrings.bookNow,
-              onPressed: state.selectedTime.isNotEmpty
-                  ? () {
-                      context.push("/DoctorDetails");
-                    }
-                  : null,
+              onPressed: state.selectedTime.isNotEmpty ? () {} : null,
             ),
           );
         },

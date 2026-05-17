@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
-  UserCubit(super.initialState);
+  UserCubit() : super(UserInitial());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -12,24 +12,42 @@ class UserCubit extends Cubit<UserState> {
 
   void toggleObscurePassword() {
     isObSecure = !isObSecure;
-    emit(ObscurePasswordState(!isObSecure));
+    emit(ObscurePasswordState(isObSecure));
   }
 
-  void signIn() {
+  Future<void> signIn() async {
     try {
-      emit(UserLoading());
-      Future.delayed(Duration(seconds: 4), () {
+      emit(SignInLoadingState());
+      await Future.delayed(Duration(seconds: 7), () {
         if (kDebugMode) {
-          print("💫💫💫💫💫💫💫💫💫💫");
+          print("🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵");
           print(
             'Email: ${emailController.text}, Password: ${passwordController.text}',
           );
-          print("💫💫💫💫💫💫💫💫💫💫");
+          print("🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵");
         }
       });
-      emit(UserSuccess());
+      emit(SignInSuccessState());
     } on Exception catch (e) {
-      emit(UserFailure(e.toString()));
+      emit(SignInFailureState(e.toString()));
+    }
+  }
+
+  Future<void> signUp() async {
+    try {
+      emit(SignUpLoadingState());
+      await Future.delayed(Duration(seconds: 7), () {
+        if (kDebugMode) {
+          print("🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵");
+          print(
+            'Email: ${emailController.text}, Password: ${passwordController.text}',
+          );
+          print("🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵");
+        }
+      });
+      emit(SignUpSuccessState());
+    } on Exception catch (e) {
+      emit(SignUpFailureState(e.toString()));
     }
   }
 }

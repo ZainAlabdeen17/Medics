@@ -15,7 +15,7 @@ class CustomTabBarView extends StatelessWidget {
       children: [
         DoctorBookContent(),
         DoctorAboutContent(doctor: doctor),
-        DoctorReviewContent(),
+        DoctorReviewContent(doctor: doctor),
       ],
     );
   }

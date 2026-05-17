@@ -75,9 +75,12 @@ class DoctorDetailsBadge extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Hero(
-                          tag: "${doctor.id},${doctor.rating}",
-                          child: RateChip(rating: doctor.rating),
+                        Material(
+                          color: Colors.transparent,
+                          child: Hero(
+                            tag: "${doctor.id},${doctor.rating}",
+                            child: RateChip(rating: doctor.rating),
+                          ),
                         ),
                         SizedBox(width: 4.w),
                         IdChip(id: doctor.id),

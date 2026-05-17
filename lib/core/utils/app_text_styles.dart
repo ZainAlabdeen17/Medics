@@ -76,13 +76,13 @@ class AppTextStyles {
   );
   static final TextStyle num1 = TextStyle(
     fontFamily: "Inter",
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w400,
     fontSize: 14.sp,
     height: 24 / 16,
   );
   static final TextStyle num2 = TextStyle(
     fontFamily: "Inter",
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w400,
     fontSize: 16.sp,
     height: 24 / 16,
   );

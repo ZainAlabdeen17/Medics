@@ -166,4 +166,7 @@ class AppStrings {
   static const String review = "Review";
   static const String reviews = "Reviews";
   static const String leaveAReview = "Leave a review";
+  static const String reviewForm = "Review form";
+  static const String overallRating = "Overall rating";
+  static const String tellUsAboutYourVisit = "Tell us about your visit...";
 }

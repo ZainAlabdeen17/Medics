@@ -32,7 +32,7 @@ class SpecFilterSection extends StatelessWidget {
                 spec.id,
               );
               return Padding(
-                padding: EdgeInsets.only(bottom: 16.h),
+                padding: EdgeInsets.only(left: 8.w, bottom: 16.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -45,10 +45,17 @@ class SpecFilterSection extends StatelessWidget {
                       },
                     ),
                     SizedBox(width: 8.w),
-                    Text(
-                      spec.name,
-                      style: AppTextStyles.body1.copyWith(
-                        color: AppColors.textSecondary,
+                    GestureDetector(
+                      onTap: () {
+                        context.read<FilterCubit>().toggleSpecialization(
+                          spec.id,
+                        );
+                      },
+                      child: Text(
+                        spec.name,
+                        style: AppTextStyles.body1.copyWith(
+                          color: AppColors.textSecondary,
+                        ),
                       ),
                     ),
                   ],

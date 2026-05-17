@@ -11,6 +11,7 @@ import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cu
 import 'package:medics/features/doctor/presentation/view/doctor_details_view.dart';
 import 'package:medics/features/doctor/presentation/view/doctors_view.dart';
 import 'package:medics/features/doctor/presentation/view/filter_view.dart';
+import 'package:medics/features/doctor/presentation/view/inside_tabs/inside_review_tab/review_form_view.dart';
 import 'package:medics/features/home/presentation/view/home_view.dart';
 import 'package:medics/features/medical_records/presentation/view/medical_records_view.dart';
 import 'package:medics/features/on_boarding/presentation/view/on_boarding_view.dart';
@@ -58,6 +59,13 @@ GoRouter route = GoRouter(
       builder: (context, state) {
         final doctor = state.extra as DoctorModel;
         return DoctorDetailsView(doctor: doctor);
+      },
+    ),
+    GoRoute(
+      path: "/ReviewForm",
+      builder: (context, state) {
+        final doctor = state.extra as DoctorModel;
+        return ReviewFormView(doctor: doctor);
       },
     ),
     //

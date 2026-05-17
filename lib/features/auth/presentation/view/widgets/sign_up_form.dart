@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:medics/core/functions/app_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/core/widgets/custom_fill_button.dart';
 import 'package:medics/core/widgets/custom_text_field.dart';
-import 'package:medics/features/auth/presentation/cubit/update_cubit/update_cubit.dart';
-import 'package:medics/features/auth/presentation/cubit/update_cubit/update_state.dart';
+import 'package:medics/features/auth/presentation/cubit/user_cubit/user_cubit.dart';
+import 'package:medics/features/auth/presentation/cubit/user_cubit/user_state.dart';
 import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_state.dart';
 import 'package:medics/features/auth/presentation/view/widgets/password_requerment_item.dart';
@@ -20,105 +20,114 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UpdateCubit(),
-      child: BlocBuilder<ValidationCubit, ValidationState>(
-        builder: (context, state) {
-          ValidationCubit authCubit = BlocProvider.of(context);
-          final passwordValidator = state.passwordValidator;
-          final password = state.password;
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                AppStrings.emailLabel,
-                style: AppTextStyles.body1.copyWith(
-                  color: AppColors.textPrimary,
+    return BlocConsumer<UserCubit, UserState>(
+      listener: (context, state) {
+        if (state is SignUpSuccessState) {
+          context.pushReplacement("/Otp");
+        }
+        if (state is SignUpFailureState) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+        }
+      },
+      builder: (context, state) {
+        final userCubit = BlocProvider.of<UserCubit>(context);
+        return BlocBuilder<ValidationCubit, ValidationState>(
+          builder: (context, state) {
+            final validationCubit = BlocProvider.of<ValidationCubit>(context);
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppStrings.emailLabel,
+                  style: AppTextStyles.body1.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
                 ),
-              ),
-              SizedBox(height: 4.h),
-              CustomTextField(
-                hintText: AppStrings.emailHint,
-                onChanged: (email) {
-                  authCubit.onEmailChanged(email);
-                },
-                errorText: state.emailError as String?,
-              ),
-              SizedBox(height: 12.h),
-              Text(
-                AppStrings.passwordLabel,
-                style: AppTextStyles.body1.copyWith(
-                  color: AppColors.textPrimary,
+                SizedBox(height: 4.h),
+                CustomTextField(
+                  controller: userCubit.emailController,
+                  hintText: AppStrings.emailHint,
+                  onChanged: (email) {
+                    validationCubit.onEmailChanged(email);
+                  },
+                  errorText: state.emailError as String?,
                 ),
-              ),
-              SizedBox(height: 4.h),
-              BlocBuilder<UpdateCubit, UpdateState>(
-                builder: (context, state) {
-                  final updateCubit = BlocProvider.of<UpdateCubit>(context);
-                  return CustomTextField(
-                    hintText: AppStrings.passwordHint,
-                    obscureText: state.obSecurePassword,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        updateCubit.toggleObscurePassword();
-                      },
-                      icon: SizedBox(
-                        height: 24.h,
-                        width: 24.w,
-                        child: SvgPicture.asset(
-                          state.obSecurePassword == false
-                              ? Assets.assetsImagesIconsGeneralView
-                              : Assets.assetsImagesIconsGeneralHide,
-                        ),
+                SizedBox(height: 12.h),
+                Text(
+                  AppStrings.passwordLabel,
+                  style: AppTextStyles.body1.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                CustomTextField(
+                  controller: userCubit.passwordController,
+                  hintText: AppStrings.passwordHint,
+                  obscureText: userCubit.isObSecure,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      userCubit.toggleObscurePassword();
+                    },
+                    icon: SizedBox(
+                      height: 24.h,
+                      width: 24.w,
+                      child: SvgPicture.asset(
+                        userCubit.isObSecure == false
+                            ? Assets.assetsImagesIconsGeneralView
+                            : Assets.assetsImagesIconsGeneralHide,
                       ),
                     ),
-                    onChanged: (password) {
-                      authCubit.onPasswordChanged(password);
-                    },
-                    hasError:
-                        !passwordValidator!.isValid && password.isNotEmpty,
-                  );
-                },
-              ),
-              if (state.password.isNotEmpty)
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 12.h),
-                    PasswordRequirementItem(
-                      isValid: passwordValidator!.hasMinLength,
-                      text: AppStrings.min8CharactersLength,
-                    ),
-                    PasswordRequirementItem(
-                      isValid: passwordValidator.hasUppercase,
-                      text: AppStrings.min1UppercaseLetter,
-                    ),
-                    PasswordRequirementItem(
-                      isValid: passwordValidator.hasTwoNumbers,
-                      text: AppStrings.min2Numbers,
-                    ),
-                  ],
+                  ),
+                  onChanged: (password) {
+                    validationCubit.onPasswordChanged(password);
+                  },
+                  hasError:
+                      !state.passwordValidator!.isValid &&
+                      state.password.isNotEmpty,
                 ),
-              SizedBox(height: 32.h),
-              CustomFillButton(
-                text: AppStrings.createAccount,
-                onPressed: state.isFormValid
-                    ? () {
-                        state.isFormValid
-                            ? {
-                                AppNavigation.pushReplacementScreen(
-                                  context,
-                                  "/Otp",
-                                ),
+                if (state.password.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 12.h),
+                      PasswordRequirementItem(
+                        isValid: state.passwordValidator!.hasMinLength,
+                        text: AppStrings.min8CharactersLength,
+                      ),
+                      PasswordRequirementItem(
+                        isValid: state.passwordValidator!.hasUppercase,
+                        text: AppStrings.min1UppercaseLetter,
+                      ),
+                      PasswordRequirementItem(
+                        isValid: state.passwordValidator!.hasTwoNumbers,
+                        text: AppStrings.min2Numbers,
+                      ),
+                    ],
+                  ),
+                SizedBox(height: 32.h),
+                userCubit.state is SignUpLoadingState
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.surfaceAccent,
+                        ),
+                      )
+                    : CustomFillButton(
+                        text: AppStrings.createAccount,
+                        onPressed: state.isFormValid
+                            ? () async {
+                                state.isFormValid
+                                    ? await userCubit.signUp()
+                                    : null;
                               }
-                            : null;
-                      }
-                    : null,
-              ),
-            ],
-          );
-        },
-      ),
+                            : null,
+                      ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 }

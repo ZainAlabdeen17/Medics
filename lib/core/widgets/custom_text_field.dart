@@ -36,6 +36,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextFormField(
+        controller: controller,
         //
         validator: validator ?? (value) => null,
         //

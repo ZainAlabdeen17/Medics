@@ -53,6 +53,7 @@ class DayChip extends StatelessWidget {
             Text(
               "$day",
               style: AppTextStyles.num2.copyWith(
+                fontWeight: FontWeight.w700,
                 color: isSelected
                     ? AppColors.textStaticWhite
                     : AppColors.textPrimary,

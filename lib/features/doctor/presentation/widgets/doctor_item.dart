@@ -53,7 +53,10 @@ class DoctorItem extends StatelessWidget {
                       padding: EdgeInsets.only(right: 8.w, bottom: 8.h),
                       child: Hero(
                         tag: "${doctor.id},${doctor.rating}",
-                        child: RateChip(rating: doctor.rating),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: RateChip(rating: doctor.rating),
+                        ),
                       ),
                     ),
                   ],

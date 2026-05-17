@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
+import 'package:medics/features/doctor/data/doctor_model.dart';
 import 'package:medics/features/doctor/data/review_model.dart';
 
 class DoctorReviewContent extends StatelessWidget {
-  const DoctorReviewContent({super.key});
+  const DoctorReviewContent({super.key, required this.doctor});
+  final DoctorModel doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,28 +32,33 @@ class DoctorReviewContent extends StatelessWidget {
               children: [
                 Text(
                   "${reviews.length} Reviews",
-                  style: AppTextStyles.num1.copyWith(
+                  style: AppTextStyles.head3.copyWith(
+                    fontFamily: "Inter",
                     color: AppColors.textPrimary,
-                    fontWeight: FontWeight.w900,
                   ),
                 ),
-                Row(
-                  children: [
-                    SizedBox(
-                      height: 20.h,
-                      width: 20.h,
-                      child: SvgPicture.asset(
-                        Assets.assetsImagesIconsGeneralReview,
+                GestureDetector(
+                  onTap: () {
+                    context.push("/ReviewForm", extra: doctor);
+                  },
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 20.h,
+                        width: 20.h,
+                        child: SvgPicture.asset(
+                          Assets.assetsImagesIconsGeneralReview,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 2.w),
-                    Text(
-                      AppStrings.leaveAReview,
-                      style: AppTextStyles.head3.copyWith(
-                        color: AppColors.textAccent,
+                      SizedBox(width: 2.w),
+                      Text(
+                        AppStrings.leaveAReview,
+                        style: AppTextStyles.head3.copyWith(
+                          color: AppColors.textAccent,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
