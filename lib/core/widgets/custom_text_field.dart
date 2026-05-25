@@ -19,6 +19,8 @@ class CustomTextField extends StatelessWidget {
     this.readOnly = false,
     this.autoFocus = false,
     this.keyboardType,
+    this.maxLines = 1,
+    this.isBigFeild = false,
   });
   final String hintText;
   final TextEditingController? controller;
@@ -33,11 +35,14 @@ class CustomTextField extends StatelessWidget {
   final bool readOnly;
   final bool autoFocus;
   final TextInputType? keyboardType;
+  final int maxLines;
+  final bool isBigFeild;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextFormField(
+        maxLines: maxLines,
         controller: controller,
         //
 
@@ -90,19 +95,28 @@ class CustomTextField extends StatelessWidget {
           //
           border: customOutlineInputBorder(
             hasError ? AppColors.borderRed : AppColors.borderBlack,
+            isBigFeild: isBigFeild,
           ),
           //
           focusedBorder: customOutlineInputBorder(
             hasError ? AppColors.borderRed : AppColors.borderBlack,
+            isBigFeild: isBigFeild,
           ),
           //
           enabledBorder: customOutlineInputBorder(
             hasError ? AppColors.borderRed : AppColors.borderBlack,
+            isBigFeild: isBigFeild,
           ),
           //
-          errorBorder: customOutlineInputBorder(AppColors.borderRed),
+          errorBorder: customOutlineInputBorder(
+            AppColors.borderRed,
+            isBigFeild: isBigFeild,
+          ),
           //
-          focusedErrorBorder: customOutlineInputBorder(AppColors.borderRed),
+          focusedErrorBorder: customOutlineInputBorder(
+            AppColors.borderRed,
+            isBigFeild: isBigFeild,
+          ),
           //
         ),
       ),
@@ -110,9 +124,12 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
-OutlineInputBorder customOutlineInputBorder(Color borderColor) {
+OutlineInputBorder customOutlineInputBorder(
+  Color borderColor, {
+  bool isBigFeild = false,
+}) {
   return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(100.r),
+    borderRadius: BorderRadius.circular(isBigFeild ? 24.r : 100.r),
     borderSide: BorderSide(color: borderColor, width: 1.w),
   );
 }

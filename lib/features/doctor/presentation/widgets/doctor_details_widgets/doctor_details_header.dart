@@ -35,15 +35,31 @@ class DoctorDetailsHeader extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: SizedBox(
-                    height: 24.h,
-                    width: 24.w,
-                    child: SvgPicture.asset(
-                      Assets.assetsImagesIconsGeneralFavourite,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          Assets.assetsImagesIconsGeneralFavourite,
+                        ),
+                      ),
                     ),
-                  ),
+                    SizedBox(width: 8.w),
+                    GestureDetector(
+                      onTap: () {},
+                      child: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          Assets.assetsImagesIconsGeneralSend,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

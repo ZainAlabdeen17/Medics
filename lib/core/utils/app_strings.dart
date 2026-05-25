@@ -169,6 +169,10 @@ class AppStrings {
   static const String reviewForm = "Review form";
   static const String overallRating = "Overall rating";
   static const String tellUsAboutYourVisit = "Tell us about your visit...";
+  static const String reviewSubmittedSuccessfully =
+      "Review Submitted\nSuccessfully";
+  static const String thankYouWeAppreciateYourFeedback =
+      "Thank you! We appreciate your feedback.";
   //medical records
   static const String medicalRecords = "Medical records";
   static const String prescription = "Prescription";
