@@ -66,7 +66,7 @@ class LifeStyle extends StatelessWidget {
                       text1: "<7",
                       text2: "7 - 8",
                       text3: ">8",
-                        selectedValue: lifestyle.sleep,
+//selectedValue: lifestyle.sleep,
                       onSelected: (value) {
                         context.read<HealthCubit>().updateLifestyle(
                           lifestyle.copyWith(sleep: value),
@@ -88,7 +88,7 @@ class LifeStyle extends StatelessWidget {
                       text1: "<1",
                       text2: "1 - 1.5",
                       text3: ">1.5",
-                      selectedValue: lifestyle.water,
+//selectedValue: lifestyle.water,
                       onSelected: (value) {
                         context.read<HealthCubit>().updateLifestyle(
                           lifestyle.copyWith(water: value),
