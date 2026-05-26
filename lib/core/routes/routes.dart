@@ -34,6 +34,7 @@ import 'package:medics/features/specialization/presentation/view/specializations
 
 import 'package:medics/features/splash/presentation/view/splash_view.dart';
 
+final healthCubit = HealthCubit()..loadInitial();
 GoRouter route = GoRouter(
   routes: [
     GoRoute(path: "/", builder: (context, state) => SplashView()),
@@ -41,9 +42,9 @@ GoRouter route = GoRouter(
     GoRoute(path: "/SignUp", builder: (context, state) => SignUpView()),
     GoRoute(path: "/Otp", builder: (context, state) => OtpView()),
     GoRoute(path: "/LabReport", builder: (context, state) => LabReport()),
-    ShellRoute(
+       ShellRoute(
       builder: (context, state, child) {
-        return BlocProvider(create: (_) => HealthCubit(), child: child);
+        return BlocProvider.value(value: HealthCubit(), child: child);
       },
       routes: [
         GoRoute(

@@ -4,17 +4,30 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 
 class ButtonGroupsEquals extends StatefulWidget {
-   final String text1;
+  final String text1;
   final String text2;
   final String text3;
-  const ButtonGroupsEquals({super.key, required this.text1, required this.text2, required this.text3});
+  final Function(String) onSelected;
+  const ButtonGroupsEquals({
+    super.key,
+    required this.text1,
+    required this.text2,
+    required this.text3,
+   required this.onSelected,
+  });
 
   @override
   State<ButtonGroupsEquals> createState() => _ButtonGroupsState();
 }
 
 class _ButtonGroupsState extends State<ButtonGroupsEquals> {
-  String selectedGroup = "";
+  late String selectedGroup;
+  @override
+  void initState() {
+    super.initState();
+    selectedGroup = widget.text1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -40,6 +53,7 @@ class _ButtonGroupsState extends State<ButtonGroupsEquals> {
           setState(() {
             selectedGroup = fullLabel;
           });
+          widget.onSelected(text);
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: isSelected

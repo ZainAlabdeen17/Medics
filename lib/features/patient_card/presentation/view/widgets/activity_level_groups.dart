@@ -5,7 +5,8 @@ import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 
 class ActivityLevelGroups extends StatefulWidget {
-  const ActivityLevelGroups({super.key});
+  final Function(String) onSelected;
+  const ActivityLevelGroups({super.key, required this.onSelected});
 
   @override
   State<ActivityLevelGroups> createState() => _ActivityLevelGroupsState();
@@ -37,6 +38,7 @@ class _ActivityLevelGroupsState extends State<ActivityLevelGroups> {
           setState(() {
             selectedGroup = fullLabel;
           });
+          widget.onSelected(fullLabel);
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: isSelected

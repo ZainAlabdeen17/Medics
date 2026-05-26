@@ -7,11 +7,13 @@ class ButtonGroups extends StatefulWidget {
   final String text1;
   final String text2;
   final String text3;
+  final Function(String) onSelected;
   const ButtonGroups({
     super.key,
     required this.text1,
     required this.text2,
     required this.text3,
+    required this.onSelected,
   });
 
   @override
@@ -45,6 +47,7 @@ class _ButtonGroupsState extends State<ButtonGroups> {
           setState(() {
             selectedGroup = fullLabel;
           });
+          widget.onSelected(fullLabel);
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: isSelected

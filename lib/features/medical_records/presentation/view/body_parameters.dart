@@ -30,7 +30,7 @@ class _BodyParametersState extends State<BodyParameters> {
 
   String selectedBloodType = "B(III)";
   String selectedRh = "+";
-  
+
   bool _isFirstLoad = true;
 
   @override
@@ -44,10 +44,7 @@ class _BodyParametersState extends State<BodyParameters> {
     systolicCtrl = TextEditingController();
     diastolicCtrl = TextEditingController();
 
-    final cubit = context.read<HealthCubit>();
-    if (cubit.state is HealthInitial) {
-      cubit.loadInitial();
-    }
+
   }
 
   @override
@@ -69,11 +66,15 @@ class _BodyParametersState extends State<BodyParameters> {
     final systolic = int.tryParse(systolicCtrl.text);
     final diastolic = int.tryParse(diastolicCtrl.text);
 
-
-    if (height == null || weight == null || oxygen == null || heartRate == null || systolic == null || diastolic == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Enter valid data ")),
-      );
+    if (height == null ||
+        weight == null ||
+        oxygen == null ||
+        heartRate == null ||
+        systolic == null ||
+        diastolic == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Enter valid data ")));
       return;
     }
 
@@ -103,8 +104,8 @@ class _BodyParametersState extends State<BodyParameters> {
 
           if (state is HealthLoaded) {
             final body = state.model.body;
-            
-            if (_isFirstLoad) {
+
+            if (_isFirstLoad ) {
               _isFirstLoad = false;
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 heightCtrl.text = body.height?.toString() ?? "";
@@ -113,7 +114,7 @@ class _BodyParametersState extends State<BodyParameters> {
                 heartRateCtrl.text = body.heartRate?.toString() ?? "";
                 systolicCtrl.text = body.systolic?.toString() ?? "";
                 diastolicCtrl.text = body.diastolic?.toString() ?? "";
-                
+
                 setState(() {
                   selectedBloodType = body.bloodType ?? "B(III)";
                   selectedRh = body.rh ?? "+";
@@ -134,7 +135,7 @@ class _BodyParametersState extends State<BodyParameters> {
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 20.h)),
-                  
+
                   SliverToBoxAdapter(
                     child: Row(
                       children: [
@@ -144,7 +145,9 @@ class _BodyParametersState extends State<BodyParameters> {
                             children: [
                               Text(
                                 AppStrings.yourHieght,
-                                style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+                                style: AppTextStyles.body1.copyWith(
+                                  color: AppColors.textPrimary,
+                                ),
                               ),
                               SizedBox(height: 4.h),
                               SmallCustomTextField(
@@ -162,7 +165,9 @@ class _BodyParametersState extends State<BodyParameters> {
                             children: [
                               Text(
                                 AppStrings.yourWeight,
-                                style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+                                style: AppTextStyles.body1.copyWith(
+                                  color: AppColors.textPrimary,
+                                ),
                               ),
                               SizedBox(height: 4.h),
                               SmallCustomTextField(
@@ -177,11 +182,12 @@ class _BodyParametersState extends State<BodyParameters> {
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
-                  
                   SliverToBoxAdapter(
                     child: Text(
                       AppStrings.oxygenSaturation,
-                      style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+                      style: AppTextStyles.body1.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 4.h)),
@@ -193,11 +199,13 @@ class _BodyParametersState extends State<BodyParameters> {
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 12.h)),
-                  
+
                   SliverToBoxAdapter(
                     child: Text(
                       AppStrings.heartRate,
-                      style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+                      style: AppTextStyles.body1.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 4.h)),
@@ -209,11 +217,12 @@ class _BodyParametersState extends State<BodyParameters> {
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
-                  
                   SliverToBoxAdapter(
                     child: Text(
                       AppStrings.bloodPressure,
-                      style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+                      style: AppTextStyles.body1.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 4.h)),
@@ -229,7 +238,9 @@ class _BodyParametersState extends State<BodyParameters> {
                         ),
                         Text(
                           " / ",
-                          style: AppTextStyles.head3.copyWith(color: AppColors.textPrimary),
+                          style: AppTextStyles.head3.copyWith(
+                            color: AppColors.textPrimary,
+                          ),
                         ),
                         Expanded(
                           child: CustomTextField(
@@ -242,11 +253,11 @@ class _BodyParametersState extends State<BodyParameters> {
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
-                  
+
                   SliverToBoxAdapter(
                     child: BloodType(
-                            initialBloodType: selectedBloodType,
-                          initialRh: selectedRh,
+                      initialBloodType: selectedBloodType,
+                      initialRh: selectedRh,
                       onBloodTypeChanged: (type) {
                         setState(() {
                           selectedBloodType = type;
