@@ -173,6 +173,10 @@ class AppStrings {
       "Review Submitted\nSuccessfully";
   static const String thankYouWeAppreciateYourFeedback =
       "Thank you! We appreciate your feedback.";
+  //Messages
+  static const String messages = "Messages";
+  static const String searchByName = "Search by name";
+
   //medical records
   static const String medicalRecords = "Medical records";
   static const String prescription = "Prescription";

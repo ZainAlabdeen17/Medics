@@ -20,6 +20,7 @@ class DoctorInfo extends StatelessWidget {
             CircleAvatar(
               radius: 22.r,
               backgroundImage: AssetImage(doctor.image),
+              backgroundColor: AppColors.borderPrimary,
             ),
             Padding(
               padding: EdgeInsets.only(left: 8.0.w),

@@ -48,7 +48,7 @@ class DoctorDetailsHeader extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(width: 8.w),
+                    SizedBox(width: 12.w),
                     GestureDetector(
                       onTap: () {},
                       child: SizedBox(
