@@ -15,7 +15,7 @@ class BottomBotton extends StatelessWidget {
       child: BlocBuilder<BookCubit, BookState>(
         builder: (context, state) {
           return Padding(
-            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 10.h),
+            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 20.h),
             child: CustomFillButton(
               text: AppStrings.bookNow,
               onPressed: state.selectedTime.isNotEmpty ? () {} : null,

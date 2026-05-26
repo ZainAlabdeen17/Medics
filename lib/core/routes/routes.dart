@@ -8,6 +8,7 @@ import 'package:medics/features/auth/presentation/view/widgets/forget_password.d
 import 'package:medics/features/chat/presentation/view/chat_view.dart';
 import 'package:medics/features/doctor/data/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
+import 'package:medics/features/doctor/presentation/cubit/review_cubit/review_cubit.dart';
 import 'package:medics/features/doctor/presentation/view/doctor_details_view.dart';
 import 'package:medics/features/doctor/presentation/view/doctors_view.dart';
 import 'package:medics/features/doctor/presentation/view/filter_view.dart';
@@ -105,7 +106,10 @@ GoRouter route = GoRouter(
       path: "/ReviewForm",
       builder: (context, state) {
         final doctor = state.extra as DoctorModel;
-        return ReviewFormView(doctor: doctor);
+        return BlocProvider(
+          create: (context) => ReviewCubit(),
+          child: ReviewFormView(doctor: doctor),
+        );
       },
     ),
     //

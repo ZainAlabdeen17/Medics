@@ -102,6 +102,10 @@ class Assets {
   /// assets/images/icons/general/droplet.svg
   static const String assetsImagesIconsGeneralDroplet = "assets/images/icons/general/droplet.svg";
 
+  /// Assets for assetsImagesIconsGeneralEmptyStar
+  /// assets/images/icons/general/empty_star.svg
+  static const String assetsImagesIconsGeneralEmptyStar = "assets/images/icons/general/empty_star.svg";
+
   /// Assets for assetsImagesIconsGeneralFavourite
   /// assets/images/icons/general/favourite.svg
   static const String assetsImagesIconsGeneralFavourite = "assets/images/icons/general/favourite.svg";
@@ -110,9 +114,6 @@ class Assets {
   /// assets/images/icons/general/filter.svg
   static const String assetsImagesIconsGeneralFilter = "assets/images/icons/general/filter.svg";
 
-  /// Assets for assetsImagesIconsGeneralHide
-  /// assets/images/icons/general/hide.svg
-  static const String assetsImagesIconsGeneralHide = "assets/images/icons/general/hide.svg";
   /// Assets for assetsImagesIconsGeneralFrame
   /// assets/images/icons/general/Frame.svg
   static const String assetsImagesIconsGeneralFrame = "assets/images/icons/general/Frame.svg";
@@ -120,6 +121,10 @@ class Assets {
   /// Assets for assetsImagesIconsGeneralFrequency
   /// assets/images/icons/general/frequency.svg
   static const String assetsImagesIconsGeneralFrequency = "assets/images/icons/general/frequency.svg";
+
+  /// Assets for assetsImagesIconsGeneralHide
+  /// assets/images/icons/general/hide.svg
+  static const String assetsImagesIconsGeneralHide = "assets/images/icons/general/hide.svg";
 
   /// Assets for assetsImagesIconsGeneralMedication
   /// assets/images/icons/general/medication.svg
@@ -137,28 +142,41 @@ class Assets {
   /// assets/images/icons/general/notification.svg
   static const String assetsImagesIconsGeneralNotification = "assets/images/icons/general/notification.svg";
 
-  /// Assets for assetsImagesIconsGeneralProfile
-  /// assets/images/icons/general/profile.svg
-  static const String assetsImagesIconsGeneralProfile = "assets/images/icons/general/profile.svg";
-
-  /// Assets for assetsImagesIconsGeneralReview
-  /// assets/images/icons/general/review.svg
-  static const String assetsImagesIconsGeneralReview = "assets/images/icons/general/review.svg";
   /// Assets for assetsImagesIconsGeneralPlus
   /// assets/images/icons/general/plus.svg
   static const String assetsImagesIconsGeneralPlus = "assets/images/icons/general/plus.svg";
+
+  /// Assets for assetsImagesIconsGeneralProfile
+  /// assets/images/icons/general/profile.svg
+  static const String assetsImagesIconsGeneralProfile = "assets/images/icons/general/profile.svg";
 
   /// Assets for assetsImagesIconsGeneralReturn
   /// assets/images/icons/general/return.svg
   static const String assetsImagesIconsGeneralReturn = "assets/images/icons/general/return.svg";
 
+  /// Assets for assetsImagesIconsGeneralReview
+  /// assets/images/icons/general/review.svg
+  static const String assetsImagesIconsGeneralReview = "assets/images/icons/general/review.svg";
+
+  /// Assets for assetsImagesIconsGeneralReviewStar
+  /// assets/images/icons/general/review_star.svg
+  static const String assetsImagesIconsGeneralReviewStar = "assets/images/icons/general/review_star.svg";
+
   /// Assets for assetsImagesIconsGeneralSearch
   /// assets/images/icons/general/search.svg
   static const String assetsImagesIconsGeneralSearch = "assets/images/icons/general/search.svg";
 
+  /// Assets for assetsImagesIconsGeneralSend
+  /// assets/images/icons/general/send.svg
+  static const String assetsImagesIconsGeneralSend = "assets/images/icons/general/send.svg";
+
   /// Assets for assetsImagesIconsGeneralStar
   /// assets/images/icons/general/star.svg
   static const String assetsImagesIconsGeneralStar = "assets/images/icons/general/star.svg";
+
+  /// Assets for assetsImagesIconsGeneralSuccessSpot
+  /// assets/images/icons/general/success_spot.svg
+  static const String assetsImagesIconsGeneralSuccessSpot = "assets/images/icons/general/success_spot.svg";
 
   /// Assets for assetsImagesIconsGeneralTracker
   /// assets/images/icons/general/tracker.svg

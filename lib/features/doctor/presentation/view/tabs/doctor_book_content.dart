@@ -15,22 +15,25 @@ class DoctorBookContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BookCubit, BookState>(
       builder: (context, state) {
-        return ListView(
-          key: const PageStorageKey<String>('DoctorBookContent'),
+        return Padding(
           padding: EdgeInsets.only(
             top: 16.h,
             left: 16.w,
             right: 16.w,
-            bottom: 20.h,
+            bottom: 5.h,
           ),
-          children: [
-            PriceSection(),
-            CustomDivider(),
-            DaySlotsSection(),
-            CustomDivider(),
-            TimeSlotsSection(),
-            SizedBox(height: 32.h),
-          ],
+          child: ListView(
+            key: const PageStorageKey<String>('DoctorBookContent'),
+
+            children: [
+              PriceSection(),
+              CustomDivider(),
+              DaySlotsSection(),
+              CustomDivider(),
+              TimeSlotsSection(),
+              SizedBox(height: 32.h),
+            ],
+          ),
         );
       },
     );

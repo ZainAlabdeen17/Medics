@@ -26,7 +26,7 @@ class Root extends StatelessWidget {
               right: 16.w,
               bottom: 0.h,
               child: SafeArea(
-                minimum: EdgeInsets.only(bottom: 20.h),
+                minimum: EdgeInsets.only(bottom: 12.h),
                 child: CustomNavbar(navigationShell: navigationShell),
               ),
             ),

@@ -11,43 +11,46 @@ class MedicalRecordsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 52.h),
-            Text(AppStrings.medicalRecords, style: AppTextStyles.head1),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 32.h,
-                crossAxisSpacing: 12.w,
-                children: [
-                  BuildMedicalCard(
-                    iconName: Assets.assetsImagesIconsGeneralMedication,
-                    name: AppStrings.prescription,
-                    location: "/Prescription",
-                  ),
-                  BuildMedicalCard(
-                    iconName: Assets.assetsImagesIconsGeneralMicroscope,
-                    name: AppStrings.lapReports,
-                    location: "/LabReport",
-                  ),
-                  BuildMedicalCard(
-                    iconName: Assets.assetsImagesIconsGeneralTracker,
-                    name: AppStrings.healthMetrics,
-                    location: "/HealthMetrics",
-                  ),
-                  BuildMedicalCard(
-                    iconName: Assets.assetsImagesIconsGeneralNote,
-                    name: AppStrings.visitSummeries,
-                    location: "/VisitSummeries",
-                  ),
-                ],
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 8.h),
+              Text(AppStrings.medicalRecords, style: AppTextStyles.head1),
+              SizedBox(height: 16.h),
+              Expanded(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 32.h,
+                  crossAxisSpacing: 12.w,
+                  children: [
+                    BuildMedicalCard(
+                      iconName: Assets.assetsImagesIconsGeneralMedication,
+                      name: AppStrings.prescription,
+                      location: "/Prescription",
+                    ),
+                    BuildMedicalCard(
+                      iconName: Assets.assetsImagesIconsGeneralMicroscope,
+                      name: AppStrings.lapReports,
+                      location: "/LabReport",
+                    ),
+                    BuildMedicalCard(
+                      iconName: Assets.assetsImagesIconsGeneralTracker,
+                      name: AppStrings.healthMetrics,
+                      location: "/HealthMetrics",
+                    ),
+                    BuildMedicalCard(
+                      iconName: Assets.assetsImagesIconsGeneralNote,
+                      name: AppStrings.visitSummeries,
+                      location: "/VisitSummeries",
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
