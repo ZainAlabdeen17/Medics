@@ -4,7 +4,7 @@ import 'package:medics/features/auth/presentation/view/otp_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_in_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
 import 'package:medics/features/auth/presentation/view/success_verification_view.dart';
-import 'package:medics/features/auth/presentation/view/widgets/forget_password.dart';
+import 'package:medics/features/auth/presentation/widgets/forget_password.dart';
 import 'package:medics/features/chat/presentation/view/chat_view.dart';
 import 'package:medics/features/doctor/data/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';

@@ -5,6 +5,7 @@ import 'package:medics/core/widgets/custom_divider.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_state.dart';
 import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/day_slots_section.dart';
+import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/optional_attach_section.dart';
 import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/price_section.dart';
 import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/time_slots_section.dart';
 
@@ -31,7 +32,8 @@ class DoctorBookContent extends StatelessWidget {
               DaySlotsSection(),
               CustomDivider(),
               TimeSlotsSection(),
-              SizedBox(height: 32.h),
+              CustomDivider(),
+              OptionalAttachSection(),
             ],
           ),
         );

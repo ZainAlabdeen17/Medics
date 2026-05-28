@@ -153,6 +153,7 @@ class AppStrings {
   static const String oneHourConsultation = "One hour consultation";
   static const String availability = "Availability";
   static const String selectTime = "Select Time";
+  static const String optionalAttachment = "Optional Attachment";
   static const String bookNow = "Book Now";
 
   //about doctor

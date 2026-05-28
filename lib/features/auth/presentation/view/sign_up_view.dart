@@ -6,9 +6,9 @@ import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_state.dart';
-import 'package:medics/features/auth/presentation/view/widgets/auth_footer.dart';
-import 'package:medics/features/auth/presentation/view/widgets/sign_up_form.dart';
-import 'package:medics/features/auth/presentation/view/widgets/auth_header.dart';
+import 'package:medics/features/auth/presentation/widgets/auth_footer.dart';
+import 'package:medics/features/auth/presentation/widgets/sign_up_form.dart';
+import 'package:medics/features/auth/presentation/widgets/auth_header.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});

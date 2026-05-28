@@ -5,8 +5,8 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/core/widgets/custom_fill_button.dart';
-import 'package:medics/features/auth/presentation/view/widgets/auth_header.dart';
-import 'package:medics/features/auth/presentation/view/widgets/otp_form.dart';
+import 'package:medics/features/auth/presentation/widgets/auth_header.dart';
+import 'package:medics/features/auth/presentation/widgets/otp_form.dart';
 
 class OtpView extends StatelessWidget {
   const OtpView({super.key});

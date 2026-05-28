@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/functions/app_navigation.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_cubit.dart';
-import 'package:medics/features/auth/presentation/view/widgets/auth_header.dart';
-import 'package:medics/features/auth/presentation/view/widgets/auth_footer.dart';
-import 'package:medics/features/auth/presentation/view/widgets/sign_in_form.dart';
+import 'package:medics/features/auth/presentation/widgets/auth_header.dart';
+import 'package:medics/features/auth/presentation/widgets/auth_footer.dart';
+import 'package:medics/features/auth/presentation/widgets/sign_in_form.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});

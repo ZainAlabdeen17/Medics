@@ -74,6 +74,10 @@ class Assets {
   /// assets/images/icons/general/arrow-left.svg
   static const String assetsImagesIconsGeneralArrowLeft = "assets/images/icons/general/arrow-left.svg";
 
+  /// Assets for assetsImagesIconsGeneralAttache
+  /// assets/images/icons/general/attache.svg
+  static const String assetsImagesIconsGeneralAttache = "assets/images/icons/general/attache.svg";
+
   /// Assets for assetsImagesIconsGeneralCalendar
   /// assets/images/icons/general/calendar.svg
   static const String assetsImagesIconsGeneralCalendar = "assets/images/icons/general/calendar.svg";

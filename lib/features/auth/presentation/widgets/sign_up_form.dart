@@ -13,7 +13,7 @@ import 'package:medics/features/auth/presentation/cubit/user_cubit/user_cubit.da
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_state.dart';
 import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_state.dart';
-import 'package:medics/features/auth/presentation/view/widgets/password_requerment_item.dart';
+import 'package:medics/features/auth/presentation/widgets/password_requerment_item.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
