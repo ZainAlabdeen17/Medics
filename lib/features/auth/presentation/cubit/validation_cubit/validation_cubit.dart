@@ -1,12 +1,28 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medics/core/validation/app_validator.dart';
 import 'package:medics/core/validation/password_validator.dart';
-import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_state.dart';
+import 'package:medics/features/auth/presentation/cubit/validation_cubit/validation_state.dart';
 
 class ValidationCubit extends Cubit<ValidationState> {
   ValidationCubit() : super(ValidationState());
-  String? signInemail;
-  String? signInPassword;
+  void onFirstNameChanged(String firstName) {
+    emit(
+      state.copyWith(
+        firstName: firstName,
+        firstNameError: AppValidator.nameValidator(firstName),
+      ),
+    );
+  }
+
+  void onLastNameChanged(String lastName) {
+    emit(
+      state.copyWith(
+        lastName: lastName,
+        lastNameError: AppValidator.nameValidator(lastName),
+      ),
+    );
+  }
+
   void onEmailChanged(String email) {
     emit(
       state.copyWith(
@@ -25,13 +41,5 @@ class ValidationCubit extends Cubit<ValidationState> {
     emit(
       state.copyWith(password: password, passwordValidator: passwordValidator),
     );
-  }
-
-  void onEmailChangeForSignIn(String? email) {
-    emit(state.copyWith(email: email));
-  }
-
-  void onPasswordChangeForSignIn(String? password) {
-    emit(state.copyWith(password: password));
   }
 }

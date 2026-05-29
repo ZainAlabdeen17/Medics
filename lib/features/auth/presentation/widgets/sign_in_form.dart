@@ -47,7 +47,7 @@ class SignInForm extends StatelessWidget {
               ),
               SizedBox(height: 4.h),
               CustomTextField(
-                controller: userCubit.emailController,
+                controller: userCubit.signInEmailController,
                 hintText: AppStrings.emailHint,
                 validator: (value) => AppValidator.validateEmail(value),
               ),
@@ -60,7 +60,7 @@ class SignInForm extends StatelessWidget {
               ),
               SizedBox(height: 4.h),
               CustomTextField(
-                controller: userCubit.passwordController,
+                controller: userCubit.signInPasswordController,
                 hintText: AppStrings.passwordHint,
                 obscureText: userCubit.isObSecure,
                 suffixIcon: IconButton(
@@ -74,6 +74,10 @@ class SignInForm extends StatelessWidget {
                       userCubit.isObSecure == false
                           ? Assets.assetsImagesIconsGeneralView
                           : Assets.assetsImagesIconsGeneralHide,
+                      colorFilter: ColorFilter.mode(
+                        AppColors.iconGrey,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
                 ),

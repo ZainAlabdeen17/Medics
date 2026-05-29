@@ -5,8 +5,16 @@ import 'package:medics/features/auth/presentation/cubit/user_cubit/user_state.da
 
 class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserInitial());
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController signInEmailController = TextEditingController();
+  final TextEditingController signInPasswordController =
+      TextEditingController();
+  final TextEditingController signUpEmailController = TextEditingController();
+  final TextEditingController signUpPasswordController =
+      TextEditingController();
+  final TextEditingController signUpFirstNameController =
+      TextEditingController();
+  final TextEditingController signUpLastNameController =
+      TextEditingController();
 
   bool isObSecure = true;
 
@@ -22,7 +30,7 @@ class UserCubit extends Cubit<UserState> {
         if (kDebugMode) {
           print("🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵");
           print(
-            'Email: ${emailController.text}, Password: ${passwordController.text}',
+            'Email: ${signInEmailController.text}, Password: ${signInPasswordController.text}',
           );
           print("🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵");
         }
@@ -40,7 +48,10 @@ class UserCubit extends Cubit<UserState> {
         if (kDebugMode) {
           print("🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵");
           print(
-            'Email: ${emailController.text}, Password: ${passwordController.text}',
+            'First Name: ${signUpFirstNameController.text}, Last Name: ${signUpLastNameController.text}',
+          );
+          print(
+            'Email: ${signUpEmailController.text}, Password: ${signUpPasswordController.text}',
           );
           print("🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵");
         }
