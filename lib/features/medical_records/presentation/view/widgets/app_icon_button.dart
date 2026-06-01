@@ -37,9 +37,10 @@ class AppIconButton extends StatelessWidget {
               height: 18.h,
               child: SvgPicture.asset(
                 iconName,
-                color: isfill
-                    ? AppColors.iconStaticWhite
-                    : AppColors.iconAccent,
+                colorFilter: ColorFilter.mode(
+                  isfill ? AppColors.iconStaticWhite : AppColors.iconAccent,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
             SizedBox(width: 8.w),

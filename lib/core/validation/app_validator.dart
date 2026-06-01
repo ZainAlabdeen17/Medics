@@ -73,4 +73,21 @@ class AppValidator {
     }
     return null;
   }
+
+  static String? nameValidator(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Name is required';
+    }
+
+    // if (value.trim().length < 3) {
+    //   return 'Name must be at least 3 characters';
+    // }
+    final nameRegex = RegExp(r'^[a-zA-Zأ-ي\s]+$');
+
+    if (!nameRegex.hasMatch(value.trim())) {
+      return 'Name must contain letters only';
+    }
+
+    return null;
+  }
 }

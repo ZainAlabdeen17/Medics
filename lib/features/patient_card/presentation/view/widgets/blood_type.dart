@@ -97,14 +97,19 @@ class _BloodTypeState extends State<BloodType> {
               width: 32.w,
               child: SvgPicture.asset(
                 Assets.assetsImagesIconsGeneralDroplet,
-                color: isSelected ? AppColors.borderBlack : AppColors.borderAccent,
+                colorFilter: ColorFilter.mode(
+                  isSelected ? AppColors.borderBlack : AppColors.borderAccent,
+                  BlendMode.srcIn, // أو srcATop
+                ),
               ),
             ),
             SizedBox(height: 8.h),
             Text(
               name,
               style: AppTextStyles.head3.copyWith(
-                color: isSelected ? AppColors.borderBlack : AppColors.borderAccent,
+                color: isSelected
+                    ? AppColors.borderBlack
+                    : AppColors.borderAccent,
               ),
             ),
           ],

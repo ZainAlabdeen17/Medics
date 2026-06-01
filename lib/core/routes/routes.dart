@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medics/features/auth/presentation/view/otp_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_in_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
 import 'package:medics/features/auth/presentation/view/success_verification_view.dart';
-import 'package:medics/features/auth/presentation/view/widgets/forget_password.dart';
+import 'package:medics/features/auth/presentation/widgets/forget_password.dart';
 import 'package:medics/features/chat/presentation/view/chat_view.dart';
 import 'package:medics/features/doctor/data/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
@@ -26,13 +27,10 @@ import 'package:medics/features/medical_records/presentation/view/notes.dart';
 import 'package:medics/features/medical_records/presentation/view/prescription.dart';
 import 'package:medics/features/medical_records/presentation/view/visit_summeries.dart';
 import 'package:medics/features/on_boarding/presentation/view/on_boarding_view.dart';
-
 import 'package:medics/features/patient_card/presentation/view/patient_view.dart';
-
 import 'package:medics/features/profile/presentation/view/profile_view.dart';
 import 'package:medics/features/root/presentation/view/root.dart';
 import 'package:medics/features/specialization/presentation/view/specializations_view.dart';
-
 import 'package:medics/features/splash/presentation/view/splash_view.dart';
 
 final healthCubit = HealthCubit()..loadInitial();
@@ -40,7 +38,33 @@ GoRouter route = GoRouter(
   routes: [
     GoRoute(path: "/", builder: (context, state) => SplashView()),
     GoRoute(path: "/OnBoarding", builder: (context, state) => OnBoardingView()),
-    GoRoute(path: "/SignUp", builder: (context, state) => SignUpView()),
+    GoRoute(
+      path: "/SignUp",
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: SignUpView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            // const begin = Offset(0.0, 1.0);
+            const begin = Offset(1.0, 0.0);
+            // const begin = Offset(-1.0, 0.0);
+            const end = Offset.zero;
+            const curve = Curves.ease;
+
+            var tween = Tween(
+              begin: begin,
+              end: end,
+            ).chain(CurveTween(curve: curve));
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+        );
+      },
+    ),
+    // GoRoute(path: "/SignUp", builder: (context, state) => SignUpView()),
     GoRoute(path: "/Otp", builder: (context, state) => OtpView()),
     GoRoute(path: "/LabReport", builder: (context, state) => LabReport()),
     ShellRoute(
@@ -75,8 +99,34 @@ GoRouter route = GoRouter(
       path: "/SuccessVerification",
       builder: (context, state) => SuccessVerificationView(),
     ),
-    GoRoute(path: "/SignIn", builder: (context, state) => SignInView()),
+    GoRoute(
+      path: "/SignIn",
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: SignInView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            // const begin = Offset(0.0, 1.0);
+            const begin = Offset(1.0, 0.0);
+            // const begin = Offset(-1.0, 0.0);
+            const end = Offset.zero;
+            const curve = Curves.ease;
 
+            var tween = Tween(
+              begin: begin,
+              end: end,
+            ).chain(CurveTween(curve: curve));
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+        );
+      },
+    ),
+
+    // GoRoute(path: "/SignIn", builder: (context, state) => SignInView()),
     GoRoute(path: "/Patient", builder: (context, state) => PatientView()),
 
     GoRoute(

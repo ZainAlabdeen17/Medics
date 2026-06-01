@@ -5,19 +5,15 @@ import 'package:medics/core/error/exception.dart';
 
 class DioConsumer extends ApiConsumer {
   late Dio dio;
-  DioConsumer() {
-    dio = Dio(
-      BaseOptions(
-        baseUrl: "https://renewably-gladly-blitz.ngrok-free.dev/api/v1/",
-        receiveTimeout: const Duration(seconds: 20),
-        connectTimeout: const Duration(seconds: 20),
-        sendTimeout: const Duration(seconds: 20),
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-      ),
-    );
+  DioConsumer({required this.dio}) {
+    dio.options.baseUrl = "https://renewably-gladly-blitz.ngrok-free.dev/api/v1/";
+    dio.options.receiveTimeout = const Duration(seconds: 20);
+    dio.options.connectTimeout = const Duration(seconds: 20);
+    dio.options.sendTimeout = const Duration(seconds: 20);
+    dio.options.headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    };
     dio.interceptors.add(
       LogInterceptor(
         request: true,

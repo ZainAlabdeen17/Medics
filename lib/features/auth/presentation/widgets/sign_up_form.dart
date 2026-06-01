@@ -11,9 +11,9 @@ import 'package:medics/core/widgets/custom_fill_button.dart';
 import 'package:medics/core/widgets/custom_text_field.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_state.dart';
-import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_cubit.dart';
-import 'package:medics/features/auth/presentation/cubit/validation_cubit/auth_state.dart';
-import 'package:medics/features/auth/presentation/view/widgets/password_requerment_item.dart';
+import 'package:medics/features/auth/presentation/cubit/validation_cubit/validation_cubit.dart';
+import 'package:medics/features/auth/presentation/cubit/validation_cubit/validation_state.dart';
+import 'package:medics/features/auth/presentation/widgets/password_requerment_item.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
@@ -40,6 +40,38 @@ class SignUpForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
+                  AppStrings.firstName,
+                  style: AppTextStyles.body1.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                CustomTextField(
+                  controller: userCubit.signUpFirstNameController,
+                  hintText: "Enter your first name",
+                  onChanged: (firstName) {
+                    validationCubit.onFirstNameChanged(firstName);
+                  },
+                  errorText: state.firstNameError as String?,
+                ),
+                SizedBox(height: 12.h),
+                Text(
+                  AppStrings.lastName,
+                  style: AppTextStyles.body1.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                CustomTextField(
+                  controller: userCubit.signUpLastNameController,
+                  hintText: "Enter your last name",
+                  onChanged: (lastName) {
+                    validationCubit.onLastNameChanged(lastName);
+                  },
+                  errorText: state.lastNameError as String?,
+                ),
+                SizedBox(height: 12.h),
+                Text(
                   AppStrings.emailLabel,
                   style: AppTextStyles.body1.copyWith(
                     color: AppColors.textPrimary,
@@ -47,7 +79,7 @@ class SignUpForm extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 CustomTextField(
-                  controller: userCubit.emailController,
+                  controller: userCubit.signUpEmailController,
                   hintText: AppStrings.emailHint,
                   onChanged: (email) {
                     validationCubit.onEmailChanged(email);
@@ -63,7 +95,7 @@ class SignUpForm extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 CustomTextField(
-                  controller: userCubit.passwordController,
+                  controller: userCubit.signUpPasswordController,
                   hintText: AppStrings.passwordHint,
                   obscureText: userCubit.isObSecure,
                   suffixIcon: IconButton(
@@ -77,6 +109,10 @@ class SignUpForm extends StatelessWidget {
                         userCubit.isObSecure == false
                             ? Assets.assetsImagesIconsGeneralView
                             : Assets.assetsImagesIconsGeneralHide,
+                        colorFilter: ColorFilter.mode(
+                          AppColors.iconGrey,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                   ),

@@ -22,7 +22,7 @@ class TimeChip extends StatelessWidget {
       borderRadius: BorderRadius.circular(32.r),
       child: AnimatedContainer(
         duration: Duration(microseconds: 200),
-        width: 72.w,
+        width: 74.w,
         padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
         decoration: BoxDecoration(
           border: Border.all(
