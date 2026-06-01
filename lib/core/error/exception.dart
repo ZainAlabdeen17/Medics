@@ -1,19 +1,22 @@
 import 'package:dio/dio.dart';
-import 'package:medics/core/error/error_model.dart';
+import 'package:medics/core/error/failure.dart';
 
 class ServerExeption implements Exception {
-  final ErrorModel errorModel;
-  ServerExeption({required this.errorModel});
+  final Failure failure;
+  ServerExeption({required this.failure});
 }
 
 Exception handleDioException(DioException e) {
   final responseData = e.response?.data;
 
   if (responseData != null) {
-    return ServerExeption(errorModel: ErrorModel.fromJson(responseData));
+    if (responseData is String) {
+      return ServerExeption(failure: Failure(message: responseData));
+    }
+    return ServerExeption(failure: Failure.fromJson(responseData));
   }
 
   return ServerExeption(
-    errorModel: ErrorModel(message: e.message ?? 'Unexpected error'),
+    failure: Failure(message: e.message ?? 'Unexpected error'),
   );
 }

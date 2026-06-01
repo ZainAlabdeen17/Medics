@@ -5,7 +5,7 @@ import 'package:medics/core/error/exception.dart';
 
 class DioConsumer extends ApiConsumer {
   late Dio dio;
-  DioConsumer() {
+  DioConsumer({required this.dio}) {
     dio = Dio(
       BaseOptions(
         baseUrl: "https://renewably-gladly-blitz.ngrok-free.dev/api/v1/",
@@ -18,6 +18,7 @@ class DioConsumer extends ApiConsumer {
         },
       ),
     );
+    
     dio.interceptors.add(
       LogInterceptor(
         request: true,
