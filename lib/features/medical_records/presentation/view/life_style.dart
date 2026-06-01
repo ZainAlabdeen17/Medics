@@ -16,10 +16,11 @@ class LifeStyle extends StatelessWidget {
   const LifeStyle({super.key});
 
   void _onSave(BuildContext context, HealthState state) {
-    if (state is HealthLoaded) {
-      context.read<HealthCubit>().updateLifestyle(state.model.lifestyle);
-      context.pop();
-    }
+    // if (state is HealthLoaded) {
+    //   context.read<HealthCubit>().updateLifestyle(state.model.lifestyle);
+
+    //  }
+    context.pop();
   }
 
   @override
@@ -31,9 +32,9 @@ class LifeStyle extends StatelessWidget {
             return Center(child: Text('error: ${state.message}'));
           }
 
-       if (state is HealthInitial) {
-  return const Center(child: CircularProgressIndicator());
-}
+          // if (state is HealthInitial) {
+          //   return const Center(child: CircularProgressIndicator());
+          // }
 
           if (state is! HealthLoaded) {
             return const Center(child: CircularProgressIndicator());
@@ -56,9 +57,12 @@ class LifeStyle extends StatelessWidget {
 
                   // Sleep
                   SliverToBoxAdapter(
-                    child: Text(AppStrings.sleep,
-                        style: AppTextStyles.body1.copyWith(
-                            color: AppColors.textPrimary)),
+                    child: Text(
+                      AppStrings.sleep,
+                      style: AppTextStyles.body1.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 12.h)),
                   SliverToBoxAdapter(
@@ -66,21 +70,24 @@ class LifeStyle extends StatelessWidget {
                       text1: "<7",
                       text2: "7 - 8",
                       text3: ">8",
-//selectedValue: lifestyle.sleep,
                       onSelected: (value) {
                         context.read<HealthCubit>().updateLifestyle(
                           lifestyle.copyWith(sleep: value),
                         );
                       },
+                      initialValue: lifestyle.sleep.toString(),
                     ),
                   ),
 
                   // Water
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
                   SliverToBoxAdapter(
-                    child: Text(AppStrings.waterIntake,
-                        style: AppTextStyles.body1.copyWith(
-                            color: AppColors.textPrimary)),
+                    child: Text(
+                      AppStrings.waterIntake,
+                      style: AppTextStyles.body1.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 12.h)),
                   SliverToBoxAdapter(
@@ -88,21 +95,24 @@ class LifeStyle extends StatelessWidget {
                       text1: "<1",
                       text2: "1 - 1.5",
                       text3: ">1.5",
-//selectedValue: lifestyle.water,
                       onSelected: (value) {
                         context.read<HealthCubit>().updateLifestyle(
                           lifestyle.copyWith(water: value),
                         );
                       },
+                      initialValue: lifestyle.water.toString(),
                     ),
                   ),
 
                   // Smoking
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
                   SliverToBoxAdapter(
-                    child: Text(AppStrings.smoking,
-                        style: AppTextStyles.body1.copyWith(
-                            color: AppColors.textPrimary)),
+                    child: Text(
+                      AppStrings.smoking,
+                      style: AppTextStyles.body1.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 12.h)),
                   SliverToBoxAdapter(
@@ -115,15 +125,19 @@ class LifeStyle extends StatelessWidget {
                           lifestyle.copyWith(smoking: value),
                         );
                       },
+                      initialValue: lifestyle.smoking.toString(),
                     ),
                   ),
 
                   // Alcohol
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
                   SliverToBoxAdapter(
-                    child: Text(AppStrings.alcohol,
-                        style: AppTextStyles.body1.copyWith(
-                            color: AppColors.textPrimary)),
+                    child: Text(
+                      AppStrings.alcohol,
+                      style: AppTextStyles.body1.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 12.h)),
                   SliverToBoxAdapter(
@@ -136,15 +150,19 @@ class LifeStyle extends StatelessWidget {
                           lifestyle.copyWith(alcohol: value),
                         );
                       },
+                      initialValue: lifestyle.alcohol.toString(),
                     ),
                   ),
 
                   // Activity
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
                   SliverToBoxAdapter(
-                    child: Text(AppStrings.activityLevel,
-                        style: AppTextStyles.body1.copyWith(
-                            color: AppColors.textPrimary)),
+                    child: Text(
+                      AppStrings.activityLevel,
+                      style: AppTextStyles.body1.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
                   SliverToBoxAdapter(
@@ -154,6 +172,7 @@ class LifeStyle extends StatelessWidget {
                           lifestyle.copyWith(activity: value),
                         );
                       },
+                      initialValue: lifestyle.activity.toString(),
                     ),
                   ),
                 ],

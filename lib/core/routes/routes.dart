@@ -43,9 +43,9 @@ GoRouter route = GoRouter(
     GoRoute(path: "/SignUp", builder: (context, state) => SignUpView()),
     GoRoute(path: "/Otp", builder: (context, state) => OtpView()),
     GoRoute(path: "/LabReport", builder: (context, state) => LabReport()),
-       ShellRoute(
+    ShellRoute(
       builder: (context, state, child) {
-        return BlocProvider.value(value: HealthCubit(), child: child);
+        return BlocProvider.value(value: healthCubit, child: child);
       },
       routes: [
         GoRoute(

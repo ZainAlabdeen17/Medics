@@ -237,5 +237,5 @@ class AppStrings {
   static const String sleep = "Sleep (h)";
   static const String peanuts = "Peanuts";
   static const String notesForYourDoctor =
-      "I’ve been having headaches almost every day, mostly in the afternoon. They are mild to moderate and usually go away after I take some painkillers.";
+      "Notes for your doctor...";
 }

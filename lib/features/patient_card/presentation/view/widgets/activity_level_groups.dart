@@ -6,14 +6,22 @@ import 'package:medics/core/utils/app_text_styles.dart';
 
 class ActivityLevelGroups extends StatefulWidget {
   final Function(String) onSelected;
-  const ActivityLevelGroups({super.key, required this.onSelected});
+  final String ?initialValue;
+  const ActivityLevelGroups({super.key, required this.onSelected, this.initialValue});
 
   @override
   State<ActivityLevelGroups> createState() => _ActivityLevelGroupsState();
 }
 
 class _ActivityLevelGroupsState extends State<ActivityLevelGroups> {
-  String selectedGroup = AppStrings.activityLevel1;
+  late String? selectedGroup;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedGroup = widget.initialValue;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(

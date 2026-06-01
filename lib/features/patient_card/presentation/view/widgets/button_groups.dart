@@ -8,12 +8,14 @@ class ButtonGroups extends StatefulWidget {
   final String text2;
   final String text3;
   final Function(String) onSelected;
+  final String? initialValue;
   const ButtonGroups({
     super.key,
     required this.text1,
     required this.text2,
     required this.text3,
     required this.onSelected,
+    this.initialValue,
   });
 
   @override
@@ -21,7 +23,13 @@ class ButtonGroups extends StatefulWidget {
 }
 
 class _ButtonGroupsState extends State<ButtonGroups> {
-  String selectedGroup = "";
+  String ?selectedGroup;
+  @override
+  void initState() {
+    super.initState();
+    selectedGroup = widget.initialValue;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(

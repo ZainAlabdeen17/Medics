@@ -11,31 +11,66 @@ class HealthMetricModel {
     this.notes,
   });
 
+  // عشان نعمل نسخة فاضية في البداية
   factory HealthMetricModel.empty() => HealthMetricModel(
-        body: BodyParametersModel(),
-        lifestyle: LifestyleModel(),
-        anamnesis: AnamnesisModel(),
-      );
+    body: BodyParametersModel(),
+    lifestyle: LifestyleModel(),
+    anamnesis: AnamnesisModel(),
+    notes: '',
+  );
+
+  // تحويل البيانات لـ JSON عشان نحفظها
+  Map<String, dynamic> toJson() => {
+    'body': body.toJson(),
+    'lifestyle': lifestyle.toJson(),
+    'anamnesis': anamnesis.toJson(),
+    'notes': notes,
+  };
+
+  // تحويل الـ JSON لـ Model عشان نقراها
+  factory HealthMetricModel.fromJson(Map<String, dynamic> json) {
+    final notesRaw = json['notes'];
+
+    String? notes;
+
+    if (notesRaw is List) {
+      notes = notesRaw.join(', ');
+    } else if (notesRaw is String) {
+      notes = notesRaw;
+    }
+
+    return HealthMetricModel(
+      body: BodyParametersModel.fromJson(json['body'] ?? {}),
+      lifestyle: LifestyleModel.fromJson(json['lifestyle'] ?? {}),
+      anamnesis: AnamnesisModel.fromJson(json['anamnesis'] ?? {}),
+      notes: notes ?? '',
+    );
+  }
 
   HealthMetricModel copyWith({
     BodyParametersModel? body,
     LifestyleModel? lifestyle,
     AnamnesisModel? anamnesis,
     String? notes,
-  }) {
-    return HealthMetricModel(
-      body: body ?? this.body,
-      lifestyle: lifestyle ?? this.lifestyle,
-      anamnesis: anamnesis ?? this.anamnesis,
-      notes: notes ?? this.notes,
-    );
-  }
+  }) => HealthMetricModel(
+    body: body ?? this.body,
+    lifestyle: lifestyle ?? this.lifestyle,
+    anamnesis: anamnesis ?? this.anamnesis,
+    notes: notes ?? this.notes,
+  );
 }
 
+// ----------------------------------------
+
 class BodyParametersModel {
-  final double? height, weight;
-  final int? oxygen, heartRate, systolic, diastolic;
-  final String? bloodType, rh;
+  final double? height;
+  final double? weight;
+  final int? oxygen;
+  final int? heartRate;
+  final int? systolic;
+  final int? diastolic;
+  final String? bloodType;
+  final String? rh;
 
   BodyParametersModel({
     this.height,
@@ -48,22 +83,28 @@ class BodyParametersModel {
     this.rh,
   });
 
-  BodyParametersModel copyWith({
-    double? height, weight,
-    int? oxygen, heartRate, systolic, diastolic,
-    String? bloodType, rh,
-  }) {
-    return BodyParametersModel(
-      height: height ?? this.height,
-      weight: weight ?? this.weight,
-      oxygen: oxygen ?? this.oxygen,
-      heartRate: heartRate ?? this.heartRate,
-      systolic: systolic ?? this.systolic,
-      diastolic: diastolic ?? this.diastolic,
-      bloodType: bloodType ?? this.bloodType,
-      rh: rh ?? this.rh,
-    );
-  }
+  Map<String, dynamic> toJson() => {
+    'height': height,
+    'weight': weight,
+    'oxygen': oxygen,
+    'heartRate': heartRate,
+    'systolic': systolic,
+    'diastolic': diastolic,
+    'bloodType': bloodType,
+    'rh': rh,
+  };
+
+  factory BodyParametersModel.fromJson(Map<String, dynamic> json) =>
+      BodyParametersModel(
+        height: (json['height'] as num?)?.toDouble(),
+        weight: (json['weight'] as num?)?.toDouble(),
+        oxygen: json['oxygen'] as int?,
+        heartRate: json['heartRate'] as int?,
+        systolic: json['systolic'] as int?,
+        diastolic: json['diastolic'] as int?,
+        bloodType: json['bloodType'] as String?,
+        rh: json['rh'] as String?,
+      );
 }
 
 class LifestyleModel {
@@ -77,9 +118,7 @@ class LifestyleModel {
     this.activity,
   });
 
-  LifestyleModel copyWith({
-    String? sleep, water, smoking, alcohol, activity,
-  }) {
+  LifestyleModel copyWith({String? sleep, water, smoking, alcohol, activity}) {
     return LifestyleModel(
       sleep: sleep ?? this.sleep,
       water: water ?? this.water,
@@ -88,23 +127,52 @@ class LifestyleModel {
       activity: activity ?? this.activity,
     );
   }
+
+  Map<String, dynamic> toJson() => {
+    'sleep': sleep,
+    'water': water,
+    'smoking': smoking,
+    'alcohol': alcohol,
+    'activity': activity,
+  };
+
+  factory LifestyleModel.fromJson(Map<String, dynamic> json) => LifestyleModel(
+    sleep: json['sleep'] as String?,
+    water: json['water'] as String?,
+    smoking: json['smoking'] as String?,
+    alcohol: json['alcohol'] as String?,
+    activity: json['activity'] as String?,
+  );
 }
 
 class AnamnesisModel {
-  final List<String> conditions, allergies;
+  final String? conditions;
+  final String? allergies;
 
-  AnamnesisModel({
-    this.conditions = const [],
-    this.allergies = const [],
-  });
+  AnamnesisModel({this.conditions, this.allergies});
 
-  AnamnesisModel copyWith({
-    List<String>? conditions,
-    List<String>? allergies,
-  }) {
+  AnamnesisModel copyWith({String? conditions, String? allergies}) {
     return AnamnesisModel(
       conditions: conditions ?? this.conditions,
       allergies: allergies ?? this.allergies,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'conditions': conditions,
+    'allergies': allergies,
+  };
+
+  factory AnamnesisModel.fromJson(Map<String, dynamic> json) {
+    String? parseField(dynamic value) {
+      if (value is List) return value.join(', ');
+      if (value is String) return value;
+      return null;
+    }
+
+    return AnamnesisModel(
+      conditions: parseField(json['conditions']),
+      allergies: parseField(json['allergies']),
     );
   }
 }

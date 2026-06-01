@@ -31,7 +31,7 @@ class _BodyParametersState extends State<BodyParameters> {
   String selectedBloodType = "B(III)";
   String selectedRh = "+";
 
-  bool _isFirstLoad = true;
+ bool _initialized = false;
 
   @override
   void initState() {
@@ -57,6 +57,18 @@ class _BodyParametersState extends State<BodyParameters> {
     diastolicCtrl.dispose();
     super.dispose();
   }
+
+  void _fillControllers(BodyParametersModel body) {
+    heightCtrl.text = body.height?.toString() ?? "";
+    weightCtrl.text = body.weight?.toString() ?? "";
+    oxygenCtrl.text = body.oxygen?.toString() ?? "";
+    heartRateCtrl.text = body.heartRate?.toString() ?? "";
+    systolicCtrl.text = body.systolic?.toString() ?? "";
+    diastolicCtrl.text = body.diastolic?.toString() ?? "";
+    selectedBloodType = body.bloodType ?? "B(III)";
+    selectedRh = body.rh ?? "+";
+  }
+
 
   void _onSave() {
     final height = double.tryParse(heightCtrl.text);
@@ -98,28 +110,19 @@ class _BodyParametersState extends State<BodyParameters> {
     return Scaffold(
       body: BlocBuilder<HealthCubit, HealthState>(
         builder: (context, state) {
-          if (state is HealthError) {
+           if (state is HealthError) {
             return Center(child: Text('error: ${state.message}'));
           }
 
-          if (state is HealthLoaded) {
-            final body = state.model.body;
+ if (state is HealthLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-            if (_isFirstLoad ) {
-              _isFirstLoad = false;
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                heightCtrl.text = body.height?.toString() ?? "";
-                weightCtrl.text = body.weight?.toString() ?? "";
-                oxygenCtrl.text = body.oxygen?.toString() ?? "";
-                heartRateCtrl.text = body.heartRate?.toString() ?? "";
-                systolicCtrl.text = body.systolic?.toString() ?? "";
-                diastolicCtrl.text = body.diastolic?.toString() ?? "";
+  if (state is HealthLoaded) {
 
-                setState(() {
-                  selectedBloodType = body.bloodType ?? "B(III)";
-                  selectedRh = body.rh ?? "+";
-                });
-              });
+            if (!_initialized) {
+              _initialized = true;
+              _fillControllers(state.model.body);
             }
           }
 

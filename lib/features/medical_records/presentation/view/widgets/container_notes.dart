@@ -4,8 +4,13 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 
 class ContainerNotes extends StatelessWidget {
-  final String text;
-  const ContainerNotes({super.key, required this.text});
+  final String hintText;
+  final TextEditingController controller;
+  const ContainerNotes({
+    super.key,
+    required this.hintText,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +23,17 @@ class ContainerNotes extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-        child: Text(
-          text,
-          style: AppTextStyles.body1.copyWith(
-            color: AppColors.textPrimary,
+        child: TextField(
+          controller: controller,
+          maxLines: null,
+
+          decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: AppTextStyles.body1.copyWith(
+              color: AppColors.textPrimary,
+            ),
+            border: InputBorder.none,
           ),
-            
-          
         ),
       ),
     );

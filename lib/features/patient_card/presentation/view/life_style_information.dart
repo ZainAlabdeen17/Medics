@@ -37,7 +37,8 @@ class LifeStyleInformation extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           ButtonGroups(text1:AppStrings.yes,text2: AppStrings.no, text3:AppStrings.occasionally,onSelected: (value) {
-          },),
+          },
+          ),
           SizedBox(height: 16.h),
           Text(
             AppStrings.alcohol,

@@ -1,15 +1,18 @@
+import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:medics/features/medical_records/data/health_metric_model.dart';
 import 'package:medics/features/medical_records/presentation/cubit/health_state.dart';
 
 class HealthCubit extends Cubit<HealthState> {
   HealthCubit() : super(HealthInitial());
 
+  static const String _key = 'health_data';
+
   void loadInitial() async {
     emit(HealthLoading());
     try {
-      // Replace with actual async loading (e.g., from local DB or API)
-      final data = await _fetchInitialData();
+       final data = await _fetchInitialData();
       emit(HealthLoaded(data));
     } catch (e) {
       emit(HealthError('Failed to load data: ${e.toString()}'));
@@ -32,19 +35,28 @@ class HealthCubit extends Cubit<HealthState> {
     _updateState((model) => model.copyWith(notes: notes));
   }
 
-  // Helper to reduce duplication and handle state checks
   void _updateState(HealthMetricModel Function(HealthMetricModel) update) {
-    if (state is! HealthLoaded) {
-      // Optional: emit error or log
-      addError(StateError('Cannot update when state is ${state.runtimeType}'));
-      return;
-    }
+    if (state is! HealthLoaded) return;
+
     final current = (state as HealthLoaded).model;
-    emit(HealthLoaded(update(current)));
+    final newModel = update(current);
+
+    emit(HealthLoaded(newModel));
+
+    _saveData(newModel);
   }
 
-  // Placeholder – replace with real data source
   Future<HealthMetricModel> _fetchInitialData() async {
-    return HealthMetricModel.empty();
+    final prefs = await SharedPreferences.getInstance();
+    final jsonString = prefs.getString(_key);
+
+    if (jsonString == null) return HealthMetricModel.empty();
+
+    return HealthMetricModel.fromJson(jsonDecode(jsonString));
+  }
+
+  Future<void> _saveData(HealthMetricModel model) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_key, jsonEncode(model.toJson()));
   }
 }
