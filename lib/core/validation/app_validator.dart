@@ -59,7 +59,7 @@ class AppValidator {
       return 'password is requiered!';
     }
 
-    if (value.length <= 8) {
+    if (value.length <= 7) {
       return 'password is too short!';
     }
 

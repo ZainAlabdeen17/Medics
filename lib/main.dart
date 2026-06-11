@@ -13,7 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   await getIt<CacheHelper>().init();
-  runApp(DevicePreview(enabled: false, builder: (context) => MedicsApp()));
+  runApp(DevicePreview(enabled: true, builder: (context) => MedicsApp()));
 }
 
 class MedicsApp extends StatelessWidget {

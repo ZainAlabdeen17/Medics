@@ -5,13 +5,18 @@ import 'package:medics/core/utils/app_strings.dart';
 
 class TextFieldDate extends StatelessWidget {
   final String hintText;
-  const TextFieldDate({super.key, required this.hintText});
+  final Function(String)? onDateSelected;
+
+  const TextFieldDate({
+    super.key,
+    required this.hintText,
+    this.onDateSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       readOnly: true,
-
       onTap: () {
         showDatePickerBottomSheet(context);
       },
@@ -19,22 +24,41 @@ class TextFieldDate extends StatelessWidget {
         hintText: hintText,
         filled: true,
         fillColor: AppColors.borderBlack,
-        suffixIcon: Icon(Icons.calendar_today),
-
+        suffixIcon: const Icon(Icons.calendar_today),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
-          borderSide: BorderSide(color: AppColors.borderBlack, width: 1.w),
+          borderSide:
+              BorderSide(color: AppColors.borderBlack, width: 1.w),
         ),
-
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
-          borderSide: BorderSide(color: AppColors.borderBlack, width: 1.w),
+          borderSide:
+              BorderSide(color: AppColors.borderBlack, width: 1.w),
         ),
       ),
     );
   }
 
   void showDatePickerBottomSheet(BuildContext context) {
+    int selectedDay = 1;
+    int selectedMonth = 1;
+    int selectedYear = 1980;
+
+    final months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
     showDialog(
       context: context,
       builder: (context) {
@@ -44,56 +68,67 @@ class TextFieldDate extends StatelessWidget {
           ),
           child: Container(
             height: 350,
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   AppStrings.chooseYourBirthDate,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
 
                 Expanded(
                   child: Row(
                     children: [
+                      /// Day
                       Expanded(
                         child: ListWheelScrollView.useDelegate(
                           itemExtent: 40,
-                          childDelegate: ListWheelChildBuilderDelegate(
+                          onSelectedItemChanged: (index) {
+                            selectedDay = index + 1;
+                          },
+                          childDelegate:
+                              ListWheelChildBuilderDelegate(
                             builder: (context, index) {
-                              return Center(child: Text("${index + 1}"));
+                              return Center(
+                                  child: Text("${index + 1}"));
                             },
                             childCount: 31,
                           ),
                         ),
                       ),
 
-                      Expanded(
-                        child: ListWheelScrollView(
-                          itemExtent: 40,
-                          children: [
-                            "January",
-                            "February",
-                            "March",
-                            "April",
-                            "May",
-                            "June",
-                            "July",
-                            "August",
-                            "September",
-                            "October",
-                            "November",
-                            "December",
-                          ].map((e) => Center(child: Text(e))).toList(),
-                        ),
-                      ),
-
+                      /// Month
                       Expanded(
                         child: ListWheelScrollView.useDelegate(
                           itemExtent: 40,
-                          childDelegate: ListWheelChildBuilderDelegate(
+                          onSelectedItemChanged: (index) {
+                            selectedMonth = index + 1;
+                          },
+                          childDelegate:
+                              ListWheelChildBuilderDelegate(
                             builder: (context, index) {
-                              return Center(child: Text("${1980 + index}"));
+                              return Center(
+                                  child: Text(months[index]));
+                            },
+                            childCount: months.length,
+                          ),
+                        ),
+                      ),
+
+                      /// Year
+                      Expanded(
+                        child: ListWheelScrollView.useDelegate(
+                          itemExtent: 40,
+                          onSelectedItemChanged: (index) {
+                            selectedYear = 1980 + index;
+                          },
+                          childDelegate:
+                              ListWheelChildBuilderDelegate(
+                            builder: (context, index) {
+                              return Center(
+                                  child: Text("${1980 + index}"));
                             },
                             childCount: 50,
                           ),
@@ -103,18 +138,26 @@ class TextFieldDate extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
+                /// Save
                 ElevatedButton(
                   onPressed: () {
+                    String date =
+                        "$selectedDay ${months[selectedMonth - 1]} $selectedYear";
+
+                    /// send value
+                    onDateSelected?.call(date);
+
                     Navigator.pop(context);
                   },
-                  child: Text("Save date"),
+                  child: const Text("Save date"),
                 ),
 
+                /// Cancel
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text("Cancel"),
+                  child: const Text("Cancel"),
                 ),
               ],
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medics/features/appointments/presentation/view/appointments.dart';
 import 'package:medics/features/auth/presentation/view/otp_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_in_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
@@ -18,7 +19,7 @@ import 'package:medics/features/home/presentation/view/home_view.dart';
 import 'package:medics/features/medical_records/presentation/cubit/health_cubit.dart';
 import 'package:medics/features/medical_records/presentation/view/anamnesis.dart';
 import 'package:medics/features/medical_records/presentation/view/body_parameters.dart';
-import 'package:medics/features/medical_records/presentation/view/health_metrics.dart';
+import 'package:medics/features/medical_records/presentation/view/health_metrics_information.dart';
 import 'package:medics/features/medical_records/presentation/view/lab_report.dart';
 import 'package:medics/features/medical_records/presentation/view/life_style.dart';
 import 'package:medics/features/medical_records/presentation/view/medical_records_view.dart';
@@ -64,8 +65,14 @@ GoRouter route = GoRouter(
         );
       },
     ),
-    // GoRoute(path: "/SignUp", builder: (context, state) => SignUpView()),
-    GoRoute(path: "/Otp", builder: (context, state) => OtpView()),
+    GoRoute(path: "/SignUp", builder: (context, state) => SignUpView()),
+    GoRoute(
+      path: "/Otp",
+      builder: (context, state) {
+        final email = state.extra as String;
+        return OtpView(email: email);
+      },
+    ),
     GoRoute(path: "/LabReport", builder: (context, state) => LabReport()),
     ShellRoute(
       builder: (context, state, child) {
@@ -74,7 +81,7 @@ GoRouter route = GoRouter(
       routes: [
         GoRoute(
           path: "/HealthMetrics",
-          builder: (context, state) => HealthMetrics(),
+          builder: (context, state) => HealthMetricsInformation(),
         ),
         GoRoute(
           path: "/BodyParameters",
@@ -128,6 +135,7 @@ GoRouter route = GoRouter(
 
     // GoRoute(path: "/SignIn", builder: (context, state) => SignInView()),
     GoRoute(path: "/Patient", builder: (context, state) => PatientView()),
+    GoRoute(path: "/Appointments", builder: (context, state) => Appointments()),
 
     GoRoute(
       path: "/ForgetPassword",

@@ -237,6 +237,10 @@ class AppStrings {
       "Very Active (sports 6–7 days a week)";
   static const String sleep = "Sleep (h)";
   static const String peanuts = "Peanuts";
-  static const String notesForYourDoctor =
-      "Notes for your doctor...";
+  static const String bmi = "Body Mass Index";
+
+  static const String notesForYourDoctor = "Notes for your doctor...";
+
+  //Appoinment
+  static const String upcomingAppointments = "Upcoming Appointments";
 }

@@ -86,6 +86,10 @@ class Assets {
   /// assets/images/icons/general/check.svg
   static const String assetsImagesIconsGeneralCheck = "assets/images/icons/general/check.svg";
 
+  /// Assets for assetsImagesIconsGeneralComputer
+  /// assets/images/icons/general/computer.svg
+  static const String assetsImagesIconsGeneralComputer = "assets/images/icons/general/computer.svg";
+
   /// Assets for assetsImagesIconsGeneralDoctor
   /// assets/images/icons/general/doctor.svg
   static const String assetsImagesIconsGeneralDoctor = "assets/images/icons/general/doctor.svg";
@@ -105,6 +109,10 @@ class Assets {
   /// Assets for assetsImagesIconsGeneralDroplet
   /// assets/images/icons/general/droplet.svg
   static const String assetsImagesIconsGeneralDroplet = "assets/images/icons/general/droplet.svg";
+
+  /// Assets for assetsImagesIconsGeneralEdit
+  /// assets/images/icons/general/edit.svg
+  static const String assetsImagesIconsGeneralEdit = "assets/images/icons/general/edit.svg";
 
   /// Assets for assetsImagesIconsGeneralEmptyStar
   /// assets/images/icons/general/empty_star.svg

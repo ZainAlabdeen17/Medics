@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medics/core/database/cache/cache_helper.dart';
-import 'package:medics/core/services/service_locator.dart';
+import 'package:medics/core/functions/show_custom_toast.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
@@ -23,13 +22,19 @@ class SignInForm extends StatelessWidget {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) {
         if (state is SignInSuccessState) {
-          getIt<CacheHelper>().saveData(key: "isLoggedIn", value: true);
-          context.pushReplacement("/Home");
+          if (state.isProfileCompleted) {
+            context.pushReplacement("/Home");
+          } else {
+            context.pushReplacement("/Patient");
+          }
         }
         if (state is SignInFailureState) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+              showCustomToast(
+            context: context,
+            title: state.errorMessage,
+            primaryColor: AppColors.iconRed,
+            icon: Icon(Icons.cancel_outlined, color: AppColors.iconRed),
+          );
         }
       },
       builder: (context, state) {

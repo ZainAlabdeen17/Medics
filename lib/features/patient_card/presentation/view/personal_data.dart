@@ -11,6 +11,7 @@ class PersonalData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //final cubit = context.read<PatientCardCubit>();
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,39 +30,59 @@ class PersonalData extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16.h),
-      
+
           Text(
             AppStrings.firstName,
             style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
           ),
           SizedBox(height: 4.h),
-          CustomTextField(hintText: AppStrings.enterYourFirstName),
+          CustomTextField(
+            hintText: AppStrings.enterYourFirstName,
+            onChanged: (value) {
+              // cubit.updateFirstName(value);
+            },
+          ),
           SizedBox(height: 12.h),
-      
+
           Text(
             AppStrings.lastName,
             style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
           ),
           SizedBox(height: 4.h),
-          CustomTextField(hintText: AppStrings.enterYourLastName),
+          CustomTextField(
+            hintText: AppStrings.enterYourLastName,
+            onChanged: (value) {
+              // cubit.updateLastName(value);
+            },
+          ),
           SizedBox(height: 12.h),
-      
+
           Text(
             AppStrings.dateOfBirth,
             style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
           ),
           SizedBox(height: 4.h),
-          TextFieldDate(hintText: AppStrings.ddMmYyyy),
+          TextFieldDate(
+            hintText: AppStrings.ddMmYyyy,
+            onDateSelected: (value) {
+              // cubit.updateDateOfBirth(value);
+            },
+          ),
           SizedBox(height: 12.h),
-      
+
           Text(
             AppStrings.phoneNumber,
             style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
           ),
           SizedBox(height: 4.h),
-          CustomTextField(hintText: AppStrings.phoneNumberField),
+          CustomTextField(
+            hintText: AppStrings.phoneNumberField,
+            onChanged: (value) {
+              // cubit.updatePhoneNumber(value);
+            },
+          ),
           SizedBox(height: 12.h),
-      
+
           Text(
             AppStrings.city,
             style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
@@ -69,6 +90,9 @@ class PersonalData extends StatelessWidget {
           SizedBox(height: 4.h),
           CustomTextField(
             hintText: AppStrings.enterCity,
+            onChanged: (value) {
+              // cubit.updateCity(value);
+            },
           ),
         ],
       ),
