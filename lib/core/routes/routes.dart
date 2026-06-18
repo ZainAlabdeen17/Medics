@@ -8,7 +8,7 @@ import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
 import 'package:medics/features/auth/presentation/view/success_verification_view.dart';
 import 'package:medics/features/auth/presentation/widgets/forget_password.dart';
 import 'package:medics/features/chat/presentation/view/chat_view.dart';
-import 'package:medics/features/doctor/data/doctor_model.dart';
+import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/review_cubit/review_cubit.dart';
 import 'package:medics/features/doctor/presentation/view/doctor_details_view.dart';
@@ -156,14 +156,14 @@ GoRouter route = GoRouter(
     GoRoute(
       path: "/DoctorDetails",
       builder: (context, state) {
-        final doctor = state.extra as DoctorModel;
+        final doctor = state.extra as DoctorTrialModel;
         return DoctorDetailsView(doctor: doctor);
       },
     ),
     GoRoute(
       path: "/ReviewForm",
       builder: (context, state) {
-        final doctor = state.extra as DoctorModel;
+        final doctor = state.extra as DoctorTrialModel;
         return BlocProvider(
           create: (context) => ReviewCubit(),
           child: ReviewFormView(doctor: doctor),

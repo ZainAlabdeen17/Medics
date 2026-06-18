@@ -3,6 +3,10 @@
 part of 'patient_card_cubit.dart';
 
 class PatientCardState {
+final bool isLoading;
+  final bool isSuccess;
+  final String? errorMessage;
+
   // Personal Data
   final String firstName;
   final String lastName;
@@ -35,6 +39,9 @@ class PatientCardState {
   final String activityLevel;
 
   const PatientCardState({
+    this.isLoading = false,
+    this.isSuccess = false,
+    this.errorMessage,
     // Personal Data
     this.firstName = '',
     this.lastName = '',
@@ -52,7 +59,7 @@ class PatientCardState {
     this.emergencyCity = '',
 
     // Health Assessment
-    this.bloodType = 'B(III)',
+    this.bloodType = 'B',
     this.rhType = '+',
     this.allergies = '',
     this.chronicConditions = '',
@@ -68,6 +75,9 @@ class PatientCardState {
   });
 
   PatientCardState copyWith({
+    bool? isLoading,
+    bool? isSuccess,
+    String? errorMessage,
     String? firstName,
     String? lastName,
     String? dateOfBirth,
@@ -93,6 +103,9 @@ class PatientCardState {
     String? activityLevel,
   }) {
     return PatientCardState(
+      isLoading: isLoading ?? this.isLoading,
+      isSuccess: isSuccess ?? this.isSuccess,
+      errorMessage: errorMessage,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       dateOfBirth: dateOfBirth ?? this.dateOfBirth,

@@ -13,7 +13,10 @@ class SmallCustomTextField extends StatelessWidget {
     this.hasError = false,
     this.validator,
     this.onChanged,
-    this.onTap, this.controller, this.keyboardType,
+    this.onTap,
+    this.controller,
+    this.keyboardType,
+    this.initialValue,
   });
   final String hintText;
   final TextEditingController? controller;
@@ -21,16 +24,18 @@ class SmallCustomTextField extends StatelessWidget {
   final bool obscureText;
   final Widget? suffixIcon;
   final bool hasError;
-  final String Function(String?)? validator;
+  final String? Function(String?)? validator;
   final Function(String)? onChanged;
   final VoidCallback? onTap;
   final TextInputType? keyboardType;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       //
       controller: controller,
+      initialValue: initialValue,
       validator: validator ?? (value) => null,
       //
       onChanged: onChanged,

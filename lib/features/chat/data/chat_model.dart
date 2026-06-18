@@ -1,58 +1,58 @@
-import 'package:medics/features/doctor/data/doctor_model.dart';
+import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
 
 class ChatModel {
   static List<Map<String, dynamic>> getRecentChats() {
     return [
       {
-        'name': DoctorModel.getDoctors()[0].name,
+        'name': DoctorTrialModel.getDoctors()[0].name,
         'you': false,
         'lastMessage': 'How are you feeling today?',
         'time': '2:30 PM',
-        'image': DoctorModel.getDoctors()[0].image,
+        'image': DoctorTrialModel.getDoctors()[0].image,
       },
       {
-        'name': DoctorModel.getDoctors()[6].name,
+        'name': DoctorTrialModel.getDoctors()[6].name,
         'you': false,
         'lastMessage': 'This lab report is very good',
         'time': '2:10 PM',
-        'image': DoctorModel.getDoctors()[6].image,
+        'image': DoctorTrialModel.getDoctors()[6].image,
       },
       {
-        'name': DoctorModel.getDoctors()[2].name,
+        'name': DoctorTrialModel.getDoctors()[2].name,
         'you': false,
         'lastMessage': 'yes you can book appointment with me',
         'time': '2:02 PM',
-        'image': DoctorModel.getDoctors()[2].image,
+        'image': DoctorTrialModel.getDoctors()[2].image,
       },
       {
-        'name': DoctorModel.getDoctors()[4].name,
+        'name': DoctorTrialModel.getDoctors()[4].name,
         'you': true,
         'lastMessage': 'Is this medication good for me ?',
         'time': '1:30 PM',
-        'image': DoctorModel.getDoctors()[4].image,
+        'image': DoctorTrialModel.getDoctors()[4].image,
       },
       {
-        'name': DoctorModel.getDoctors()[3].name,
+        'name': DoctorTrialModel.getDoctors()[3].name,
         'you': true,
         'lastMessage': 'I have pain at the same area is that ordinary ?',
         'time': '12:44 PM',
-        'image': DoctorModel.getDoctors()[3].image,
+        'image': DoctorTrialModel.getDoctors()[3].image,
       },
       {
-        'name': DoctorModel.getDoctors()[1].name,
+        'name': DoctorTrialModel.getDoctors()[1].name,
         'you': false,
         'lastMessage':
             'yes you can ask me whenever you want , because I have a small time every evening , so I can replay to all',
         'time': '11:17 AM',
-        'image': DoctorModel.getDoctors()[1].image,
+        'image': DoctorTrialModel.getDoctors()[1].image,
       },
       {
-        'name': DoctorModel.getDoctors()[7].name,
+        'name': DoctorTrialModel.getDoctors()[7].name,
         'you': false,
         'lastMessage':
             'Don\'t use this medication more than 3 times a day , and if you feel any side effect please contact me immediately',
         'time': '11:00 AM',
-        'image': DoctorModel.getDoctors()[7].image,
+        'image': DoctorTrialModel.getDoctors()[7].image,
       },
     ];
   }

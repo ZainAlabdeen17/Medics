@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medics/features/doctor/data/doctor_model.dart';
+import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
 import 'package:medics/features/doctor/presentation/view/tabs/doctor_about_content.dart';
 import 'package:medics/features/doctor/presentation/view/tabs/doctor_book_content.dart';
 import 'package:medics/features/doctor/presentation/view/tabs/doctor_review_content.dart';
@@ -7,7 +7,7 @@ import 'package:medics/features/doctor/presentation/view/tabs/doctor_review_cont
 class CustomTabBarView extends StatelessWidget {
   const CustomTabBarView({super.key, required this.doctor});
 
-  final DoctorModel doctor;
+  final DoctorTrialModel doctor;
 
   @override
   Widget build(BuildContext context) {

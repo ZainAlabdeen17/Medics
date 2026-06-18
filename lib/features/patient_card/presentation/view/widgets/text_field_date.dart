@@ -6,16 +6,19 @@ import 'package:medics/core/utils/app_strings.dart';
 class TextFieldDate extends StatelessWidget {
   final String hintText;
   final Function(String)? onDateSelected;
+  final String? initialDate;
 
   const TextFieldDate({
     super.key,
     required this.hintText,
     this.onDateSelected,
+    this.initialDate,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: TextEditingController(text: initialDate),
       readOnly: true,
       onTap: () {
         showDatePickerBottomSheet(context);
@@ -27,13 +30,11 @@ class TextFieldDate extends StatelessWidget {
         suffixIcon: const Icon(Icons.calendar_today),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
-          borderSide:
-              BorderSide(color: AppColors.borderBlack, width: 1.w),
+          borderSide: BorderSide(color: AppColors.borderBlack, width: 1.w),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
-          borderSide:
-              BorderSide(color: AppColors.borderBlack, width: 1.w),
+          borderSide: BorderSide(color: AppColors.borderBlack, width: 1.w),
         ),
       ),
     );
@@ -45,18 +46,18 @@ class TextFieldDate extends StatelessWidget {
     int selectedYear = 1980;
 
     final months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
+      "-01-",
+      "-02-",
+      "-03-",
+      "-04-",
+      "-05-",
+      "-06-",
+      "-07-",
+      "-08-",
+      "-09-",
+      "-10-",
+      "-11-",
+      "-12-",
     ];
 
     showDialog(
@@ -75,7 +76,9 @@ class TextFieldDate extends StatelessWidget {
                 Text(
                   AppStrings.chooseYourBirthDate,
                   style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
 
                 Expanded(
@@ -88,11 +91,9 @@ class TextFieldDate extends StatelessWidget {
                           onSelectedItemChanged: (index) {
                             selectedDay = index + 1;
                           },
-                          childDelegate:
-                              ListWheelChildBuilderDelegate(
+                          childDelegate: ListWheelChildBuilderDelegate(
                             builder: (context, index) {
-                              return Center(
-                                  child: Text("${index + 1}"));
+                              return Center(child: Text("${index + 1}"));
                             },
                             childCount: 31,
                           ),
@@ -106,11 +107,9 @@ class TextFieldDate extends StatelessWidget {
                           onSelectedItemChanged: (index) {
                             selectedMonth = index + 1;
                           },
-                          childDelegate:
-                              ListWheelChildBuilderDelegate(
+                          childDelegate: ListWheelChildBuilderDelegate(
                             builder: (context, index) {
-                              return Center(
-                                  child: Text(months[index]));
+                              return Center(child: Text(months[index]));
                             },
                             childCount: months.length,
                           ),
@@ -124,11 +123,9 @@ class TextFieldDate extends StatelessWidget {
                           onSelectedItemChanged: (index) {
                             selectedYear = 1980 + index;
                           },
-                          childDelegate:
-                              ListWheelChildBuilderDelegate(
+                          childDelegate: ListWheelChildBuilderDelegate(
                             builder: (context, index) {
-                              return Center(
-                                  child: Text("${1980 + index}"));
+                              return Center(child: Text("${1980 + index}"));
                             },
                             childCount: 50,
                           ),
@@ -144,7 +141,7 @@ class TextFieldDate extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     String date =
-                        "$selectedDay ${months[selectedMonth - 1]} $selectedYear";
+                        "$selectedYear${months[selectedMonth - 1]}$selectedDay";
 
                     /// send value
                     onDateSelected?.call(date);

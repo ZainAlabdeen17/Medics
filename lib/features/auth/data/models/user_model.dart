@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class UserModel {
   final String id;
   final String firstName;
@@ -26,4 +28,23 @@ class UserModel {
       isProfileCompleted: atributes["is_profile_completed"],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "data": {
+        "user": {
+          "id": id,
+          "attributes": {
+            "first_name": firstName,
+            "last_name": lastName,
+            "email": email,
+            "status": status,
+            "is_profile_completed": isProfileCompleted,
+          },
+        },
+      },
+    };
+  }
+
+  String toJsonString() => json.encode(toJson());
 }

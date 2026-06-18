@@ -7,8 +7,15 @@ import 'package:medics/core/widgets/button_class.dart';
 
 class TextFieldRelationship extends StatefulWidget {
   final String hintText;
+  final Function(String) onRelationshipSelected;
+  final String? initialValue;
 
-  const TextFieldRelationship({super.key, required this.hintText});
+  const TextFieldRelationship({
+    super.key,
+    required this.hintText,
+    required this.onRelationshipSelected,
+    this.initialValue,
+  });
 
   @override
   State<TextFieldRelationship> createState() => _TextFieldRelationshipState();
@@ -19,6 +26,8 @@ class _TextFieldRelationshipState extends State<TextFieldRelationship> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: TextEditingController(text: widget.initialValue),
+
       readOnly: true,
       onTap: () {
         showRelationshipBottomSheet(context);
@@ -38,7 +47,7 @@ class _TextFieldRelationshipState extends State<TextFieldRelationship> {
         ),
       ),
     );
-  } 
+  }
 
   void showRelationshipBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -66,18 +75,19 @@ class _TextFieldRelationshipState extends State<TextFieldRelationship> {
                       ),
                     ),
                     _buildRelationshipOption(AppStrings.spouse, setModalState),
-                
+
                     _buildRelationshipOption(AppStrings.parent, setModalState),
-                
+
                     _buildRelationshipOption(AppStrings.child, setModalState),
-                
+
                     _buildRelationshipOption(AppStrings.friend, setModalState),
-                
+
                     _buildRelationshipOption(AppStrings.other, setModalState),
-                   SizedBox(height: 12.h),
+                    SizedBox(height: 12.h),
                     ButtonClass.customFillButton(
                       text: AppStrings.save,
                       onPressed: () {
+                        widget.onRelationshipSelected(selectedRelationship);
                         Navigator.pop(context);
                       },
                     ),

@@ -42,7 +42,9 @@ class DoctorItem extends StatelessWidget {
                         height: 141.h,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(doctor.image),
+                            image: AssetImage(
+                              Assets.assetsImagesDoctorsDoctor1,
+                            ),
                             fit: BoxFit.cover,
                           ),
                           borderRadius: BorderRadius.circular(24.r),
@@ -52,10 +54,10 @@ class DoctorItem extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 8.w, bottom: 8.h),
                       child: Hero(
-                        tag: "${doctor.id},${doctor.rating}",
+                        tag: doctor.id,
                         child: Material(
                           color: Colors.transparent,
-                          child: RateChip(rating: doctor.rating),
+                          child: RateChip(rating: 5),
                         ),
                       ),
                     ),
@@ -63,11 +65,11 @@ class DoctorItem extends StatelessWidget {
                 ),
                 SizedBox(height: 12.h),
                 Hero(
-                  tag: doctor.name,
+                  tag: doctor.firstName,
                   child: Material(
                     color: Colors.transparent,
                     child: Text(
-                      doctor.name,
+                      "${doctor.firstName} ${doctor.lastName}",
                       style: AppTextStyles.head3.copyWith(
                         color: AppColors.textPrimary,
                       ),

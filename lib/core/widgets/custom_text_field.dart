@@ -20,7 +20,7 @@ class CustomTextField extends StatelessWidget {
     this.autoFocus = false,
     this.keyboardType,
     this.maxLines = 1,
-    this.isBigFeild = false,
+    this.isBigFeild = false, this.initialValue,
   });
   final String hintText;
   final TextEditingController? controller;
@@ -37,11 +37,13 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final int maxLines;
   final bool isBigFeild;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextFormField(
+        initialValue: initialValue,
         maxLines: maxLines,
         controller: controller,
         //

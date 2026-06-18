@@ -8,12 +8,13 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/database/cache/cache_helper.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/validation_cubit/validation_cubit.dart';
+import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   await getIt<CacheHelper>().init();
-  runApp(DevicePreview(enabled: true, builder: (context) => MedicsApp()));
+  runApp(DevicePreview(enabled: false, builder: (context) => MedicsApp()));
 }
 
 class MedicsApp extends StatelessWidget {
@@ -28,6 +29,8 @@ class MedicsApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (context) => ValidationCubit()),
             BlocProvider(create: (context) => getIt<UserCubit>()),
+            BlocProvider(create: (context) => getIt<DoctorCubit>()..getDoctors()),
+
           ],
           child: MaterialApp.router(
             builder: DevicePreview.appBuilder,

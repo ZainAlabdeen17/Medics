@@ -7,7 +7,7 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/core/widgets/custom_dialog.dart';
-import 'package:medics/features/doctor/data/doctor_model.dart';
+import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
 import 'package:medics/features/doctor/data/review_model.dart';
 
 class ReviewSectionHeader extends StatelessWidget {
@@ -16,7 +16,7 @@ class ReviewSectionHeader extends StatelessWidget {
     required this.doctor,
     required this.reviews,
   });
-  final DoctorModel doctor;
+  final DoctorTrialModel doctor;
   final List<ReviewModel> reviews;
 
   @override

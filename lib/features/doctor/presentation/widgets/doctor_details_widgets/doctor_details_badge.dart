@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
-import 'package:medics/features/doctor/data/doctor_model.dart';
+import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/id_chip.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/rate_chip.dart';
 
 class DoctorDetailsBadge extends StatelessWidget {
   const DoctorDetailsBadge({super.key, required this.doctor});
-  final DoctorModel doctor;
+  final DoctorTrialModel doctor;
 
   @override
   Widget build(BuildContext context) {
