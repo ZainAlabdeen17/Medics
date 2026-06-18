@@ -29,8 +29,7 @@ class MedicsApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (context) => ValidationCubit()),
             BlocProvider(create: (context) => getIt<UserCubit>()),
-            BlocProvider(create: (context) => getIt<DoctorCubit>()..getDoctors()),
-
+            BlocProvider(create: (context) => getIt<DoctorCubit>()),
           ],
           child: MaterialApp.router(
             builder: DevicePreview.appBuilder,

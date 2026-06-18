@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medics/core/utils/app_colors.dart';
-import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_cubit.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/buttom_button.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/custom_tab_bar.dart';
@@ -11,7 +11,7 @@ import 'package:medics/features/doctor/presentation/widgets/doctor_details_widge
 
 class DoctorDetailsView extends StatelessWidget {
   const DoctorDetailsView({super.key, required this.doctor});
-  final DoctorTrialModel doctor;
+  final DoctorModel doctor;
 
   @override
   Widget build(BuildContext context) {

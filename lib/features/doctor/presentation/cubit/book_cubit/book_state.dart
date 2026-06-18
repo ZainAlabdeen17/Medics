@@ -1,4 +1,4 @@
-import 'package:medics/features/doctor/data/book_day_model.dart';
+import 'package:medics/features/doctor/data/models/book_day_model.dart';
 
 class BookState {
   final BookDayModel? selectedDay;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:medics/core/utils/app_assets.dart';
-import 'package:medics/features/doctor/data/review_model.dart';
+import 'package:medics/features/doctor/data/models/review_model.dart';
 
 class StarsRow extends StatelessWidget {
   const StarsRow({super.key, required this.review});

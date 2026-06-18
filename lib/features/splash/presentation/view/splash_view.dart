@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/functions/app_navigation.dart';
-import 'package:medics/core/functions/user_fun.dart';
+import 'package:medics/core/functions/user_functions.dart';
 import 'package:medics/core/services/service_locator.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/database/cache/cache_helper.dart';

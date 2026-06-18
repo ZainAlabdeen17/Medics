@@ -8,12 +8,12 @@ class DoctorModel {
   final String specialization;
   final String education;
   final String certification;
-  final String yearsOfExperience;
+  final int yearsOfExperience;
   final String gender;
   final String licenseNumber;
   final String bio;
   final String sessionPrice;
-  final String photoUrl;
+  final String? photoUrl;
 
   DoctorModel({
     required this.id,

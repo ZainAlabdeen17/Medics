@@ -1,4 +1,4 @@
-import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
+import 'package:medics/features/doctor/data/models/doctor_tryal_model.dart';
 
 class ChatModel {
   static List<Map<String, dynamic>> getRecentChats() {

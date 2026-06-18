@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medics/features/doctor/data/review_model.dart';
+import 'package:medics/features/doctor/data/models/review_model.dart';
 import 'package:medics/features/doctor/presentation/widgets/review_content_widgets/review_item.dart';
 
 class ReviewListBuilder extends StatelessWidget {

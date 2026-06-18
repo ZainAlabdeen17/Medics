@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_strings.dart';
-import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/widgets/about_content_widgets/about_widget.dart';
 
 class DoctorAboutContent extends StatelessWidget {
   const DoctorAboutContent({super.key, required this.doctor});
-  final DoctorTrialModel doctor;
+  final DoctorModel doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +19,13 @@ class DoctorAboutContent extends StatelessWidget {
           AboutWidget(
             title: AppStrings.generalInformation,
             icon: Assets.assetsImagesIconsAboutDoctorFile,
-            details: doctor.generalInfo,
+            details: doctor.bio,
           ),
-          AboutWidget(
-            title: AppStrings.currentWorkingPlace,
-            icon: Assets.assetsImagesIconsAboutDoctorHospital,
-            details: doctor.currentWorkPlace,
-          ),
+          // AboutWidget(
+          //   title: AppStrings.currentWorkingPlace,
+          //   icon: Assets.assetsImagesIconsAboutDoctorHospital,
+          //   details: doctor.currentWorkPlace,
+          // ),
           AboutWidget(
             title: AppStrings.education,
             icon: Assets.assetsImagesIconsAboutDoctorMortarboard,
@@ -36,21 +36,21 @@ class DoctorAboutContent extends StatelessWidget {
             icon: Assets.assetsImagesIconsAboutDoctorDiploma,
             details: doctor.certification,
           ),
-          AboutWidget(
-            title: AppStrings.training,
-            icon: Assets.assetsImagesIconsAboutDoctorNote,
-            details: doctor.training,
-          ),
+          // AboutWidget(
+          //   title: AppStrings.training,
+          //   icon: Assets.assetsImagesIconsAboutDoctorNote,
+          //   details: doctor.training,
+          // ),
           AboutWidget(
             title: AppStrings.licensure,
             icon: Assets.assetsImagesIconsAboutDoctorGraduationScroll,
-            details: doctor.licensure,
+            details: doctor.licenseNumber,
           ),
-          AboutWidget(
-            title: AppStrings.experience,
-            icon: Assets.assetsImagesIconsAboutDoctorStethoscope,
-            details: doctor.experience,
-          ),
+          // AboutWidget(
+          //   title: AppStrings.experience,
+          //   icon: Assets.assetsImagesIconsAboutDoctorStethoscope,
+          //   details: doctor.,
+          // ),
           SizedBox(height: 24.h),
         ],
       ),

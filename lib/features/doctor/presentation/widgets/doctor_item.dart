@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
-import 'package:medics/features/doctor/data/doctor_model.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/rate_chip.dart';
 
 class DoctorItem extends StatelessWidget {
@@ -35,48 +35,39 @@ class DoctorItem extends StatelessWidget {
                 Stack(
                   alignment: AlignmentDirectional.bottomEnd,
                   children: [
-                    Hero(
-                      tag: doctor.id,
-                      child: Container(
-                        width: 141.w,
-                        height: 141.h,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              Assets.assetsImagesDoctorsDoctor1,
-                            ),
-                            fit: BoxFit.cover,
+                    Container(
+                      width: 141.w,
+                      height: 141.h,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            doctorImages[int.parse(doctor.id)],
                           ),
-                          borderRadius: BorderRadius.circular(24.r),
+                          fit: BoxFit.cover,
                         ),
+                        borderRadius: BorderRadius.circular(24.r),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 8.w, bottom: 8.h),
-                      child: Hero(
-                        tag: doctor.id,
-                        child: Material(
-                          color: Colors.transparent,
-                          child: RateChip(rating: 5),
-                        ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: RateChip(rating: 5),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: 12.h),
-                Hero(
-                  tag: doctor.firstName,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Text(
-                      "${doctor.firstName} ${doctor.lastName}",
-                      style: AppTextStyles.head3.copyWith(
-                        color: AppColors.textPrimary,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      textAlign: TextAlign.center,
+                Material(
+                  color: Colors.transparent,
+                  child: Text(
+                    "${doctor.firstName} ${doctor.lastName}",
+                    style: AppTextStyles.head3.copyWith(
+                      color: AppColors.textPrimary,
                     ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Text(

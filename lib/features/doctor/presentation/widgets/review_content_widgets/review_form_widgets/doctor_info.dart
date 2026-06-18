@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
-import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 
 class DoctorInfo extends StatelessWidget {
   const DoctorInfo({super.key, required this.doctor});
-  final DoctorTrialModel doctor;
+  final DoctorModel doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class DoctorInfo extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 22.r,
-              backgroundImage: AssetImage(doctor.image),
+              backgroundImage: AssetImage(doctorImages[int.parse(doctor.id)]),
               backgroundColor: AppColors.borderPrimary,
             ),
             Padding(
@@ -29,7 +29,7 @@ class DoctorInfo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    doctor.name,
+                    "${doctor.firstName} ${doctor.lastName}",
                     style: AppTextStyles.head3.copyWith(
                       color: AppColors.textPrimary,
                     ),

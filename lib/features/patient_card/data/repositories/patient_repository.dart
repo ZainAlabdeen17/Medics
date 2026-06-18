@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:medics/core/api/api_consumer.dart';
 import 'package:medics/core/error/exception.dart';
 import 'package:medics/core/error/failure.dart';
-import 'package:medics/core/functions/user_fun.dart';
+import 'package:medics/core/functions/user_functions.dart';
 import 'package:medics/features/auth/data/models/user_model.dart';
 import 'package:medics/features/patient_card/presentation/cubit/patient_card_cubit.dart';
 

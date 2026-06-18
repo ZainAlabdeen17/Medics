@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medics/core/utils/app_colors.dart';
+import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_state.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_item.dart';
@@ -15,10 +16,25 @@ class DoctorsGrid extends StatelessWidget {
       builder: (context, state) {
         final doctors = state is DoctorSuccess ? state.doctors : [];
         if (state is DoctorFailure) {
-          return Text(state.errorMessage);
+          return SliverToBoxAdapter(
+            child: Center(
+              child: Text(
+                state.errorMessage,
+                style: AppTextStyles.body2.copyWith(
+                  color: AppColors.textSecondary,
+                ),
+              ),
+            ),
+          );
         }
         return state is DoctorLoading
-            ? Center(child: CircularProgressIndicator())
+            ? SliverToBoxAdapter(
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.borderAccent,
+                  ),
+                ),
+              )
             : SliverGrid.builder(
                 itemCount: doctors.length,
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(

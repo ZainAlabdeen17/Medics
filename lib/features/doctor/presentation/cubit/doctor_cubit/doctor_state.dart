@@ -1,4 +1,4 @@
-import 'package:medics/features/doctor/data/doctor_model.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 
 sealed class DoctorState {}
 

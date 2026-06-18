@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medics/features/doctor/data/book_day_model.dart';
+import 'package:medics/features/doctor/data/models/book_day_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_state.dart';
 
 class BookCubit extends Cubit<BookState> {

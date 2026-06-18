@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
-import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/id_chip.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/rate_chip.dart';
 
 class DoctorDetailsBadge extends StatelessWidget {
   const DoctorDetailsBadge({super.key, required this.doctor});
-  final DoctorTrialModel doctor;
+  final DoctorModel doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class DoctorDetailsBadge extends StatelessWidget {
                   height: 264.h,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(doctor.image),
+                      image: AssetImage(doctorImages[int.parse(doctor.id)]),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -44,19 +44,16 @@ class DoctorDetailsBadge extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Hero(
-                      tag: doctor.name,
-                      child: Material(
-                        color: Colors.transparent,
-                        child: Text(
-                          doctor.name,
-                          style: AppTextStyles.head2.copyWith(
-                            color: AppColors.textPrimary,
-                          ),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.start,
+                    Material(
+                      color: Colors.transparent,
+                      child: Text(
+                        "${doctor.firstName} ${doctor.lastName}",
+                        style: AppTextStyles.head2.copyWith(
+                          color: AppColors.textPrimary,
                         ),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.start,
                       ),
                     ),
                     SizedBox(height: 4.h),
@@ -77,13 +74,10 @@ class DoctorDetailsBadge extends StatelessWidget {
                       children: [
                         Material(
                           color: Colors.transparent,
-                          child: Hero(
-                            tag: "${doctor.id},${doctor.rating}",
-                            child: RateChip(rating: doctor.rating),
-                          ),
+                          child: RateChip(rating: 5),
                         ),
                         SizedBox(width: 4.w),
-                        IdChip(id: doctor.id),
+                        IdChip(id: int.parse(doctor.id)),
                       ],
                     ),
                   ],

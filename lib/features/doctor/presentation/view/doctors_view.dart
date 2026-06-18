@@ -11,8 +11,10 @@ class DoctorsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FilterCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<FilterCubit>(create: (context) => FilterCubit()),
+      ],
       child: Scaffold(
         body: SafeArea(
           child: Padding(

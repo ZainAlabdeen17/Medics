@@ -3,7 +3,7 @@ import 'package:medics/core/api/api_consumer.dart';
 import 'package:medics/core/database/cache/cache_helper.dart';
 import 'package:medics/core/error/exception.dart';
 import 'package:medics/core/error/failure.dart';
-import 'package:medics/core/functions/user_fun.dart';
+import 'package:medics/core/functions/user_functions.dart';
 import 'package:medics/core/services/service_locator.dart';
 import 'package:medics/features/auth/data/models/auth_session_model.dart';
 import 'package:medics/features/auth/data/models/user_model.dart';

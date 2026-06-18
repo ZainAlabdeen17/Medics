@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:medics/core/api/api_consumer.dart';
 import 'package:medics/core/error/exception.dart';
 import 'package:medics/core/error/failure.dart';
-import 'package:medics/features/doctor/data/doctor_model.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 
 class DoctorRepository {
   final ApiConsumer api;

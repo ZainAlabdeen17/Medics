@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
-import 'package:medics/features/doctor/data/book_day_model.dart';
+import 'package:medics/features/doctor/data/models/book_day_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_state.dart';
 import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/day_chip.dart';

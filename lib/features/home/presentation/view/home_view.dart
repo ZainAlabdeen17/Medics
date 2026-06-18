@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medics/core/services/service_locator.dart';
+import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
 import 'package:medics/features/home/presentation/view/widgets/doctors_home_grid.dart';
@@ -17,31 +17,39 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<DoctorCubit>().getDoctors();
     return Scaffold(
       body: SafeArea(
         bottom: false,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(child: HomeHeader()),
-              SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-              SliverToBoxAdapter(
-                child: HomeSearchField(
-                  hintText: AppStrings.startTyping,
-                  onTap: () {
-                    context.push("/Doctors");
-                  },
-                  readOnly: true,
+          child: RefreshIndicator(
+            backgroundColor: AppColors.surfaceCard,
+            color: AppColors.surfaceAccent,
+            onRefresh: () async {
+              await context.read<DoctorCubit>().getDoctors();
+            },
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(child: HomeHeader()),
+                SliverToBoxAdapter(child: SizedBox(height: 8.h)),
+                SliverToBoxAdapter(
+                  child: HomeSearchField(
+                    hintText: AppStrings.startTyping,
+                    onTap: () {
+                      context.push("/Doctors");
+                    },
+                    readOnly: true,
+                  ),
                 ),
-              ),
-              SliverToBoxAdapter(child: PopularSpecializationsSection()),
-              SliverToBoxAdapter(child: SizedBox(height: 12.h)),
-              SliverToBoxAdapter(child: OurDoctorsSection()),
-              DoctorsHomeGrid(),
-              SliverToBoxAdapter(child: ServicesSection()),
-              SliverToBoxAdapter(child: SizedBox(height: 90.h)),
-            ],
+                SliverToBoxAdapter(child: PopularSpecializationsSection()),
+                SliverToBoxAdapter(child: SizedBox(height: 12.h)),
+                SliverToBoxAdapter(child: OurDoctorsSection()),
+                DoctorsHomeGrid(),
+                SliverToBoxAdapter(child: ServicesSection()),
+                SliverToBoxAdapter(child: SizedBox(height: 90.h)),
+              ],
+            ),
           ),
         ),
       ),
