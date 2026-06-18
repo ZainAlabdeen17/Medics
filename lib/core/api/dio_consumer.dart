@@ -6,7 +6,8 @@ import 'package:medics/core/error/exception.dart';
 class DioConsumer extends ApiConsumer {
   late Dio dio;
   DioConsumer({required this.dio}) {
-    dio.options.baseUrl = "https://sled-shallow-swab.ngrok-free.dev/api/v1/";
+    dio.options.baseUrl =
+        "https://renewably-gladly-blitz.ngrok-free.dev/api/v1/";
     dio.options.receiveTimeout = const Duration(seconds: 20);
     dio.options.connectTimeout = const Duration(seconds: 20);
     dio.options.sendTimeout = const Duration(seconds: 20);

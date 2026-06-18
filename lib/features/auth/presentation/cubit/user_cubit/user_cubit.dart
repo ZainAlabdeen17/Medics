@@ -16,6 +16,7 @@ class UserCubit extends Cubit<UserState> {
       TextEditingController();
   final TextEditingController signUpLastNameController =
       TextEditingController();
+  final TextEditingController otpCodeController = TextEditingController();
 
   bool isObSecure = true;
 
