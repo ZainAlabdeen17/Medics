@@ -48,13 +48,13 @@ class _BloodTypeState extends State<BloodType> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Expanded(child: _buildBloodCard("O(I)")),
+            Expanded(child: _buildBloodCard("O")),
             SizedBox(width: 8.w),
-            Expanded(child: _buildBloodCard("A(II)")),
+            Expanded(child: _buildBloodCard("A")),
             SizedBox(width: 8.w),
-            Expanded(child: _buildBloodCard("B(III)")),
+            Expanded(child: _buildBloodCard("B")),
             SizedBox(width: 8.w),
-            Expanded(child: _buildBloodCard("AB(IV)")),
+            Expanded(child: _buildBloodCard("AB")),
           ],
         ),
         SizedBox(height: 12.h),

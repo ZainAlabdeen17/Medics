@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:medics/core/api/api_consumer.dart';
+import 'package:medics/core/api/api_interceptor.dart';
 import 'package:medics/core/error/exception.dart';
 //DioCosumer(Dio());
 
@@ -15,6 +16,7 @@ class DioConsumer extends ApiConsumer {
       "Content-Type": "application/json",
       "Accept": "application/json",
     };
+    dio.interceptors.add(ApiInterceptor());
     dio.interceptors.add(
       LogInterceptor(
         request: true,

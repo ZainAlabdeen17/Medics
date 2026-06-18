@@ -7,6 +7,7 @@ class AppStrings {
   static const String onboarding1Sub =
       "Choose from a wide range of specialists and book appointments with ease. Personalized care is just a click away.";
   static const String next = "Next";
+  static const String saveData = "Save data";
   // Onboarding Screens #1
   static const String onboarding2Title = "Here for You, Always";
   static const String onboarding2Sub =
@@ -94,10 +95,10 @@ class AppStrings {
       "Sharing lifestyle details helps doctors tailor advice and treatment to your health needs.";
   static const String smoking = "Smoking";
   static const String alcohol = "Alcohol";
-  static const String yes = "Yes";
-  static const String no = "No";
+  static const String yes = "yes";
+  static const String no = "no";
   static const String chooseYourBirthDate = "Choose your birth date";
-  static const String occasionally = "Occasionally";
+  static const String occasionally = "occasionally";
   static const String activityLevel = "Activity Level";
   static const String activityLevel1 = "Light (sports 1–3 days a week)";
   static const String activityLevel2 = "Moderate (sports 3–5 days a week)";

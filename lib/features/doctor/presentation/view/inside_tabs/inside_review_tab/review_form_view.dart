@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/widgets/general_header.dart';
-import 'package:medics/features/doctor/data/doctor_model.dart';
+import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/review_cubit/review_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/review_cubit/review_state.dart';
 import 'package:medics/features/doctor/presentation/widgets/review_content_widgets/review_form_widgets/big_text_review_form_field.dart';
@@ -14,7 +14,7 @@ import 'package:medics/features/doctor/presentation/widgets/review_content_widge
 
 class ReviewFormView extends StatelessWidget {
   const ReviewFormView({super.key, required this.doctor});
-  final DoctorModel doctor;
+  final DoctorTrialModel doctor;
 
   @override
   Widget build(BuildContext context) {

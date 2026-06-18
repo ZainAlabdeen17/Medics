@@ -40,7 +40,8 @@ class SignUpView extends StatelessWidget {
                       text1: AppStrings.alreadyHaveAccount,
                       text2: AppStrings.login,
                       onTap: () {
-                         AppNavigation.pushReplacementScreen(context, '/SignIn');
+                        AppNavigation.pushReplacementScreen(context, '/SignIn');
+                        // AppNavigation.pushReplacementScreen(context, '/Patient');
                       
                       },
                     ),

@@ -23,7 +23,7 @@ class ButtonGroups extends StatefulWidget {
 }
 
 class _ButtonGroupsState extends State<ButtonGroups> {
-  String ?selectedGroup;
+  String? selectedGroup;
   @override
   void initState() {
     super.initState();

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medics/core/services/service_locator.dart';
 import 'package:medics/core/utils/app_strings.dart';
+import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
 import 'package:medics/features/home/presentation/view/widgets/doctors_home_grid.dart';
 import 'package:medics/features/home/presentation/view/widgets/home_header.dart';
 import 'package:medics/features/home/presentation/view/widgets/home_search_field.dart';

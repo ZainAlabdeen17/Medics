@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
-import 'package:medics/features/doctor/data/doctor_model.dart';
+import 'package:medics/features/doctor/data/doctor_tryal_model.dart';
 
 class DoctorInfo extends StatelessWidget {
   const DoctorInfo({super.key, required this.doctor});
-  final DoctorModel doctor;
+  final DoctorTrialModel doctor;
 
   @override
   Widget build(BuildContext context) {
