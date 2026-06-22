@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 
 class PriceSection extends StatelessWidget {
-  const PriceSection({super.key});
+  const PriceSection({super.key, required this.doctor});
+  final DoctorModel doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class PriceSection extends StatelessWidget {
               ),
             ),
             Text(
-              "80\$",
+              "${doctor.sessionPrice}\$",
               style: AppTextStyles.num2.copyWith(color: AppColors.textPrimary),
             ),
           ],

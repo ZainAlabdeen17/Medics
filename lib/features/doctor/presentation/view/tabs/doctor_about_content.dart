@@ -21,11 +21,6 @@ class DoctorAboutContent extends StatelessWidget {
             icon: Assets.assetsImagesIconsAboutDoctorFile,
             details: doctor.bio,
           ),
-          // AboutWidget(
-          //   title: AppStrings.currentWorkingPlace,
-          //   icon: Assets.assetsImagesIconsAboutDoctorHospital,
-          //   details: doctor.currentWorkPlace,
-          // ),
           AboutWidget(
             title: AppStrings.education,
             icon: Assets.assetsImagesIconsAboutDoctorMortarboard,
@@ -36,21 +31,16 @@ class DoctorAboutContent extends StatelessWidget {
             icon: Assets.assetsImagesIconsAboutDoctorDiploma,
             details: doctor.certification,
           ),
-          // AboutWidget(
-          //   title: AppStrings.training,
-          //   icon: Assets.assetsImagesIconsAboutDoctorNote,
-          //   details: doctor.training,
-          // ),
           AboutWidget(
             title: AppStrings.licensure,
             icon: Assets.assetsImagesIconsAboutDoctorGraduationScroll,
             details: doctor.licenseNumber,
           ),
-          // AboutWidget(
-          //   title: AppStrings.experience,
-          //   icon: Assets.assetsImagesIconsAboutDoctorStethoscope,
-          //   details: doctor.,
-          // ),
+          AboutWidget(
+            title: "Years of Experience",
+            icon: Assets.assetsImagesIconsAboutDoctorStethoscope,
+            details: "${doctor.yearsOfExperience} Year",
+          ),
           SizedBox(height: 24.h),
         ],
       ),

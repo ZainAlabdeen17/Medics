@@ -6,6 +6,7 @@ import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_state.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_item.dart';
+import 'package:medics/features/doctor/presentation/widgets/shimmers/doctor_item_shimmer.dart';
 
 class DoctorsHomeGrid extends StatelessWidget {
   const DoctorsHomeGrid({super.key});
@@ -28,8 +29,17 @@ class DoctorsHomeGrid extends StatelessWidget {
           );
         }
         return state is DoctorLoading
-            ? SliverToBoxAdapter(
-                child: Center(child: CircularProgressIndicator(color: AppColors.borderAccent,)),
+            ? SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16.h,
+                  mainAxisSpacing: 32.h,
+                  mainAxisExtent: 250.h,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => const DoctorItemShimmer(),
+                  childCount: 4,
+                ),
               )
             : SliverGrid.builder(
                 itemCount: 4,

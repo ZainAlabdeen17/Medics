@@ -16,7 +16,7 @@ class SpecializationModel {
 
 final List<SpecializationModel> specializations = [
   SpecializationModel(
-    id: 'general',
+    id: 'General Practitioner',
     name: 'General Practitioner',
     icon: Assets.assetsImagesIconsSpecializatiosGeneralPractitioner,
     doctorsCount: 15,

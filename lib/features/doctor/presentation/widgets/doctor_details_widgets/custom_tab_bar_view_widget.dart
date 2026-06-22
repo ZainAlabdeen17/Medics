@@ -13,7 +13,7 @@ class CustomTabBarView extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBarView(
       children: [
-        DoctorBookContent(),
+        DoctorBookContent(doctor: doctor),
         DoctorAboutContent(doctor: doctor),
         DoctorReviewContent(doctor: doctor),
       ],

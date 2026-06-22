@@ -11,15 +11,20 @@ class HomeSearchField extends StatelessWidget {
     required this.hintText,
     this.readOnly = false,
     this.autoFocus = false,
+    this.controller,
+    this.onChanged,
   });
   final VoidCallback? onTap;
   final String hintText;
   final bool readOnly;
   final bool autoFocus;
+  final TextEditingController? controller;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      controller: controller,
       hintText: hintText,
       prefixIcon: Padding(
         padding: EdgeInsets.only(left: 20.w, right: 4.w),
@@ -32,6 +37,7 @@ class HomeSearchField extends StatelessWidget {
       onTap: onTap,
       readOnly: readOnly,
       autoFocus: autoFocus,
+      onChanged: onChanged,
     );
   }
 }

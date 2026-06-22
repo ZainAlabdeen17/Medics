@@ -8,9 +8,30 @@ class DoctorRepository {
   final ApiConsumer api;
 
   DoctorRepository({required this.api});
-  Future<Either<Failure, List<DoctorModel>>> getDoctors() async {
+  Future<Either<Failure, List<DoctorModel>>> getDoctors({
+    String? searchQuery,
+    List<String>? specializations,
+    String? experience,
+    String? gender,
+  }) async {
     try {
-      final response = await api.get(path: "doctors");
+      final Map<String, dynamic> queryParams = {};
+      if (searchQuery != null && searchQuery.isNotEmpty) {
+        queryParams['search'] = searchQuery;
+      }
+      if (specializations != null && specializations.isNotEmpty) {
+        queryParams['specialization'] = specializations.join(',');
+      }
+      if (experience != null) {
+        queryParams['experience'] = experience;
+      }
+      if (gender != null) {
+        queryParams['gender'] = gender;
+      }
+      final response = await api.get(
+        path: "doctors",
+        queryParameters: queryParams,
+      );
       final List<DoctorModel> doctors = (response['data'] as List).map((
         doctor,
       ) {

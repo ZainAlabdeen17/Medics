@@ -27,6 +27,10 @@ class FilterCubit extends Cubit<FilterState> {
     emit(state.copyWith(selectedGender: gender));
   }
 
+  void updateSearchQuery(String query) {
+    emit(state.copyWith(searchQuery: query));
+  }
+
   void resetFilters() {
     emit(
       state.copyWith(

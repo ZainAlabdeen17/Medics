@@ -9,6 +9,7 @@ import 'package:medics/features/auth/presentation/view/success_verification_view
 import 'package:medics/features/auth/presentation/widgets/forget_password.dart';
 import 'package:medics/features/chat/presentation/view/chat_view.dart';
 import 'package:medics/features/doctor/data/models/doctor_model.dart';
+import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/review_cubit/review_cubit.dart';
 import 'package:medics/features/doctor/presentation/view/doctor_details_view.dart';
@@ -149,8 +150,19 @@ GoRouter route = GoRouter(
     GoRoute(
       path: "/Filter",
       builder: (context, state) {
-        final cubit = state.extra as FilterCubit;
-        return BlocProvider.value(value: cubit, child: const FilterView());
+        final Map<String, dynamic> extraMap =
+            state.extra as Map<String, dynamic>;
+
+        final filterCubit = extraMap['filterCubit'] as FilterCubit;
+        final doctorCubit = extraMap['doctorCubit'] as DoctorCubit;
+
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: filterCubit),
+            BlocProvider.value(value: doctorCubit),
+          ],
+          child: const FilterView(),
+        );
       },
     ),
     GoRoute(

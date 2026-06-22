@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/widgets/custom_divider.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_state.dart';
 import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/day_slots_section.dart';
@@ -10,7 +11,8 @@ import 'package:medics/features/doctor/presentation/widgets/book_content_widgets
 import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/time_slots_section.dart';
 
 class DoctorBookContent extends StatelessWidget {
-  const DoctorBookContent({super.key});
+  const DoctorBookContent({super.key, required this.doctor});
+  final DoctorModel doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class DoctorBookContent extends StatelessWidget {
             key: const PageStorageKey<String>('DoctorBookContent'),
 
             children: [
-              PriceSection(),
+              PriceSection(doctor: doctor,),
               CustomDivider(),
               DaySlotsSection(),
               CustomDivider(),

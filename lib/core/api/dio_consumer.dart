@@ -9,9 +9,9 @@ class DioConsumer extends ApiConsumer {
   DioConsumer({required this.dio}) {
     dio.options.baseUrl =
         "https://renewably-gladly-blitz.ngrok-free.dev/api/v1/";
-    dio.options.receiveTimeout = const Duration(seconds: 20);
-    dio.options.connectTimeout = const Duration(seconds: 20);
-    dio.options.sendTimeout = const Duration(seconds: 20);
+    dio.options.receiveTimeout = const Duration(seconds: 30);
+    dio.options.connectTimeout = const Duration(seconds: 30);
+    dio.options.sendTimeout = const Duration(seconds: 30);
     dio.options.headers = {
       "Content-Type": "application/json",
       "Accept": "application/json",

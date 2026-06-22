@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
+import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_state.dart';
 
@@ -17,7 +18,13 @@ class FilterButton extends StatelessWidget {
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
-            context.push('/Filter', extra: context.read<FilterCubit>());
+            context.push(
+              '/Filter',
+              extra: {
+                'filterCubit': context.read<FilterCubit>(),
+                'doctorCubit': context.read<DoctorCubit>(),
+              },
+            );
           },
           child: Stack(
             alignment: Alignment(0.9, -0.9),

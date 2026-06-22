@@ -6,9 +6,19 @@ class DoctorCubit extends Cubit<DoctorState> {
   final DoctorRepository repo;
   DoctorCubit(this.repo) : super(DoctorInitial());
 
-  Future<void> getDoctors() async {
+  Future<void> getDoctors({
+    String? searchQuery,
+    List<String>? specializations,
+    String? experience,
+    String? gender,
+  }) async {
     emit(DoctorLoading());
-    final result = await repo.getDoctors();
+    final result = await repo.getDoctors(
+      searchQuery: searchQuery,
+      specializations: specializations,
+      experience: experience,
+      gender: gender,
+    );
     result.fold(
       (failure) {
         emit(DoctorFailure(errorMessage: failure.message));

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
+import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
 
 class ResetFilterSection extends StatelessWidget {
@@ -15,8 +16,11 @@ class ResetFilterSection extends StatelessWidget {
       alignment: Alignment.center,
       child: GestureDetector(
         onTap: () {
-          context.read<FilterCubit>().resetFilters();
-          context.read<FilterCubit>().hasFilter();
+          final filterCubit = context.read<FilterCubit>();
+          final doctorCubit = context.read<DoctorCubit>();
+          filterCubit.resetFilters();
+          filterCubit.hasFilter();
+          doctorCubit.getDoctors();
           context.pop();
         },
         child: Text(

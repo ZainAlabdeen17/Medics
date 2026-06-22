@@ -1,6 +1,7 @@
 const _empty = Object();
 
 class FilterState {
+  final String searchQuery;
   final List<String> selectedSpecializations;
   final Object? selectedExperience;
   final Object? selectedGender;
@@ -8,6 +9,7 @@ class FilterState {
   final bool hasFilter;
 
   FilterState({
+    this.searchQuery = '',
     this.selectedSpecializations = const [],
     this.selectedExperience,
     this.selectedGender,
@@ -15,6 +17,7 @@ class FilterState {
     this.hasFilter = false,
   });
   FilterState copyWith({
+    String? searchQuery,
     List<String>? selectedSpecializations,
     Object? selectedExperience = _empty,
     Object? selectedGender = _empty,
@@ -22,6 +25,7 @@ class FilterState {
     bool? hasFilter,
   }) {
     return FilterState(
+      searchQuery: searchQuery ?? this.searchQuery,
       selectedSpecializations:
           selectedSpecializations ?? this.selectedSpecializations,
       selectedExperience: selectedExperience == _empty
