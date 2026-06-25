@@ -2,13 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:medics/core/api/api_consumer.dart';
 import 'package:medics/core/api/api_interceptor.dart';
 import 'package:medics/core/error/exception.dart';
-//DioCosumer(Dio());
 
 class DioConsumer extends ApiConsumer {
   late Dio dio;
   DioConsumer({required this.dio}) {
-    dio.options.baseUrl =
-        "https://renewably-gladly-blitz.ngrok-free.dev/api/v1/";
+    dio.options.baseUrl = "https://sled-shallow-swab.ngrok-free.dev/api/v1/";
     dio.options.receiveTimeout = const Duration(seconds: 30);
     dio.options.connectTimeout = const Duration(seconds: 30);
     dio.options.sendTimeout = const Duration(seconds: 30);

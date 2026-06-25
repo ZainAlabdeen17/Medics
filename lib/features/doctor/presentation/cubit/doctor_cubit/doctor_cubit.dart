@@ -4,6 +4,7 @@ import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_st
 
 class DoctorCubit extends Cubit<DoctorState> {
   final DoctorRepository repo;
+
   DoctorCubit(this.repo) : super(DoctorInitial());
 
   Future<void> getDoctors({
@@ -25,6 +26,18 @@ class DoctorCubit extends Cubit<DoctorState> {
       },
       (doctors) {
         emit(DoctorSuccess(doctors: doctors));
+      },
+    );
+  }
+  void getDays({required String doctorId})async {
+    emit(GetDaysLoading());
+    final result = await repo.getBookingDays(doctorId);
+    result.fold(
+      (failure) {
+        emit(GetDaysFailure(errorMessage: failure.message));
+      },
+      (days) {
+        emit(GetDaysSuccess(days: days));
       },
     );
   }

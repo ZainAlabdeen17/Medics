@@ -1,11 +1,11 @@
-import 'package:medics/features/doctor/data/models/book_day_model.dart';
+import 'package:medics/features/doctor/data/models/day_models.dart';
 
 class BookState {
-  final BookDayModel? selectedDay;
+  final DayModel? selectedDay;
   final String selectedTime;
 
-  BookState({this.selectedDay = const BookDayModel(), this.selectedTime = ""});
-  BookState copyWith({BookDayModel? selectedDay, String? selectedTime}) {
+  BookState({this.selectedDay=const DayModel(fullDate: '', dayName: '', dayNumber: '', monthName: ''), this.selectedTime = ""});
+  BookState copyWith({DayModel? selectedDay, String? selectedTime}) {
     return BookState(
       selectedDay: selectedDay ?? this.selectedDay,
       selectedTime: selectedTime ?? this.selectedTime,

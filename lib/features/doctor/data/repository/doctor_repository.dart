@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:medics/core/api/api_consumer.dart';
 import 'package:medics/core/error/exception.dart';
 import 'package:medics/core/error/failure.dart';
+import 'package:medics/features/doctor/data/models/day_models.dart';
 import 'package:medics/features/doctor/data/models/doctor_model.dart';
 
 class DoctorRepository {
@@ -38,6 +39,21 @@ class DoctorRepository {
         return DoctorModel.fromJson(doctor);
       }).toList();
       return Right(doctors);
+    } on ServerExeption catch (e) {
+      return left(e.failure);
+    }
+  }
+  Future<Either<Failure, List<DayModel>>> getBookingDays(
+    String doctorId,
+  ) async {
+    final response = await api.get(path: 'doctors/$doctorId/available-days');
+
+    try {
+      final List<dynamic> data = response['data']['attributes']['days'];
+      final List<DayModel> days = data
+          .map((json) => DayModel.fromJson(json))
+          .toList();
+      return Right(days);
     } on ServerExeption catch (e) {
       return left(e.failure);
     }
