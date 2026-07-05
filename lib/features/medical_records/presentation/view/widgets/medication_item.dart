@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
@@ -9,7 +10,7 @@ import 'package:medics/features/medical_records/data/medication_model.dart';
 import 'package:medics/features/medical_records/presentation/view/widgets/genaral_chip.dart';
 
 class MedicationItem extends StatelessWidget {
-  final Medication medication;
+  final PrescriptionModel medication;
   const MedicationItem({super.key, required this.medication});
 
   @override
@@ -50,7 +51,7 @@ class MedicationItem extends StatelessWidget {
             ),
             SizedBox(height: 4.h),
             Text(
-              medication.description ?? "Antibiotic for bacterial infections",
+              medication.category,
               style: AppTextStyles.body1.copyWith(
                 color: AppColors.textSecondary,
               ),
@@ -59,14 +60,10 @@ class MedicationItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                GenaralChip(
-                  title:
-                      "${medication.dosage.quantity} ${medication.dosage.form}",
-                ),
+                GenaralChip(title: medication.formAndQuantity),
                 SizedBox(width: 8.w),
                 GenaralChip(
-                  title:
-                      "${medication.startDate.day} - ${medication.endDate.day} April , ${medication.endDate.year}",
+                  title: DateFormat('dd MMMM yyyy').format(medication.date),
                 ),
               ],
             ),

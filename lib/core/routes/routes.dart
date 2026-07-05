@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medics/core/services/service_locator.dart';
-import 'package:medics/features/appointments/presentation/view/appointments.dart';
 import 'package:medics/features/appointments/data/models/appointment_model.dart';
 import 'package:medics/features/appointments/presentation/cubit/appointment_cubit/appointment_cubit.dart';
 import 'package:medics/features/appointments/presentation/cubit/invoice_cubit/invoice_cubit.dart';
@@ -27,6 +26,7 @@ import 'package:medics/features/doctor/presentation/view/filter_view.dart';
 import 'package:medics/features/doctor/presentation/view/inside_tabs/inside_review_tab/review_form_view.dart';
 import 'package:medics/features/home/presentation/view/home_view.dart';
 import 'package:medics/features/medical_records/presentation/cubit/health_cubit.dart';
+import 'package:medics/features/medical_records/presentation/cubit/prescription_cubit/prescription_cubit.dart';
 import 'package:medics/features/medical_records/presentation/view/anamnesis.dart';
 import 'package:medics/features/medical_records/presentation/view/body_parameters.dart';
 import 'package:medics/features/medical_records/presentation/view/health_metrics_information.dart';
@@ -86,15 +86,14 @@ GoRouter route = GoRouter(
       },
     ),
     GoRoute(path: "/LabReport", builder: (context, state) => LabReport()),
-  ShellRoute(
-  builder: (context, state, child) {
-    return BlocProvider(
-      create: (context) => getIt<HealthCubit>(),
-      child: child,
-    );
-  },
+    ShellRoute(
+      builder: (context, state, child) {
+        return BlocProvider(
+          create: (context) => getIt<HealthCubit>(),
+          child: child,
+        );
+      },
       routes: [
-       
         GoRoute(
           path: "/HealthMetrics",
           builder: (context, state) => const HealthMetricsInformation(),
@@ -113,7 +112,13 @@ GoRouter route = GoRouter(
       builder: (context, state) => VisitSummeries(),
     ),
 
-    GoRoute(path: "/Prescription", builder: (context, state) => Prescription()),
+    GoRoute(
+      path: "/Prescription",
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<PrescriptionCubit>()..getPrescriptions(),
+        child: Prescription(),
+      ),
+    ),
     GoRoute(
       path: "/MedicationDetails",
       builder: (context, state) => MedicationDetails(),
@@ -163,7 +168,10 @@ GoRouter route = GoRouter(
     GoRoute(path: "/LabReport", builder: (context, state) => LabReport()),
     ShellRoute(
       builder: (context, state, child) {
-        return BlocProvider.value(value: healthCubit, child: child);
+        return BlocProvider(
+          create: (context) => getIt<HealthCubit>(),
+          child: child,
+        );
       },
       routes: [
         GoRoute(

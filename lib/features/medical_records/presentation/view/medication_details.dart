@@ -14,7 +14,7 @@ class MedicationDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final medication = GoRouterState.of(context).extra as Medication;
+    final medication = GoRouterState.of(context).extra as PrescriptionModel;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -40,7 +40,7 @@ class MedicationDetails extends StatelessWidget {
               SliverToBoxAdapter(child: SizedBox(height: 8.h)),
 
               SliverToBoxAdapter(
-                child: PointsItem(text: medication.specialInstructions),
+                child: PointsItem(text: medication.instructions),
               ),
               SliverToBoxAdapter(child: SizedBox(height: 16.h)),
               SliverToBoxAdapter(
@@ -52,34 +52,10 @@ class MedicationDetails extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-              SliverToBoxAdapter(child: PointsItem(text: medication.storage)),
-              SliverToBoxAdapter(child: SizedBox(height: 16.h)),
               SliverToBoxAdapter(
-                child: Text(
-                  AppStrings.sideEffects,
-                  style: AppTextStyles.head3.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-              ),
-              SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-
-              SliverToBoxAdapter(
-                child: PointsItem(text: medication.sideEffects),
+                child: PointsItem(text: "keep in a dry place below 25°C"),
               ),
               SliverToBoxAdapter(child: SizedBox(height: 16.h)),
-              SliverToBoxAdapter(
-                child: Text(
-                  AppStrings.allergyWarning,
-                  style: AppTextStyles.head3.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-              ),
-              SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-              SliverToBoxAdapter(
-                child: PointsItem(text: medication.allergyWarning),
-              ),
             ],
           ),
         ),

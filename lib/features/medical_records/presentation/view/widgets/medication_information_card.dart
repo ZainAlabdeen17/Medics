@@ -7,7 +7,7 @@ import 'package:medics/features/medical_records/data/medication_model.dart';
 import 'package:medics/features/medical_records/presentation/view/widgets/medication_card_item.dart';
 
 class MedicationInformationCard extends StatelessWidget {
-  final Medication medication;
+  final PrescriptionModel medication;
   const MedicationInformationCard({super.key, required this.medication});
 
   @override
@@ -30,26 +30,25 @@ class MedicationInformationCard extends StatelessWidget {
           MedicationCardItem(
             iconName: Assets.assetsImagesIconsGeneralCalendar,
             title: AppStrings.duration,
-            value:
-                "${medication.startDate.day} / ${medication.startDate.month}  -  ${medication.endDate.day} / ${medication.endDate.month} , ${medication.endDate.year}",
+            value: medication.duration,
           ),
           SizedBox(height: 16.h),
           MedicationCardItem(
             iconName: Assets.assetsImagesIconsGeneralDosage,
             title: AppStrings.dosage,
-            value: medication.dosage.toString(),
+            value: medication.dosage,
           ),
           SizedBox(height: 16.h),
           MedicationCardItem(
             iconName: Assets.assetsImagesIconsGeneralFrequency,
             title: AppStrings.frequency,
-            value: medication.timesPerDay.toString(),
+            value: medication.frequency,
           ),
           SizedBox(height: 16.h),
           MedicationCardItem(
             iconName: Assets.assetsImagesIconsGeneralDoctor,
             title: AppStrings.prescibedBy,
-            value: medication.prescribedBy,
+            value: medication.doctorName,
           ),
         ],
       ),

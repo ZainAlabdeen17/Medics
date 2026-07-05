@@ -7,6 +7,7 @@ class UserModel {
   final String email;
   final String status;
   final bool isProfileCompleted;
+  final String patienId;
   UserModel({
     required this.id,
     required this.firstName,
@@ -14,6 +15,7 @@ class UserModel {
     required this.email,
     required this.status,
     required this.isProfileCompleted,
+    required this.patienId,
   });
   factory UserModel.fromJson(Map<String, dynamic> json) {
     final data = json['data'];
@@ -26,6 +28,7 @@ class UserModel {
       email: atributes['email'],
       status: atributes['status'],
       isProfileCompleted: atributes["is_profile_completed"],
+      patienId: user["relationships"]["patient"]["id"],
     );
   }
 
@@ -40,6 +43,7 @@ class UserModel {
             "email": email,
             "status": status,
             "is_profile_completed": isProfileCompleted,
+            
           },
         },
       },

@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:medics/core/api/api_consumer.dart';
 import 'package:medics/core/error/exception.dart';
 import 'package:medics/core/error/failure.dart';
+import 'package:medics/core/functions/user_functions.dart';
 import 'package:medics/features/medical_records/data/health_metric_model.dart';
 import 'package:medics/features/medical_records/data/repository/health_repository.dart';
 
@@ -22,8 +23,9 @@ class HealthRepositoryImpl implements HealthRepository {
   }) async {
     try {
       //   final user = model.toJson();
-      await api.patch(
-        path: "patient/updateprofile",
+      final user = UserFunctions.getUser();
+      await api.put(
+        path: "patient/updateprofile/${user?.id}",
         data: {
           "health_assessment": {
             "blood_type": "${model.body.bloodType}${model.body.rh}",

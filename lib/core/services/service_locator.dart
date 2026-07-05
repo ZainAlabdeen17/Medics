@@ -13,8 +13,10 @@ import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_cubit.
 import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
 import 'package:medics/features/medical_records/data/repository/health_repository.dart';
 import 'package:medics/features/medical_records/data/repository/health_repository_imp.dart';
+import 'package:medics/features/medical_records/data/repository/medical_records.dart';
 import 'package:medics/features/medical_records/presentation/cubit/health_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/doctor_details_cubit/doctor_details_cubit.dart';
+import 'package:medics/features/medical_records/presentation/cubit/prescription_cubit/prescription_cubit.dart';
 import 'package:medics/features/patient_card/data/repositories/patient_repository.dart';
 
 final getIt = GetIt.instance;
@@ -54,8 +56,9 @@ void setupServiceLocator() {
     () => DoctorCubit(getIt<DoctorRepository>()),
   );
 
-
-  getIt.registerLazySingleton<HealthRepository>(() => HealthRepositoryImpl(api: getIt<ApiConsumer>()));
+  getIt.registerLazySingleton<HealthRepository>(
+    () => HealthRepositoryImpl(api: getIt<ApiConsumer>()),
+  );
   getIt.registerFactory<HealthCubit>(
     () => HealthCubit(healthRepository: getIt())..loadInitial(),
   );
@@ -66,4 +69,9 @@ void setupServiceLocator() {
   getIt.registerFactory<AppointmentCubit>(
     () => AppointmentCubit(getIt<AppointmentRepository>()),
   );
+  getIt.registerLazySingleton<MedicalRecordsRepository>(
+    () => MedicalRecordsRepository(getIt<ApiConsumer>()),
+  );
+    getIt.registerFactory<PrescriptionCubit>(() => PrescriptionCubit(getIt<MedicalRecordsRepository>()));
+
 }
