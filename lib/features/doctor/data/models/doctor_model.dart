@@ -13,7 +13,8 @@ class DoctorModel {
   final String licenseNumber;
   final String bio;
   final String sessionPrice;
-  final String? photoUrl;
+  final String photoUrl;
+  final int rating;
 
   DoctorModel({
     required this.id,
@@ -29,24 +30,33 @@ class DoctorModel {
     required this.bio,
     required this.sessionPrice,
     required this.photoUrl,
+    required this.rating,
   });
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
     final attributes = json["attributes"];
     final user = json["relationships"]["user"];
+    String? rawPhotoUrl = attributes["photo_url"];
+    if (rawPhotoUrl != null && rawPhotoUrl.contains('127.0.0.1')) {
+      rawPhotoUrl = rawPhotoUrl.replaceAll(
+        "http://127.0.0.1:8000",
+        "https://renewably-gladly-blitz.ngrok-free.dev",
+      );
+    }
     return DoctorModel(
-      id: json["id"],
-      firstName: user["first_name"],
-      lastName: user["last_name"],
-      email: user["email"],
-      specialization: attributes["specialization"],
-      education: attributes["education"],
-      certification: attributes["certification"],
-      yearsOfExperience: attributes["years_of_experience"],
-      gender: attributes["gender"],
-      licenseNumber: attributes["license_number"],
-      bio: attributes["bio"],
-      sessionPrice: attributes["session_price"],
-      photoUrl: attributes["photo_url"],
+      id: json["id"] ?? "",
+      firstName: user["first_name"] ?? "",
+      lastName: user["last_name"] ?? "",
+      email: user["email"] ?? "",
+      specialization: attributes["specialization"] ?? "",
+      education: attributes["education"] ?? "",
+      certification: attributes["certification"] ?? "",
+      yearsOfExperience: attributes["years_of_experience"] ?? 0,
+      gender: attributes["gender"] ?? "",
+      licenseNumber: attributes["license_number"] ?? "",
+      bio: attributes["bio"] ?? "",
+      sessionPrice: attributes["session_price"] ?? "",
+      photoUrl: rawPhotoUrl ?? "",
+      rating: attributes["average_rating"] ?? 0.0,
     );
   }
 }

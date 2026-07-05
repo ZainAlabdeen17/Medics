@@ -5,8 +5,8 @@ import 'package:medics/core/widgets/custom_divider.dart';
 import 'package:medics/features/doctor/data/models/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_state.dart';
+import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/booking_reason_text_field.dart';
 import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/day_slots_section.dart';
-import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/optional_attach_section.dart';
 import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/price_section.dart';
 import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/time_slots_section.dart';
 
@@ -29,13 +29,13 @@ class DoctorBookContent extends StatelessWidget {
             key: const PageStorageKey<String>('DoctorBookContent'),
 
             children: [
-              PriceSection(doctor: doctor,),
+              PriceSection(doctor: doctor),
               CustomDivider(),
-              DaySlotsSection(),
+              DaySlotsSection(doctor: doctor),
               CustomDivider(),
               TimeSlotsSection(),
               CustomDivider(),
-              OptionalAttachSection(),
+              BookingReasonTextField(),
             ],
           ),
         );

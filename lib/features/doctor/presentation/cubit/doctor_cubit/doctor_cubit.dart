@@ -29,16 +29,5 @@ class DoctorCubit extends Cubit<DoctorState> {
       },
     );
   }
-  void getDays({required String doctorId})async {
-    emit(GetDaysLoading());
-    final result = await repo.getBookingDays(doctorId);
-    result.fold(
-      (failure) {
-        emit(GetDaysFailure(errorMessage: failure.message));
-      },
-      (days) {
-        emit(GetDaysSuccess(days: days));
-      },
-    );
-  }
+  
 }

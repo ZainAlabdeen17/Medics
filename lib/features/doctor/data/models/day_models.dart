@@ -4,7 +4,12 @@ class DayModel {
   final String dayNumber;
   final String monthName;
 
-  const DayModel({required this.fullDate, required this.dayName, required this.dayNumber, required this.monthName});
+  const DayModel({
+    required this.fullDate,
+    required this.dayName,
+    required this.dayNumber,
+    required this.monthName,
+  });
   factory DayModel.fromJson(Map<String, dynamic> json) {
     return DayModel(
       fullDate: json['full_date'],
@@ -14,5 +19,3 @@ class DayModel {
     );
   }
 }
-
-

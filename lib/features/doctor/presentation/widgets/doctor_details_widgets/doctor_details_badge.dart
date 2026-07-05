@@ -1,10 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/doctor/data/models/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/id_chip.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/rate_chip.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DoctorDetailsBadge extends StatelessWidget {
   const DoctorDetailsBadge({super.key, required this.doctor});
@@ -23,14 +26,25 @@ class DoctorDetailsBadge extends StatelessWidget {
               alignment: AlignmentGeometry.centerRight,
               child: Hero(
                 tag: doctor.id,
-                child: Container(
+                child: SizedBox(
                   width: 264.w,
                   height: 264.h,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(doctorImages[int.parse(doctor.id)]),
+                  child: CachedNetworkImage(
+                    imageUrl: doctor.photoUrl,
+                    placeholder: (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        color: Colors.white,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Image.asset(
+                      Assets.assetsImagesDoctorsDoctor5,
                       fit: BoxFit.cover,
                     ),
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -74,7 +88,7 @@ class DoctorDetailsBadge extends StatelessWidget {
                       children: [
                         Material(
                           color: Colors.transparent,
-                          child: RateChip(rating: 5),
+                          child: RateChip(rating: doctor.rating.toDouble()),
                         ),
                         SizedBox(width: 4.w),
                         IdChip(id: int.parse(doctor.id)),

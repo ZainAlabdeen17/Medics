@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -6,7 +8,9 @@ import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/doctor/data/models/doctor_model.dart';
+import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
 import 'package:medics/features/doctor/presentation/widgets/doctor_details_widgets/rate_chip.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DoctorItem extends StatelessWidget {
   const DoctorItem({super.key, required this.doctor});
@@ -16,7 +20,13 @@ class DoctorItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push("/DoctorDetails", extra: doctor);
+        context.push(
+          "/DoctorDetails",
+          extra: {
+            'doctor': doctor,
+            'doctor_cubit': context.read<DoctorCubit>(),
+          },
+        );
       },
       child: Stack(
         alignment: Alignment(0, 1.2),
@@ -38,21 +48,33 @@ class DoctorItem extends StatelessWidget {
                     Container(
                       width: 141.w,
                       height: 141.h,
+                      clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            doctorImages[int.parse(doctor.id)],
+                        borderRadius: BorderRadius.circular(24.r),
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl: doctor.photoUrl,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Shimmer.fromColors(
+                          baseColor: Colors.grey[300]!,
+                          highlightColor: Colors.grey[100]!,
+                          child: Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            color: Colors.white,
                           ),
+                        ),
+                        errorWidget: (context, url, error) => Image.asset(
+                          Assets.assetsImagesDoctorsDoctor5,
                           fit: BoxFit.cover,
                         ),
-                        borderRadius: BorderRadius.circular(24.r),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 8.w, bottom: 8.h),
                       child: Material(
                         color: Colors.transparent,
-                        child: RateChip(rating: 5),
+                        child: RateChip(rating: doctor.rating.toDouble()),
                       ),
                     ),
                   ],

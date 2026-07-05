@@ -55,7 +55,7 @@ class FilterButton extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                     )
-                  : SizedBox(),
+                  : SizedBox.shrink(),
             ],
           ),
         );

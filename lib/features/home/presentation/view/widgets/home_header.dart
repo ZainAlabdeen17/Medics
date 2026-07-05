@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medics/core/functions/user_functions.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
@@ -21,7 +22,7 @@ class HomeHeader extends StatelessWidget {
             SizedBox(
               width: 254.w,
               child: Text(
-                "${AppStrings.hello}Taylor!",
+                "${AppStrings.hello}${UserFunctions.getUser()?.firstName ?? 'There'}",
                 style: AppTextStyles.head1.copyWith(
                   color: AppColors.textPrimary,
                 ),

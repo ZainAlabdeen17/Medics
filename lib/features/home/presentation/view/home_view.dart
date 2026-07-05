@@ -17,7 +17,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<DoctorCubit>().getDoctors();
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -47,7 +46,7 @@ class HomeView extends StatelessWidget {
                 SliverToBoxAdapter(child: OurDoctorsSection()),
                 DoctorsHomeGrid(),
                 SliverToBoxAdapter(child: ServicesSection()),
-                SliverToBoxAdapter(child: SizedBox(height: 90.h)),
+                SliverToBoxAdapter(child: SizedBox(height: 35.h)),
               ],
             ),
           ),
