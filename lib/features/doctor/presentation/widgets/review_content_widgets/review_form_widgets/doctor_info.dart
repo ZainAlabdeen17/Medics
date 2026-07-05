@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_colors.dart';
@@ -19,7 +20,7 @@ class DoctorInfo extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 22.r,
-              backgroundImage: AssetImage(doctorImages[int.parse(doctor.id)]),
+              backgroundImage: CachedNetworkImageProvider(doctor.photoUrl),
               backgroundColor: AppColors.borderPrimary,
             ),
             Padding(

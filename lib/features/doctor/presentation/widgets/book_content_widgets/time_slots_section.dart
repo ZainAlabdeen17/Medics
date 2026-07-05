@@ -7,6 +7,7 @@ import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_state.dart';
 import 'package:medics/features/doctor/presentation/widgets/book_content_widgets/time_chip.dart';
+import 'package:medics/features/doctor/presentation/widgets/shimmers/time_chip_shimmer.dart';
 
 class TimeSlotsSection extends StatelessWidget {
   TimeSlotsSection({super.key});
@@ -25,22 +26,57 @@ class TimeSlotsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BookCubit, BookState>(
-      builder: (context, state) {
-        final book = BlocProvider.of<BookCubit>(context);
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppStrings.selectTime,
-              style: AppTextStyles.head3.copyWith(color: AppColors.textPrimary),
-              textAlign: TextAlign.start,
-            ),
-            SizedBox(height: 12.h),
-            Wrap(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          AppStrings.selectTime,
+          style: AppTextStyles.head3.copyWith(color: AppColors.textPrimary),
+          textAlign: TextAlign.start,
+        ),
+        SizedBox(height: 12.h),
+        BlocBuilder<BookCubit, BookState>(
+          builder: (context, state) {
+            final book = context.read<BookCubit>();
+            if (state.selectedDay == null) {
+              return Column(
+                children: [
+                  Center(
+                    child: Text(
+                      "Please select a date first to see available times",
+                      style: AppTextStyles.body2.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 12.h),
+                ],
+              );
+            }
+            if (state.isLoadingTimes) {
+              return Wrap(
+                spacing: 8.w,
+                runSpacing: 8.h,
+                children: [
+                  TimeChipShimmer(),
+                  TimeChipShimmer(),
+                  TimeChipShimmer(),
+                  TimeChipShimmer(),
+                  TimeChipShimmer(),
+                  TimeChipShimmer(),
+                  TimeChipShimmer(),
+                  TimeChipShimmer(),
+                ],
+              );
+            }
+
+            if (state.timesErrorMessage != null) {
+              return Center(child: Text(state.timesErrorMessage as String));
+            }
+            return Wrap(
               spacing: 8.w,
               runSpacing: 8.h,
-              children: slots.map((slot) {
+              children: state.availableTimes.map((slot) {
                 return TimeChip(
                   time: slot,
                   isSelected: book.isTimeSelected(slot),
@@ -49,10 +85,10 @@ class TimeSlotsSection extends StatelessWidget {
                   },
                 );
               }).toList(),
-            ),
-          ],
-        );
-      },
+            );
+          },
+        ),
+      ],
     );
   }
 }

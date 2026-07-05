@@ -2,6 +2,26 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsImagesAppointmentsCalendar
+  /// assets/images/appointments/calendar.svg
+  static const String assetsImagesAppointmentsCalendar = "assets/images/appointments/calendar.svg";
+
+  /// Assets for assetsImagesAppointmentsClock
+  /// assets/images/appointments/clock.svg
+  static const String assetsImagesAppointmentsClock = "assets/images/appointments/clock.svg";
+
+  /// Assets for assetsImagesAppointmentsCreditCard
+  /// assets/images/appointments/credit-card.svg
+  static const String assetsImagesAppointmentsCreditCard = "assets/images/appointments/credit-card.svg";
+
+  /// Assets for assetsImagesAppointmentsPay
+  /// assets/images/appointments/pay.svg
+  static const String assetsImagesAppointmentsPay = "assets/images/appointments/pay.svg";
+
+  /// Assets for assetsImagesAppointmentsVerification
+  /// assets/images/appointments/verification.svg
+  static const String assetsImagesAppointmentsVerification = "assets/images/appointments/verification.svg";
+
   /// Assets for assetsImagesDoctorsDoctor1
   /// assets/images/doctors/doctor1.png
   static const String assetsImagesDoctorsDoctor1 = "assets/images/doctors/doctor1.png";
@@ -74,6 +94,10 @@ class Assets {
   /// assets/images/icons/general/arrow-left.svg
   static const String assetsImagesIconsGeneralArrowLeft = "assets/images/icons/general/arrow-left.svg";
 
+  /// Assets for assetsImagesIconsGeneralArrowRight
+  /// assets/images/icons/general/arrow-right.svg
+  static const String assetsImagesIconsGeneralArrowRight = "assets/images/icons/general/arrow-right.svg";
+
   /// Assets for assetsImagesIconsGeneralAttache
   /// assets/images/icons/general/attache.svg
   static const String assetsImagesIconsGeneralAttache = "assets/images/icons/general/attache.svg";
@@ -145,6 +169,10 @@ class Assets {
   /// Assets for assetsImagesIconsGeneralMicroscope
   /// assets/images/icons/general/microscope.svg
   static const String assetsImagesIconsGeneralMicroscope = "assets/images/icons/general/microscope.svg";
+
+  /// Assets for assetsImagesIconsGeneralMore
+  /// assets/images/icons/general/more.svg
+  static const String assetsImagesIconsGeneralMore = "assets/images/icons/general/more.svg";
 
   /// Assets for assetsImagesIconsGeneralNote
   /// assets/images/icons/general/note.svg

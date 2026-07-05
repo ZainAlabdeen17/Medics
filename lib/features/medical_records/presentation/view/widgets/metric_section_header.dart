@@ -34,7 +34,10 @@ class MetricSectionHeader extends StatelessWidget {
               width: 24.w,
               child: SvgPicture.asset(
                 Assets.assetsImagesIconsGeneralEdit,
-                color: AppColors.borderSecondary,
+                colorFilter: ColorFilter.mode(
+                  AppColors.borderSecondary,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),

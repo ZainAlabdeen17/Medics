@@ -15,44 +15,54 @@ class DoctorsGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DoctorCubit, DoctorState>(
       builder: (context, state) {
-        final doctors = state is DoctorSuccess ? state.doctors : [];
-        if (state is DoctorFailure) {
-          return SliverToBoxAdapter(
-            child: Center(
-              child: Text(
-                state.errorMessage,
-                style: AppTextStyles.body2.copyWith(
-                  color: AppColors.textSecondary,
-                ),
-              ),
+        if (state is DoctorLoading) {
+          return SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16.h,
+              mainAxisSpacing: 32.h,
+              mainAxisExtent: 250.h,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => const DoctorItemShimmer(),
+              childCount: 6,
             ),
           );
         }
-        return state is DoctorLoading
-            ? SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16.h,
-                  mainAxisSpacing: 32.h,
-                  mainAxisExtent: 250.h,
+        if (state is DoctorFailure) {
+          return SliverToBoxAdapter(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      state.errorMessage,
+                      style: AppTextStyles.body2.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  ),
                 ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => const DoctorItemShimmer(),
-                  childCount: 6,
-                ),
-              )
-            : SliverGrid.builder(
-                itemCount: doctors.length,
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200.w,
-                  crossAxisSpacing: 16.w,
-                  mainAxisSpacing: 32.h,
-                  mainAxisExtent: 250.h,
-                ),
-                itemBuilder: (context, index) {
-                  return DoctorItem(doctor: doctors[index]);
-                },
-              );
+              ],
+            ),
+          );
+        }
+        if (state is DoctorSuccess) {
+          return SliverGrid.builder(
+            itemCount: state.doctors.length,
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200.w,
+              crossAxisSpacing: 16.w,
+              mainAxisSpacing: 32.h,
+              mainAxisExtent: 250.h,
+            ),
+            itemBuilder: (context, index) {
+              return DoctorItem(doctor: state.doctors[index]);
+            },
+          );
+        }
+        return SliverToBoxAdapter(child: SizedBox.shrink());
       },
     );
   }

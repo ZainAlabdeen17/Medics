@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
@@ -7,11 +8,7 @@ import 'package:medics/features/home/presentation/view/widgets/service_item.dart
 
 class ServicesSection extends StatelessWidget {
   ServicesSection({super.key});
-  final List<String> services = [
-    AppStrings.appointments,
-    AppStrings.faq,
-    AppStrings.supportChat,
-  ];
+  final List<String> services = [AppStrings.appointments, AppStrings.faq];
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +27,15 @@ class ServicesSection extends StatelessWidget {
           child: ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              return ServiceItem(title: services[index]);
+              return ServiceItem(
+                title: services[index],
+                onTap: () {
+                  context.push("/${services[index]}");
+                },
+              );
             },
             separatorBuilder: (context, index) => SizedBox(height: 8.h),
-            itemCount: 3,
+            itemCount: 2,
           ),
         ),
       ],

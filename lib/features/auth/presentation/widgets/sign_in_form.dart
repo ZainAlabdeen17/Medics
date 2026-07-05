@@ -29,7 +29,7 @@ class SignInForm extends StatelessWidget {
           }
         }
         if (state is SignInFailureState) {
-              showCustomToast(
+          showCustomToast(
             context: context,
             title: state.errorMessage,
             primaryColor: AppColors.iconRed,

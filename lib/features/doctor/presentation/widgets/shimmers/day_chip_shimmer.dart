@@ -7,57 +7,46 @@ class DayChipShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseColor = Colors.grey[200]!;
+    final highlightColor = Colors.grey[50]!;
+
     return Shimmer.fromColors(
-      // Adjust these colors to match your app's dark/light theme
-      baseColor: Colors.grey[200]!,
-      highlightColor: Colors.grey[50]!,
+      baseColor: baseColor,
+      highlightColor: highlightColor,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
         width: 60.w,
+        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18.r),
-          border: Border.all(
-            color: Colors
-                .white, // Color doesn't matter much here, Shimmer overrides it
-            width: 1.w,
-          ),
-          // A solid color is required here for the Shimmer package to "catch" the background
+          border: Border.all(color: baseColor, width: 1.w),
           color: Colors.white,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
           children: [
-            // Month Placeholder
+            Container(
+              width: 30.w,
+              height: 12.h,
+              decoration: BoxDecoration(
+                color: baseColor,
+                borderRadius: BorderRadius.circular(4.r),
+              ),
+            ),
+            SizedBox(height: 6),
             Container(
               width: 24.w,
-              height: 12.h,
-              decoration: BoxDecoration(
-                color: Colors.black, // Shimmer will paint over this
-                borderRadius: BorderRadius.circular(4.r),
-              ),
-            ),
-
-            SizedBox(height: 6.h),
-
-            // Day Placeholder
-            Container(
-              width: 28.w,
               height: 20.h,
               decoration: BoxDecoration(
-                color: Colors.black,
+                color: baseColor,
                 borderRadius: BorderRadius.circular(4.r),
               ),
             ),
-
-            SizedBox(height: 4.h),
-
-            // Weekday Placeholder
+            SizedBox(height: 6),
             Container(
-              width: 32.w,
+              width: 35.w,
               height: 12.h,
               decoration: BoxDecoration(
-                color: Colors.black,
+                color: baseColor,
                 borderRadius: BorderRadius.circular(4.r),
               ),
             ),
