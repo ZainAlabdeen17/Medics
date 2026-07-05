@@ -6,124 +6,32 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/core/widgets/custom_text_field.dart';
-import 'package:medics/features/medical_records/data/health_metric_model.dart';
 import 'package:medics/features/medical_records/presentation/cubit/health_cubit.dart';
 import 'package:medics/features/medical_records/presentation/cubit/health_state.dart';
 import 'package:medics/features/medical_records/presentation/view/widgets/general_header_health_metrics.dart';
 import 'package:medics/features/patient_card/presentation/view/widgets/blood_type.dart';
 import 'package:medics/features/patient_card/presentation/view/widgets/small_custom_text_field.dart';
 
-class BodyParameters extends StatefulWidget {
+class BodyParameters extends StatelessWidget {
   const BodyParameters({super.key});
 
-  @override
-  State<BodyParameters> createState() => _BodyParametersState();
-}
-
-class _BodyParametersState extends State<BodyParameters> {
-  late TextEditingController heightCtrl;
-  late TextEditingController weightCtrl;
-  late TextEditingController oxygenCtrl;
-  late TextEditingController heartRateCtrl;
-  late TextEditingController systolicCtrl;
-  late TextEditingController diastolicCtrl;
-
-  String selectedBloodType = "B(III)";
-  String selectedRh = "+";
-
- bool _initialized = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    heightCtrl = TextEditingController();
-    weightCtrl = TextEditingController();
-    oxygenCtrl = TextEditingController();
-    heartRateCtrl = TextEditingController();
-    systolicCtrl = TextEditingController();
-    diastolicCtrl = TextEditingController();
-
-
-  }
-
-  @override
-  void dispose() {
-    heightCtrl.dispose();
-    weightCtrl.dispose();
-    oxygenCtrl.dispose();
-    heartRateCtrl.dispose();
-    systolicCtrl.dispose();
-    diastolicCtrl.dispose();
-    super.dispose();
-  }
-
-  void _fillControllers(BodyParametersModel body) {
-    heightCtrl.text = body.height?.toString() ?? "";
-    weightCtrl.text = body.weight?.toString() ?? "";
-    oxygenCtrl.text = body.oxygen?.toString() ?? "";
-    heartRateCtrl.text = body.heartRate?.toString() ?? "";
-    systolicCtrl.text = body.systolic?.toString() ?? "";
-    diastolicCtrl.text = body.diastolic?.toString() ?? "";
-    selectedBloodType = body.bloodType ?? "B(III)";
-    selectedRh = body.rh ?? "+";
-  }
-
-
-  void _onSave() {
-    final height = double.tryParse(heightCtrl.text);
-    final weight = double.tryParse(weightCtrl.text);
-    final oxygen = int.tryParse(oxygenCtrl.text);
-    final heartRate = int.tryParse(heartRateCtrl.text);
-    final systolic = int.tryParse(systolicCtrl.text);
-    final diastolic = int.tryParse(diastolicCtrl.text);
-
-    if (height == null ||
-        weight == null ||
-        oxygen == null ||
-        heartRate == null ||
-        systolic == null ||
-        diastolic == null) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Enter valid data ")));
-      return;
+  Future<void> _onSave(BuildContext context) async {
+    final cubit = context.read<HealthCubit>();
+    await cubit.save();
+    if (context.mounted) {
+      context.pop();
     }
-
-    final newBody = BodyParametersModel(
-      height: height,
-      weight: weight,
-      oxygen: oxygen,
-      heartRate: heartRate,
-      systolic: systolic,
-      diastolic: diastolic,
-      bloodType: selectedBloodType,
-      rh: selectedRh,
-    );
-
-    context.read<HealthCubit>().updateBody(newBody);
-    context.pop();
   }
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<HealthCubit>();
+
     return Scaffold(
       body: BlocBuilder<HealthCubit, HealthState>(
         builder: (context, state) {
-           if (state is HealthError) {
-            return Center(child: Text('error: ${state.message}'));
-          }
-
- if (state is HealthLoading) {
+          if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
-          }
-
-  if (state is HealthLoaded) {
-
-            if (!_initialized) {
-              _initialized = true;
-              _fillControllers(state.model.body);
-            }
           }
 
           return SafeArea(
@@ -134,7 +42,7 @@ class _BodyParametersState extends State<BodyParameters> {
                   SliverToBoxAdapter(
                     child: GeneralHeaderHealthMetrics(
                       title: AppStrings.bodyParameters,
-                      onSave: _onSave,
+                      onSave: () => _onSave(context),
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 20.h)),
@@ -155,8 +63,9 @@ class _BodyParametersState extends State<BodyParameters> {
                               SizedBox(height: 4.h),
                               SmallCustomTextField(
                                 hintText: AppStrings.enterYourHeight,
-                                controller: heightCtrl,
+                                initialValue: state.height,
                                 keyboardType: TextInputType.number,
+                                onChanged: cubit.updateHeight,
                               ),
                             ],
                           ),
@@ -175,8 +84,9 @@ class _BodyParametersState extends State<BodyParameters> {
                               SizedBox(height: 4.h),
                               SmallCustomTextField(
                                 hintText: AppStrings.enterYourWeight,
-                                controller: weightCtrl,
+                                initialValue: state.weight,
                                 keyboardType: TextInputType.number,
+                                onChanged: cubit.updateWeight,
                               ),
                             ],
                           ),
@@ -197,8 +107,9 @@ class _BodyParametersState extends State<BodyParameters> {
                   SliverToBoxAdapter(
                     child: CustomTextField(
                       hintText: "98",
-                      controller: oxygenCtrl,
+                      initialValue: state.oxygen,
                       keyboardType: TextInputType.number,
+                      onChanged: cubit.updateOxygen,
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 12.h)),
@@ -215,8 +126,9 @@ class _BodyParametersState extends State<BodyParameters> {
                   SliverToBoxAdapter(
                     child: CustomTextField(
                       hintText: "77",
-                      controller: heartRateCtrl,
+                      initialValue: state.heartRate,
                       keyboardType: TextInputType.number,
+                      onChanged: cubit.updateHeartRate,
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
@@ -235,8 +147,9 @@ class _BodyParametersState extends State<BodyParameters> {
                         Expanded(
                           child: CustomTextField(
                             hintText: "120",
-                            controller: systolicCtrl,
+                            initialValue: state.systolic,
                             keyboardType: TextInputType.number,
+                            onChanged: cubit.updateSystolic,
                           ),
                         ),
                         Text(
@@ -248,8 +161,9 @@ class _BodyParametersState extends State<BodyParameters> {
                         Expanded(
                           child: CustomTextField(
                             hintText: "88",
-                            controller: diastolicCtrl,
+                            initialValue: state.diastolic,
                             keyboardType: TextInputType.number,
+                            onChanged: cubit.updateDiastolic,
                           ),
                         ),
                       ],
@@ -259,18 +173,10 @@ class _BodyParametersState extends State<BodyParameters> {
 
                   SliverToBoxAdapter(
                     child: BloodType(
-                      initialBloodType: selectedBloodType,
-                      initialRh: selectedRh,
-                      onBloodTypeChanged: (type) {
-                        setState(() {
-                          selectedBloodType = type;
-                        });
-                      },
-                      onRhChanged: (rh) {
-                        setState(() {
-                          selectedRh = rh;
-                        });
-                      },
+                      initialBloodType: state.bloodType,
+                      initialRh: state.rh,
+                      onBloodTypeChanged: cubit.updateBloodType,
+                      onRhChanged: cubit.updateRh,
                     ),
                   ),
                 ],

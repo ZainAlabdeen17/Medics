@@ -15,32 +15,24 @@ import 'package:medics/features/patient_card/presentation/view/widgets/button_gr
 class LifeStyle extends StatelessWidget {
   const LifeStyle({super.key});
 
-  void _onSave(BuildContext context, HealthState state) {
-    // if (state is HealthLoaded) {
-    //   context.read<HealthCubit>().updateLifestyle(state.model.lifestyle);
-
-    //  }
-    context.pop();
+  Future<void> _onSave(BuildContext context) async {
+    final cubit = context.read<HealthCubit>();
+    await cubit.save();
+    if (context.mounted) {
+      context.pop();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<HealthCubit>();
+
     return Scaffold(
       body: BlocBuilder<HealthCubit, HealthState>(
         builder: (context, state) {
-          if (state is HealthError) {
-            return Center(child: Text('error: ${state.message}'));
-          }
-
-          // if (state is HealthInitial) {
-          //   return const Center(child: CircularProgressIndicator());
-          // }
-
-          if (state is! HealthLoaded) {
+          if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-
-          final lifestyle = state.model.lifestyle;
 
           return SafeArea(
             child: Padding(
@@ -50,7 +42,7 @@ class LifeStyle extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: GeneralHeaderHealthMetrics(
                       title: AppStrings.lifestyle,
-                      onSave: () => _onSave(context, state),
+                      onSave: () => _onSave(context),
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 12.h)),
@@ -70,12 +62,8 @@ class LifeStyle extends StatelessWidget {
                       text1: "<7",
                       text2: "7 - 8",
                       text3: ">8",
-                      onSelected: (value) {
-                        context.read<HealthCubit>().updateLifestyle(
-                          lifestyle.copyWith(sleep: value),
-                        );
-                      },
-                      initialValue: lifestyle.sleep.toString(),
+                      initialValue: state.sleep,
+                      onSelected: cubit.updateSleep,
                     ),
                   ),
 
@@ -95,12 +83,8 @@ class LifeStyle extends StatelessWidget {
                       text1: "<1",
                       text2: "1 - 1.5",
                       text3: ">1.5",
-                      onSelected: (value) {
-                        context.read<HealthCubit>().updateLifestyle(
-                          lifestyle.copyWith(water: value),
-                        );
-                      },
-                      initialValue: lifestyle.water.toString(),
+                      initialValue: state.water,
+                      onSelected: cubit.updateWater,
                     ),
                   ),
 
@@ -120,12 +104,8 @@ class LifeStyle extends StatelessWidget {
                       text1: AppStrings.yes,
                       text2: AppStrings.no,
                       text3: AppStrings.occasionally,
-                      onSelected: (value) {
-                        context.read<HealthCubit>().updateLifestyle(
-                          lifestyle.copyWith(smoking: value),
-                        );
-                      },
-                      initialValue: lifestyle.smoking.toString(),
+                      initialValue: state.smoking,
+                      onSelected: cubit.updateSmoking,
                     ),
                   ),
 
@@ -145,12 +125,8 @@ class LifeStyle extends StatelessWidget {
                       text1: AppStrings.yes,
                       text2: AppStrings.no,
                       text3: AppStrings.occasionally,
-                      onSelected: (value) {
-                        context.read<HealthCubit>().updateLifestyle(
-                          lifestyle.copyWith(alcohol: value),
-                        );
-                      },
-                      initialValue: lifestyle.alcohol.toString(),
+                      initialValue: state.alcohol,
+                      onSelected: cubit.updateAlcohol,
                     ),
                   ),
 
@@ -167,12 +143,8 @@ class LifeStyle extends StatelessWidget {
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
                   SliverToBoxAdapter(
                     child: ActivityLevelGroups(
-                      onSelected: (value) {
-                        context.read<HealthCubit>().updateLifestyle(
-                          lifestyle.copyWith(activity: value),
-                        );
-                      },
-                      initialValue: lifestyle.activity.toString(),
+                      initialValue: state.activity,
+                      onSelected: cubit.updateActivity,
                     ),
                   ),
                 ],

@@ -15,48 +15,40 @@ class Notes extends StatefulWidget {
 }
 
 class _NotesState extends State<Notes> {
-  late TextEditingController notesController;
-  bool isInitialized = false;
+  late TextEditingController _controller;
+
   @override
   void initState() {
     super.initState();
-    notesController = TextEditingController();
+    // إنشاء الـ controller مرة واحدة فقط عند بدء تشغيل الصفحة
+    final cubit = context.read<HealthCubit>();
+    _controller = TextEditingController(text: cubit.state.notes);
   }
 
   @override
   void dispose() {
-    notesController.dispose();
+    // تنظيف الذاكرة لحمايتها من التسريب
+    _controller.dispose();
     super.dispose();
   }
 
-  void _fillControllers(String? notes) {
-    if (notes != null) {
-      notesController.text = notes;
+  Future<void> _onSave(BuildContext context) async {
+    final cubit = context.read<HealthCubit>();
+    await cubit.save();
+    if (context.mounted) {
+      Navigator.pop(context);
     }
-  }
-
-  void _onSave() {
-    final notesRaw = notesController.text.trim();
-
-    context.read<HealthCubit>().updateNotes(notesRaw);
-    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<HealthCubit>();
+
     return Scaffold(
       body: BlocBuilder<HealthCubit, HealthState>(
         builder: (context, state) {
-          if (state is HealthLoading) {
+          if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
-          }
-          if (state is HealthLoaded && !isInitialized) {
-            _fillControllers(state.model.notes);
-            isInitialized = true;
-          }
-
-          if (state is HealthError) {
-            return Center(child: Text(state.message));
           }
 
           return SafeArea(
@@ -67,14 +59,15 @@ class _NotesState extends State<Notes> {
                   SliverToBoxAdapter(
                     child: GeneralHeaderHealthMetrics(
                       title: AppStrings.notes,
-                      onSave: _onSave,
+                      onSave: () => _onSave(context),
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 20.h)),
                   SliverToBoxAdapter(
                     child: ContainerNotes(
+                      controller: _controller,
                       hintText: AppStrings.notesForYourDoctor,
-                      controller: notesController,
+                      onChanged: cubit.updateNotes, // تمرير دالة التحديث بنجاح الآن
                     ),
                   ),
                 ],

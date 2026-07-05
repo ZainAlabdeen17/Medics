@@ -5,79 +5,30 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/core/widgets/custom_text_field.dart';
-import 'package:medics/features/medical_records/data/health_metric_model.dart';
 import 'package:medics/features/medical_records/presentation/cubit/health_cubit.dart';
 import 'package:medics/features/medical_records/presentation/cubit/health_state.dart';
 import 'package:medics/features/medical_records/presentation/view/widgets/general_header_health_metrics.dart';
 
-class Anamnesis extends StatefulWidget {
+class Anamnesis extends StatelessWidget {
   const Anamnesis({super.key});
 
-  @override
-  State<Anamnesis> createState() => _AnamnesisState();
-}
-
-class _AnamnesisState extends State<Anamnesis> {
-  late TextEditingController conditions;
-  bool isInitialized = false;
-
-  late TextEditingController allergies;
-
-  @override
-  void initState() {
-    super.initState();
-    conditions = TextEditingController();
-    allergies = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    conditions.dispose();
-    allergies.dispose();
-    super.dispose();
-  }
-
-  void _onSave() {
-    final conditionsRaw = conditions.text.trim();
-    final allergiesRaw = allergies.text.trim();
-
-    if (conditionsRaw.isEmpty && allergiesRaw.isEmpty) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Please fill all fields")));
-      return;
+  Future<void> _onSave(BuildContext context) async {
+    final cubit = context.read<HealthCubit>();
+    await cubit.save();
+    if (context.mounted) {
+      Navigator.pop(context);
     }
-
-    final anamnesis = AnamnesisModel(
-      conditions: conditionsRaw,
-      allergies: allergiesRaw,
-    );
-
-    context.read<HealthCubit>().updateAnamnesis(anamnesis);
-    Navigator.pop(context);
-  }
-
-  void _fillControllers(AnamnesisModel? anamnesis) {
-    conditions.text = anamnesis?.conditions ?? "";
-    allergies.text = anamnesis?.allergies ?? "";
   }
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<HealthCubit>();
+
     return Scaffold(
       body: BlocBuilder<HealthCubit, HealthState>(
         builder: (context, state) {
-          if (state is HealthError) {
-            return Center(child: Text('errors: ${state.message}'));
-          }
-
-          if (state is HealthLoading) {
+          if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
-          }
-
-          if (state is HealthLoaded && !isInitialized) {
-            _fillControllers(state.model.anamnesis);
-            isInitialized = true;
           }
 
           return SafeArea(
@@ -88,7 +39,7 @@ class _AnamnesisState extends State<Anamnesis> {
                   SliverToBoxAdapter(
                     child: GeneralHeaderHealthMetrics(
                       title: AppStrings.anamnesis,
-                      onSave: _onSave,
+                      onSave: () => _onSave(context),
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 20.h)),
@@ -104,7 +55,8 @@ class _AnamnesisState extends State<Anamnesis> {
                   SliverToBoxAdapter(
                     child: CustomTextField(
                       hintText: AppStrings.migraines,
-                      controller: conditions,
+                      initialValue: state.conditions,
+                      onChanged: cubit.updateConditions,
                     ),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
@@ -120,7 +72,8 @@ class _AnamnesisState extends State<Anamnesis> {
                   SliverToBoxAdapter(
                     child: CustomTextField(
                       hintText: AppStrings.peanuts,
-                      controller: allergies,
+                      initialValue: state.allergies,
+                      onChanged: cubit.updateAllergies,
                     ),
                   ),
                 ],

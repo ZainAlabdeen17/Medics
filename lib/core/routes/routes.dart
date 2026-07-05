@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medics/core/services/service_locator.dart';
 import 'package:medics/features/appointments/presentation/view/appointments.dart';
 import 'package:medics/features/auth/presentation/view/otp_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_in_view.dart';
@@ -35,7 +36,6 @@ import 'package:medics/features/root/presentation/view/root.dart';
 import 'package:medics/features/specialization/presentation/view/specializations_view.dart';
 import 'package:medics/features/splash/presentation/view/splash_view.dart';
 
-final healthCubit = HealthCubit()..loadInitial();
 GoRouter route = GoRouter(
   routes: [
     GoRoute(path: "/", builder: (context, state) => SplashView()),
@@ -75,22 +75,26 @@ GoRouter route = GoRouter(
       },
     ),
     GoRoute(path: "/LabReport", builder: (context, state) => LabReport()),
-    ShellRoute(
-      builder: (context, state, child) {
-        return BlocProvider.value(value: healthCubit, child: child);
-      },
+  ShellRoute(
+  builder: (context, state, child) {
+    return BlocProvider(
+      create: (context) => getIt<HealthCubit>(),
+      child: child,
+    );
+  },
       routes: [
+       
         GoRoute(
           path: "/HealthMetrics",
-          builder: (context, state) => HealthMetricsInformation(),
+          builder: (context, state) => const HealthMetricsInformation(),
         ),
         GoRoute(
           path: "/BodyParameters",
-          builder: (context, state) => BodyParameters(),
+          builder: (context, state) => const BodyParameters(),
         ),
         GoRoute(path: "/Anamnesis", builder: (context, state) => Anamnesis()),
         GoRoute(path: "/LifeStyle", builder: (context, state) => LifeStyle()),
-        GoRoute(path: "/Notes", builder: (context, state) => Notes()),
+        GoRoute(path: "/Notes", builder: (context, state) => const Notes()),
       ],
     ),
     GoRoute(

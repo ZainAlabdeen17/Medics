@@ -6,10 +6,13 @@ import 'package:medics/core/utils/app_text_styles.dart';
 class ContainerNotes extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
+  final ValueChanged<String>? onChanged; // 1. إضافة المتغير هنا
+
   const ContainerNotes({
     super.key,
     required this.hintText,
     required this.controller,
+    this.onChanged, // 2. تمريره في الـ Constructor
   });
 
   @override
@@ -26,7 +29,7 @@ class ContainerNotes extends StatelessWidget {
         child: TextField(
           controller: controller,
           maxLines: null,
-
+          onChanged: onChanged, // 3. ربطه بالـ TextField ليقوم بتحديث الـ Cubit أثناء الكتابة
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: AppTextStyles.body1.copyWith(

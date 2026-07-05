@@ -7,6 +7,9 @@ import 'package:medics/features/auth/data/repositories/auth_repository.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_cubit.dart';
 import 'package:medics/features/doctor/data/repository/doctor_repository.dart';
 import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
+import 'package:medics/features/medical_records/data/repository/health_repository.dart';
+import 'package:medics/features/medical_records/data/repository/health_repository_imp.dart';
+import 'package:medics/features/medical_records/presentation/cubit/health_cubit.dart';
 import 'package:medics/features/patient_card/data/repositories/patient_repository.dart';
 
 final getIt = GetIt.instance;
@@ -38,5 +41,11 @@ void setupServiceLocator() {
   );
   getIt.registerFactory<DoctorCubit>(
     () => DoctorCubit(getIt<DoctorRepository>()),
+  );
+
+
+  getIt.registerLazySingleton<HealthRepository>(() => HealthRepositoryImpl(api: getIt<ApiConsumer>()));
+  getIt.registerFactory<HealthCubit>(
+    () => HealthCubit(healthRepository: getIt())..loadInitial(),
   );
 }

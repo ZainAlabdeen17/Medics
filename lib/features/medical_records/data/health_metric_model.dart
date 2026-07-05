@@ -67,6 +67,7 @@ class BodyParametersModel {
   final double? weight;
   final int? oxygen;
   final int? heartRate;
+  final int? bloodPressure;
   final int? systolic;
   final int? diastolic;
   final String? bloodType;
@@ -77,6 +78,7 @@ class BodyParametersModel {
     this.weight,
     this.oxygen,
     this.heartRate,
+    this.bloodPressure,
     this.systolic,
     this.diastolic,
     this.bloodType,
@@ -88,6 +90,7 @@ class BodyParametersModel {
     'weight': weight,
     'oxygen': oxygen,
     'heartRate': heartRate,
+    'bloodPressure': bloodPressure,
     'systolic': systolic,
     'diastolic': diastolic,
     'bloodType': bloodType,
@@ -100,6 +103,7 @@ class BodyParametersModel {
         weight: (json['weight'] as num?)?.toDouble(),
         oxygen: json['oxygen'] as int?,
         heartRate: json['heartRate'] as int?,
+        bloodPressure: json['bloodPressure'] as int?,
         systolic: json['systolic'] as int?,
         diastolic: json['diastolic'] as int?,
         bloodType: json['bloodType'] as String?,

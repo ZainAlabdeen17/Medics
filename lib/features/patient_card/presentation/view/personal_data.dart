@@ -49,7 +49,8 @@ class PersonalData extends StatelessWidget {
                   hintText: AppStrings.ddMmYyyy,
                   initialDate: cubit.state.dateOfBirth,
                   onDateSelected: (value) {
-context.read<PatientCardCubit>().updateDateOfBirth(value);                  },
+                    context.read<PatientCardCubit>().updateDateOfBirth(value);
+                  },
                 );
               },
             ),

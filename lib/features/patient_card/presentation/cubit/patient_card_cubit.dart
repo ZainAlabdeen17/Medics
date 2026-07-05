@@ -86,6 +86,7 @@ class PatientCardCubit extends Cubit<PatientCardState> {
         );
       },
       (successMessage) {
+        
         emit(state.copyWith(isLoading: false, isSuccess: true));
       },
     );
