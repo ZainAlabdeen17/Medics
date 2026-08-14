@@ -14,12 +14,16 @@ class GenaralChip extends StatelessWidget {
       height: 32.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100.r),
+        border: Border.all(color: AppColors.borderBlack),
         color: AppColors.surfaceCard,
       ),
       child: Center(
         child: Text(
           title,
-          style: AppTextStyles.body1.copyWith(color: AppColors.textSecondary),
+          style: AppTextStyles.body1.copyWith(
+            color: AppColors.textSecondary,
+            fontFamily: "Inter",
+          ),
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medics/core/services/service_locator.dart';
+import 'package:medics/features/ai_chat/presentation/view/ai_chat_view.dart';
 import 'package:medics/features/appointments/data/models/appointment_model.dart';
 import 'package:medics/features/appointments/presentation/cubit/appointment_cubit/appointment_cubit.dart';
 import 'package:medics/features/appointments/presentation/cubit/invoice_cubit/invoice_cubit.dart';
@@ -25,8 +26,11 @@ import 'package:medics/features/doctor/presentation/view/doctors_view.dart';
 import 'package:medics/features/doctor/presentation/view/filter_view.dart';
 import 'package:medics/features/doctor/presentation/view/inside_tabs/inside_review_tab/review_form_view.dart';
 import 'package:medics/features/home/presentation/view/home_view.dart';
-import 'package:medics/features/medical_records/presentation/cubit/health_cubit.dart';
+import 'package:medics/features/medical_records/data/models/visit_model.dart';
+import 'package:medics/features/medical_records/presentation/cubit/health_cubit/health_cubit.dart';
+import 'package:medics/features/medical_records/presentation/cubit/medical_tests_cubit/medical_tests_cubit.dart';
 import 'package:medics/features/medical_records/presentation/cubit/prescription_cubit/prescription_cubit.dart';
+import 'package:medics/features/medical_records/presentation/cubit/visits_cubit/visits_cubit.dart';
 import 'package:medics/features/medical_records/presentation/view/anamnesis.dart';
 import 'package:medics/features/medical_records/presentation/view/body_parameters.dart';
 import 'package:medics/features/medical_records/presentation/view/health_metrics_information.dart';
@@ -36,11 +40,14 @@ import 'package:medics/features/medical_records/presentation/view/medical_record
 import 'package:medics/features/medical_records/presentation/view/medication_details.dart';
 import 'package:medics/features/medical_records/presentation/view/notes.dart';
 import 'package:medics/features/medical_records/presentation/view/prescription.dart';
+import 'package:medics/features/medical_records/presentation/view/visit_summary_details.dart';
 import 'package:medics/features/medical_records/presentation/view/visit_summeries.dart';
+import 'package:medics/features/medical_records/presentation/view/x_rays_view.dart';
 import 'package:medics/features/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:medics/features/patient_card/presentation/view/patient_view.dart';
 import 'package:medics/features/profile/presentation/view/profile_view.dart';
 import 'package:medics/features/root/presentation/view/root.dart';
+import 'package:medics/features/specialization/presentation/cubit/specialization_cubit/specialization_cubit.dart';
 import 'package:medics/features/specialization/presentation/view/specializations_view.dart';
 import 'package:medics/features/splash/presentation/view/splash_view.dart';
 
@@ -85,7 +92,13 @@ GoRouter route = GoRouter(
         return OtpView(email: email);
       },
     ),
-    GoRoute(path: "/LabReport", builder: (context, state) => LabReport()),
+    GoRoute(
+      path: "/LabReport",
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<MedicalTestsCubit>()..getMedicalTests(),
+        child: LabReport(),
+      ),
+    ),
     ShellRoute(
       builder: (context, state, child) {
         return BlocProvider(
@@ -109,7 +122,17 @@ GoRouter route = GoRouter(
     ),
     GoRoute(
       path: "/VisitSummeries",
-      builder: (context, state) => VisitSummeries(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<VisitsCubit>()..getVisits(),
+        child: VisitSummeries(),
+      ),
+    ),
+    GoRoute(
+      path: "/VisitSummaryDetails",
+      builder: (context, state) {
+        final visit = state.extra as VisitModel;
+        return VisitSummaryDetails(visit: visit);
+      },
     ),
 
     GoRoute(
@@ -165,7 +188,20 @@ GoRouter route = GoRouter(
       builder: (context, state) => SuccessVerificationView(),
     ),
     //medical recordes
-    GoRoute(path: "/LabReport", builder: (context, state) => LabReport()),
+    GoRoute(
+      path: "/LabReport",
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<MedicalTestsCubit>()..getMedicalTests(),
+        child: LabReport(),
+      ),
+    ),
+    GoRoute(
+      path: "/XRaysView",
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<MedicalTestsCubit>()..getXRays(),
+        child: XRaysView(),
+      ),
+    ),
     ShellRoute(
       builder: (context, state, child) {
         return BlocProvider(
@@ -208,7 +244,13 @@ GoRouter route = GoRouter(
     //specializations
     GoRoute(
       path: "/Specializations",
-      builder: (context, state) => const SpecializationsView(),
+      builder: (context, state) {
+        final specializationCubit = state.extra as SpecializationCubit;
+        return MultiBlocProvider(
+          providers: [BlocProvider.value(value: specializationCubit)],
+          child: const SpecializationsView(),
+        );
+      },
     ),
     GoRoute(
       path: "/RescheduleAppointment",
@@ -246,11 +288,27 @@ GoRouter route = GoRouter(
     GoRoute(
       path: "/Doctors",
       builder: (context, state) {
+        final specialization = state.extra as String?;
         return MultiBlocProvider(
           providers: [
-            BlocProvider<FilterCubit>(create: (context) => FilterCubit()),
+            BlocProvider<FilterCubit>(
+              create: (context) {
+                final filterCubit = FilterCubit();
+                if (specialization != null) {
+                  filterCubit.toggleSpecialization(specialization);
+                  filterCubit.isFilterApplayed = true;
+                  filterCubit.hasFilter();
+                }
+                return filterCubit;
+              },
+            ),
             BlocProvider<DoctorCubit>(
-              create: (context) => getIt<DoctorCubit>()..getDoctors(),
+              create: (context) => getIt<DoctorCubit>()
+                ..getDoctors(
+                  specializations: specialization != null
+                      ? [specialization]
+                      : null,
+                ),
             ),
           ],
           child: const DoctorsView(),
@@ -288,6 +346,10 @@ GoRouter route = GoRouter(
             ),
             BlocProvider(create: (context) => getIt<DoctorDetailsCubit>()),
             BlocProvider(create: (context) => getIt<DoctorCubit>()),
+            BlocProvider(
+              create: (context) =>
+                  ReviewCubit()..getReviews(doctorId: doctor.id),
+            ),
           ],
           child: DoctorDetailsView(doctor: doctor),
         );
@@ -325,6 +387,7 @@ GoRouter route = GoRouter(
         );
       },
     ),
+    GoRoute(path: "/AIChat", builder: (context, state) => AIChatView()),
     //
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
@@ -336,8 +399,16 @@ GoRouter route = GoRouter(
             GoRoute(
               path: "/Home",
               builder: (context, state) {
-                return BlocProvider(
-                  create: (context) => getIt<DoctorCubit>()..getDoctors(),
+                return MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) => getIt<DoctorCubit>()..getDoctors(),
+                    ),
+                    BlocProvider(
+                      create: (context) =>
+                          getIt<SpecializationCubit>()..getSpecializations(),
+                    ),
+                  ],
                   child: HomeView(),
                 );
               },

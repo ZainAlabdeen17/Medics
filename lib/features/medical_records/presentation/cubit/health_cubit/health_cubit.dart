@@ -1,7 +1,7 @@
 // health_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medics/features/medical_records/data/repository/health_repository.dart';
-import 'package:medics/features/medical_records/presentation/cubit/health_state.dart';
+import 'package:medics/features/medical_records/presentation/cubit/health_cubit/health_state.dart';
 
 
 class HealthCubit extends Cubit<HealthState> {

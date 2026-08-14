@@ -14,19 +14,21 @@ class OnBoardingView extends StatelessWidget {
     return BlocProvider(
       create: (context) => OnBoaardingCubit(),
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(child: SizedBox(height: 80.h)),
-              SliverToBoxAdapter(
-                child: OnBoardingBody(controller: _controller),
-              ),
-              SliverToBoxAdapter(child: SizedBox(height: 32.h)),
-              SliverToBoxAdapter(
-                child: OnBoardingButtons(controller: _controller),
-              ),
-            ],
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(child: SizedBox(height: 80.h)),
+                SliverToBoxAdapter(
+                  child: OnBoardingBody(controller: _controller),
+                ),
+                SliverToBoxAdapter(child: SizedBox(height: 32.h)),
+                SliverToBoxAdapter(
+                  child: OnBoardingButtons(controller: _controller),
+                ),
+              ],
+            ),
           ),
         ),
       ),

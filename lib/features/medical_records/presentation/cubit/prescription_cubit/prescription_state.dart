@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medics/features/medical_records/data/medication_model.dart';
+import 'package:medics/features/medical_records/data/models/medication_model.dart';
 
 @immutable
 sealed class PrescriptionState {}

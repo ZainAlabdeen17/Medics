@@ -131,6 +131,8 @@ class AppointmentCard extends StatelessWidget {
                         ? AppColors.surfaceOrange
                         : status == 'completed'
                         ? AppColors.surfaceGreen
+                        : status == 'cancelled'
+                        ? AppColors.surfaceRed
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(100.r),
                   ),
@@ -142,6 +144,8 @@ class AppointmentCard extends StatelessWidget {
                             ? AppColors.textOrange
                             : status == 'completed'
                             ? AppColors.textGreen
+                            : status == 'cancelled'
+                            ? AppColors.textRed
                             : AppColors.textSecondary,
                         fontFamily: "Inter",
                       ),

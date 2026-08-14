@@ -32,7 +32,6 @@ class DoctorDetailsView extends StatelessWidget {
           }
           if (state.bookingErrorMessage != null) {
             final message = state.bookingErrorMessage!;
-
             showCustomToast(
               context: context,
               title: message,

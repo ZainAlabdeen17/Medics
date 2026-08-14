@@ -33,13 +33,19 @@ class MedicalRecordsView extends StatelessWidget {
                     ),
                     BuildMedicalCard(
                       iconName: Assets.assetsImagesIconsGeneralMicroscope,
-                      name: AppStrings.lapReports,
+                      name: AppStrings.labReports,
                       location: "/LabReport",
                     ),
+                    // BuildMedicalCard(
+                    //   iconName: Assets.assetsImagesIconsGeneralTracker,
+                    //   name: AppStrings.healthMetrics,
+                    //   location: "/HealthMetrics",
+                    // ),
                     BuildMedicalCard(
-                      iconName: Assets.assetsImagesIconsGeneralTracker,
-                      name: AppStrings.healthMetrics,
-                      location: "/HealthMetrics",
+                      iconName:
+                          Assets.assetsImagesIconsSpecializatiosPulmonologist,
+                      name: AppStrings.xRays,
+                      location: "/XRaysView",
                     ),
                     BuildMedicalCard(
                       iconName: Assets.assetsImagesIconsGeneralNote,

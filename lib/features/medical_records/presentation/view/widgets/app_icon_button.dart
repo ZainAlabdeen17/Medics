@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:medics/core/utils/app_colors.dart';
-import 'package:medics/core/utils/app_text_styles.dart';
 
 class AppIconButton extends StatelessWidget {
   final String text;
@@ -31,10 +30,11 @@ class AppIconButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(100.r),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: 18.w,
-              height: 18.h,
+              width: 25.w,
+              height: 25.h,
               child: SvgPicture.asset(
                 iconName,
                 colorFilter: ColorFilter.mode(
@@ -43,16 +43,16 @@ class AppIconButton extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 8.w),
-            Text(
-              text,
-              style: AppTextStyles.head3.copyWith(
-                color: isfill
-                    ? AppColors.textStaticWhite
-                    : AppColors.textAccent,
-              ),
-              overflow: TextOverflow.ellipsis,
-            ),
+            // SizedBox(width: 8.w),
+            // Text(
+            //   text,
+            //   style: AppTextStyles.head3.copyWith(
+            //     color: isfill
+            //         ? AppColors.textStaticWhite
+            //         : AppColors.textAccent,
+            //   ),
+            //   overflow: TextOverflow.ellipsis,
+            // ),
           ],
         ),
       ),

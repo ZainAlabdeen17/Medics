@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/core/widgets/general_header.dart';
+import 'package:medics/core/widgets/on_error_widget.dart';
 import 'package:medics/features/appointments/presentation/cubit/appointment_cubit/appointment_cubit.dart';
 import 'package:medics/features/appointments/presentation/cubit/appointment_cubit/appointment_state.dart';
 import 'package:medics/features/appointments/presentation/widget/appoinment_card.dart';
@@ -44,14 +47,14 @@ class _AppointmentsViewState extends State<AppointmentsView> {
     final appointmentCubit = context.read<AppointmentCubit>();
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: RefreshIndicator(
-            onRefresh: () async {
-              await appointmentCubit.getAppointments();
-            },
-            color: AppColors.borderAccent,
-            backgroundColor: AppColors.surfaceCard,
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await appointmentCubit.getAppointments();
+          },
+          backgroundColor: AppColors.surfaceCard,
+          color: AppColors.borderAccent,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: CustomScrollView(
               controller: _scrollController,
               slivers: [
@@ -72,17 +75,47 @@ class _AppointmentsViewState extends State<AppointmentsView> {
                       );
                     }
                     if (state is AppointmentsFailure) {
-                      return SliverToBoxAdapter(
-                        child: Center(child: Text(state.errorMessage)),
-                      );
+                      return SliverFillRemaining(child: OnErrorWidget());
                     }
                     if (state is AppointmentsSuccess) {
                       return state.appointments.isEmpty
-                          ? SliverToBoxAdapter(
-                              child: Text(
-                                "There is no appointment yet",
-                                style: AppTextStyles.body1.copyWith(
-                                  color: AppColors.textSecondary,
+                          ? SliverFillRemaining(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 30.0,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 47.w,
+                                      height: 47.h,
+                                      child: SvgPicture.asset(
+                                        Assets.assetsImagesAppointmentsCalendar,
+                                        colorFilter: ColorFilter.mode(
+                                          AppColors.iconAccent,
+                                          BlendMode.srcIn,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 24.h),
+                                    Text(
+                                      "No appoinments found",
+                                      style: AppTextStyles.head2.copyWith(
+                                        color: AppColors.textPrimary,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    SizedBox(height: 8.h),
+                                    Text(
+                                      "Your appointments will appear here once they are available.",
+                                      style: AppTextStyles.body1.copyWith(
+                                        color: AppColors.textSecondary,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
                                 ),
                               ),
                             )

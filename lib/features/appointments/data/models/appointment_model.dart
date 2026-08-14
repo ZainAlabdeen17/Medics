@@ -65,10 +65,7 @@ class AppointmentModel {
   }
   factory AppointmentModel.fromListJson(Map<String, dynamic> json) {
     try {
-      // الـ attributes في القائمة تقع داخل العنصر مباشرة
       final attributes = json['attributes'] as Map<String, dynamic>? ?? {};
-
-      // تفكيك البيانات المالية من كائن financial القادم في القائمة
       final financial = json['financial'] as Map<String, dynamic>? ?? {};
       final invoices = financial['invoices'] as List<dynamic>? ?? [];
 
@@ -77,21 +74,15 @@ class AppointmentModel {
 
       if (invoices.isNotEmpty) {
         final firstInvoice = invoices.first as Map<String, dynamic>? ?? {};
-        invId =
-            firstInvoice['id']?.toString() ??
-            ''; // جلب الـ id الخاص بالفاتورة من السيرفر
-        invNumber =
-            firstInvoice['invoice_number']?.toString() ??
-            ''; // جلب الـ invoice_number
+        invId = firstInvoice['id']?.toString() ?? '';
+        invNumber = firstInvoice['invoice_number']?.toString() ?? '';
       }
-
-      // تفكيك بيانات الطبيب من الـ relationships الخاصة بالعنصر
       final relationships =
           json['relationships'] as Map<String, dynamic>? ?? {};
       final doctorData = relationships['doctor'] as Map<String, dynamic>? ?? {};
 
       return AppointmentModel(
-        id: json['id']?.toString() ?? '', // معرف الموعد يقع في جذر العنصر
+        id: json['id']?.toString() ?? '',
         doctor: DoctorModel.fromJson(doctorData),
         date: attributes['appointment_date']?.toString() ?? '',
         startTime: attributes['start_time']?.toString() ?? '',
@@ -100,15 +91,12 @@ class AppointmentModel {
         reason: attributes['reason']?.toString() ?? '',
         invoiceId: invId,
         invoiceNumber: invNumber,
-        currentBalance:
-            '0.00', // القائمة لا تعيد رصيد المحفظة الحالي، نضع قيمة افتراضية
+        currentBalance: '0.00',
       );
     } catch (e) {
       return AppointmentModel.createEmpty();
     }
   }
-
-  // دالة مساعدة لتوحيد الكائن الافتراضي الفارغ عند حدوث خطأ تفكيك (catch)
   factory AppointmentModel.createEmpty() {
     return AppointmentModel(
       id: '',

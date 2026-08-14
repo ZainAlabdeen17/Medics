@@ -29,5 +29,4 @@ class DoctorCubit extends Cubit<DoctorState> {
       },
     );
   }
-  
 }

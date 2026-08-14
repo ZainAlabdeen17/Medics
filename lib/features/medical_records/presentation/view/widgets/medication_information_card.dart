@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
-import 'package:medics/features/medical_records/data/medication_model.dart';
+import 'package:medics/features/medical_records/data/models/medication_model.dart';
 import 'package:medics/features/medical_records/presentation/view/widgets/medication_card_item.dart';
 
 class MedicationInformationCard extends StatelessWidget {

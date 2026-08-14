@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:medics/core/api/api_consumer.dart';
 import 'package:medics/core/api/dio_consumer.dart';
 import 'package:medics/core/database/cache/cache_helper.dart';
+import 'package:medics/features/ai_chat/data/repositories/ai_chat_repository.dart';
+import 'package:medics/features/ai_chat/presentation/cubit/ai_chat_cubit/ai_chat_cubit.dart';
 import 'package:medics/features/appointments/data/repositories/appointment_repository.dart';
 import 'package:medics/features/appointments/presentation/cubit/appointment_cubit/appointment_cubit.dart';
 import 'package:medics/features/auth/data/repositories/auth_repository.dart';
@@ -14,10 +16,14 @@ import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cu
 import 'package:medics/features/medical_records/data/repository/health_repository.dart';
 import 'package:medics/features/medical_records/data/repository/health_repository_imp.dart';
 import 'package:medics/features/medical_records/data/repository/medical_records.dart';
-import 'package:medics/features/medical_records/presentation/cubit/health_cubit.dart';
+import 'package:medics/features/medical_records/presentation/cubit/health_cubit/health_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/doctor_details_cubit/doctor_details_cubit.dart';
+import 'package:medics/features/medical_records/presentation/cubit/medical_tests_cubit/medical_tests_cubit.dart';
 import 'package:medics/features/medical_records/presentation/cubit/prescription_cubit/prescription_cubit.dart';
+import 'package:medics/features/medical_records/presentation/cubit/visits_cubit/visits_cubit.dart';
 import 'package:medics/features/patient_card/data/repositories/patient_repository.dart';
+import 'package:medics/features/specialization/data/repositories/specialization_repository.dart';
+import 'package:medics/features/specialization/presentation/cubit/specialization_cubit/specialization_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -72,6 +78,25 @@ void setupServiceLocator() {
   getIt.registerLazySingleton<MedicalRecordsRepository>(
     () => MedicalRecordsRepository(getIt<ApiConsumer>()),
   );
-    getIt.registerFactory<PrescriptionCubit>(() => PrescriptionCubit(getIt<MedicalRecordsRepository>()));
-
+  getIt.registerLazySingleton<SpecializationRepository>(
+    () => SpecializationRepository(api: getIt<ApiConsumer>()),
+  );
+  getIt.registerFactory<PrescriptionCubit>(
+    () => PrescriptionCubit(getIt<MedicalRecordsRepository>()),
+  );
+  getIt.registerFactory<SpecializationCubit>(
+    () => SpecializationCubit(getIt<SpecializationRepository>()),
+  );
+  getIt.registerLazySingleton<AiChatRepository>(
+    () => AiChatRepository(api: getIt<ApiConsumer>()),
+  );
+  getIt.registerFactory<AiChatCubit>(
+    () => AiChatCubit(getIt<AiChatRepository>()),
+  );
+  getIt.registerFactory<MedicalTestsCubit>(
+    () => MedicalTestsCubit(getIt<MedicalRecordsRepository>()),
+  );
+  getIt.registerFactory<VisitsCubit>(
+    () => VisitsCubit(getIt<MedicalRecordsRepository>()),
+  );
 }

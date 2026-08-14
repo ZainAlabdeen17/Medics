@@ -7,7 +7,7 @@ import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/filter_cubit/filter_state.dart';
 import 'package:medics/features/doctor/presentation/widgets/filter_widgets/custom_check_box.dart';
-import 'package:medics/features/specialization/data/specialization_model.dart';
+import 'package:medics/features/specialization/data/models/specialization_model.dart';
 
 class SpecFilterSection extends StatelessWidget {
   const SpecFilterSection({super.key});
@@ -28,9 +28,7 @@ class SpecFilterSection extends StatelessWidget {
             ),
             SizedBox(height: 12.h),
             ...isVisible.map((spec) {
-              final isSelected = state.selectedSpecializations.contains(
-                spec.id,
-              );
+              final isSelected = state.selectedSpecializations.contains(spec);
               return Padding(
                 padding: EdgeInsets.only(left: 8.w, bottom: 16.h),
                 child: Row(
@@ -39,20 +37,16 @@ class SpecFilterSection extends StatelessWidget {
                     CustomCheckBox(
                       isSelected: isSelected,
                       onTap: () {
-                        context.read<FilterCubit>().toggleSpecialization(
-                          spec.id,
-                        );
+                        context.read<FilterCubit>().toggleSpecialization(spec);
                       },
                     ),
                     SizedBox(width: 8.w),
                     GestureDetector(
                       onTap: () {
-                        context.read<FilterCubit>().toggleSpecialization(
-                          spec.id,
-                        );
+                        context.read<FilterCubit>().toggleSpecialization(spec);
                       },
                       child: Text(
-                        spec.name,
+                        spec,
                         style: AppTextStyles.body1.copyWith(
                           color: AppColors.textSecondary,
                         ),

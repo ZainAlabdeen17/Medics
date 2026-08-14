@@ -1,4 +1,5 @@
 import 'package:medics/core/utils/app_assets.dart';
+import 'package:medics/core/utils/app_constant.dart';
 
 class DoctorModel {
   final String id;
@@ -14,7 +15,7 @@ class DoctorModel {
   final String bio;
   final String sessionPrice;
   final String photoUrl;
-  final int rating;
+  final double rating;
 
   DoctorModel({
     required this.id,
@@ -39,7 +40,7 @@ class DoctorModel {
     if (rawPhotoUrl != null && rawPhotoUrl.contains('127.0.0.1')) {
       rawPhotoUrl = rawPhotoUrl.replaceAll(
         "http://127.0.0.1:8000",
-        "https://renewably-gladly-blitz.ngrok-free.dev",
+        AppConstant.baseUrl,
       );
     }
     return DoctorModel(
@@ -56,7 +57,7 @@ class DoctorModel {
       bio: attributes["bio"] ?? "",
       sessionPrice: attributes["session_price"] ?? "",
       photoUrl: rawPhotoUrl ?? "",
-      rating: attributes["average_rating"] ?? 0.0,
+      rating: attributes["average_rating"]?.toDouble() ?? 0.0,
     );
   }
 }

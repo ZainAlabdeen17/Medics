@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
-import 'package:medics/features/medical_records/data/medication_model.dart';
+import 'package:medics/features/medical_records/data/models/medication_model.dart';
 import 'package:medics/features/medical_records/presentation/view/widgets/genaral_chip.dart';
 
 class MedicationItem extends StatelessWidget {

@@ -5,7 +5,7 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/core/widgets/general_header.dart';
-import 'package:medics/features/medical_records/data/medication_model.dart';
+import 'package:medics/features/medical_records/data/models/medication_model.dart';
 import 'package:medics/features/medical_records/presentation/view/widgets/medication_information_card.dart';
 import 'package:medics/features/medical_records/presentation/view/widgets/points_item.dart';
 

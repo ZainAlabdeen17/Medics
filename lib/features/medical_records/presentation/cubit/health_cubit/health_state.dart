@@ -1,5 +1,5 @@
 // health_state.dart
-import 'package:medics/features/medical_records/data/health_metric_model.dart';
+import 'package:medics/features/medical_records/data/models/health_metric_model.dart';
 
 class HealthState {
   final bool isLoading;

@@ -50,4 +50,7 @@ class AppColors {
   static const Color iconGrey = AppPalette.grey600;
   static const Color iconGreyDisabled = AppPalette.grey200;
   static const Color iconStaticWhite = AppPalette.white;
+  //--- shimmers ---
+  static const Color baseShimmerColor = Color(0xFFDBE7E7);
+  static const Color highLightShimmerColor = Color(0xFFF4F8F8);
 }

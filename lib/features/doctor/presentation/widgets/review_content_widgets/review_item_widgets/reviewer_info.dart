@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/doctor/data/models/review_model.dart';
@@ -14,12 +15,15 @@ class ReviewerInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          review.reviewerName,
+          review.patient,
           style: AppTextStyles.head3.copyWith(color: AppColors.textPrimary),
         ),
         Text(
-          review.reviewDate,
-          style: AppTextStyles.body1.copyWith(color: AppColors.textSecondary),
+          DateFormat('dd MMMM yyyy').format(review.date),
+          style: AppTextStyles.body2.copyWith(
+            color: AppColors.textSecondary,
+            fontFamily: 'Inter',
+          ),
         ),
       ],
     );

@@ -74,4 +74,23 @@ class BookingRepositry {
       return left(Failure(message: e.toString()));
     }
   }
+
+  Future<Either<Failure, AppointmentModel>> rescheduleAppointment({
+    required String appointmentId,
+    required String date,
+    required String time,
+  }) async {
+    try {
+      final response = await api.patch(
+        path: 'appointments/$appointmentId/reschedule',
+        data: {'date': date, 'time': time},
+      );
+      final appointment = AppointmentModel.fromJson(response);
+      return right(appointment);
+    } on ServerExeption catch (e) {
+      return left(e.failure);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
 }

@@ -35,7 +35,7 @@ class AppointmentRepository {
     required String reason,
   }) async {
     try {
-      final response = await api.put(
+      final response = await api.patch(
         path: "appointments/$appointmentId/update",
         data: {"cancellation_reason": reason},
       );

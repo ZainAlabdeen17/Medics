@@ -117,7 +117,7 @@ class AppStrings {
   static const String popularSpecializations = "Popular Specializations";
   static const String specializations = "Specializations";
   static const String ourDoctors = "Our Doctors";
-  static const String services = "Services";
+  static const String services = "Other Services";
   static const String appointments = "Appointments";
   static const String faq = "FAQ";
   static const String supportChat = "Support Chat";
@@ -182,7 +182,8 @@ class AppStrings {
   //medical records
   static const String medicalRecords = "Medical records";
   static const String prescription = "Prescription";
-  static const String lapReports = "Lap reports";
+  static const String labReports = "Lab reports";
+  static const String xRays = "X-Rays";
   static const String healthMetrics = "Health metrics";
   static const String visitSummeries = "Visit summeries";
   static const String byDate = "By date";
@@ -204,6 +205,8 @@ class AppStrings {
   //Prescriptions
   static const String startTypingMedicationName =
       "Start typing medication name";
+  static const String startTypingReportName = "Start typing report name";
+  static const String startTypingXRayName = "Start typing X-Ray name";
   static const String medicationDetails = "Medication details";
   static const String name = "Name :";
   static const String duration = "Duration :";

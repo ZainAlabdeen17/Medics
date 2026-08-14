@@ -10,7 +10,7 @@ class OurDoctorsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 12.h),
+        SizedBox(height: 8.h),
         SectionHeader(
           title: AppStrings.ourDoctors,
           onTap: () {

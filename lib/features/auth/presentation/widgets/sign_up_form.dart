@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:medics/core/functions/show_custom_toast.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
@@ -21,22 +19,9 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserCubit, UserState>(
-      listener: (context, state) {
-        if (state is SignUpSuccessState) {
-          context.pushReplacement("/Otp", extra: state.email);
-        }
-        if (state is SignUpFailureState) {
-          showCustomToast(
-            context: context,
-            title: state.errorMessage,
-            primaryColor: AppColors.iconRed,
-            icon: Icon(Icons.cancel_outlined, color: AppColors.iconRed),
-          );
-        }
-      },
+    final userCubit = BlocProvider.of<UserCubit>(context);
+    return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
-        final userCubit = BlocProvider.of<UserCubit>(context);
         return BlocBuilder<ValidationCubit, ValidationState>(
           builder: (context, state) {
             final validationCubit = BlocProvider.of<ValidationCubit>(context);
@@ -147,22 +132,21 @@ class SignUpForm extends StatelessWidget {
                     ],
                   ),
                 SizedBox(height: 32.h),
-                userCubit.state is SignUpLoadingState
-                    ? Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.surfaceAccent,
-                        ),
-                      )
-                    : CustomFillButton(
-                        text: AppStrings.createAccount,
-                        onPressed: state.isFormValid
-                            ? () async {
-                                state.isFormValid
-                                    ? await userCubit.signUp()
-                                    : null;
-                              }
-                            : null,
-                      ),
+                // userCubit.state is SignUpLoadingState
+                //     ? Center(
+                //         child: CircularProgressIndicator(
+                //           color: AppColors.surfaceAccent,
+                //         ),
+                //       )
+                //     :
+                CustomFillButton(
+                  text: AppStrings.createAccount,
+                  onPressed: state.isFormValid
+                      ? () async {
+                          state.isFormValid ? await userCubit.signUp() : null;
+                        }
+                      : null,
+                ),
               ],
             );
           },

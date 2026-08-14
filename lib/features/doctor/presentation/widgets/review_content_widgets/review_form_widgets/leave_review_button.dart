@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/widgets/custom_fill_button.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/review_cubit/review_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/review_cubit/review_state.dart';
 
@@ -11,7 +12,9 @@ class LeaveReviewButton extends StatelessWidget {
     super.key,
     required this.reviewCubit,
     required this.state,
+    required this.doctor,
   });
+  final DoctorModel doctor;
   final ReviewCubit reviewCubit;
   final ReviewState state;
 
@@ -33,7 +36,7 @@ class LeaveReviewButton extends StatelessWidget {
                     reviewCubit.rating != 0 &&
                         reviewCubit.reviewController.text.trim().isNotEmpty
                     ? () {
-                        reviewCubit.submitReview();
+                        reviewCubit.submitReview(doctorId: doctor.id);
                       }
                     : null,
               ),

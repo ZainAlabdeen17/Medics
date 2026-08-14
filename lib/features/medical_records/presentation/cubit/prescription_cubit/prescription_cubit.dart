@@ -5,7 +5,7 @@ import 'package:medics/features/medical_records/presentation/cubit/prescription_
 class PrescriptionCubit extends Cubit<PrescriptionState> {
   final MedicalRecordsRepository repository;
   PrescriptionCubit(this.repository) : super(PrescriptionInitial());
-  void getPrescriptions() async {
+  Future<void> getPrescriptions() async {
     emit(PrescriptionLoading());
     final result = await repository.getMedicalRecords();
     result.fold(

@@ -5,12 +5,14 @@ import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
+import 'package:medics/features/home/presentation/view/widgets/appointment_section.dart';
 import 'package:medics/features/home/presentation/view/widgets/doctors_home_grid.dart';
 import 'package:medics/features/home/presentation/view/widgets/home_header.dart';
 import 'package:medics/features/home/presentation/view/widgets/home_search_field.dart';
 import 'package:medics/features/home/presentation/view/widgets/our_doctors_section.dart';
 import 'package:medics/features/home/presentation/view/widgets/popular_spec_section.dart';
 import 'package:medics/features/home/presentation/view/widgets/services_section.dart';
+import 'package:medics/features/specialization/presentation/cubit/specialization_cubit/specialization_cubit.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -19,18 +21,20 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        bottom: false,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: RefreshIndicator(
             backgroundColor: AppColors.surfaceCard,
             color: AppColors.surfaceAccent,
             onRefresh: () async {
-              await context.read<DoctorCubit>().getDoctors();
+              await Future.wait([
+                context.read<DoctorCubit>().getDoctors(),
+                context.read<SpecializationCubit>().getSpecializations(),
+              ]);
             },
             child: CustomScrollView(
               slivers: [
-                SliverToBoxAdapter(child: HomeHeader()),
+                SliverToBoxAdapter(child: const HomeHeader()),
                 SliverToBoxAdapter(child: SizedBox(height: 8.h)),
                 SliverToBoxAdapter(
                   child: HomeSearchField(
@@ -41,12 +45,16 @@ class HomeView extends StatelessWidget {
                     readOnly: true,
                   ),
                 ),
-                SliverToBoxAdapter(child: PopularSpecializationsSection()),
                 SliverToBoxAdapter(child: SizedBox(height: 12.h)),
-                SliverToBoxAdapter(child: OurDoctorsSection()),
-                DoctorsHomeGrid(),
-                SliverToBoxAdapter(child: ServicesSection()),
-                SliverToBoxAdapter(child: SizedBox(height: 35.h)),
+                SliverToBoxAdapter(child: const AppointmentSection()),
+                SliverToBoxAdapter(
+                  child: const PopularSpecializationsSection(),
+                ),
+                SliverToBoxAdapter(child: SizedBox(height: 4.h)),
+                SliverToBoxAdapter(child: const OurDoctorsSection()),
+                const DoctorsHomeGrid(),
+                SliverToBoxAdapter(child: const ServicesSection()),
+                SliverToBoxAdapter(child: SizedBox(height: 110.h)),
               ],
             ),
           ),

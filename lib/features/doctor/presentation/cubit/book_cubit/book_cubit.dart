@@ -109,6 +109,44 @@ class BookCubit extends Cubit<BookState> {
     }
   }
 
+  void rescheduleAppointment({required String appointmentId}) async {
+    if (state.selectedDay != null &&
+        state.selectedTime.isNotEmpty &&
+        state.reason.trim().isNotEmpty) {
+      emit(
+        state.copyWith(
+          isBookingLoading: true,
+          bookingErrorMessage: null,
+          successAppointmentData: null,
+        ),
+      );
+      final result = await repo.rescheduleAppointment(
+        appointmentId: appointmentId,
+        date: state.selectedDay!.fullDate,
+        time: state.selectedTime,
+      );
+      if (isClosed) return;
+      result.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              isBookingLoading: false,
+              bookingErrorMessage: failure.message,
+            ),
+          );
+        },
+        (appoinment) {
+          emit(
+            state.copyWith(
+              isBookingLoading: false,
+              successAppointmentData: appoinment,
+            ),
+          );
+        },
+      );
+    }
+  }
+
   bool isReadyToBook() {
     return state.selectedDay != null &&
         state.selectedTime.isNotEmpty &&
@@ -123,7 +161,8 @@ class BookCubit extends Cubit<BookState> {
 
   bool isTimeSelected(String time) => state.selectedTime == time;
 
-  void updateReason(String reason) => emit(state.copyWith(reason: reason));
+  void updateReason(String reason) =>
+      emit(state.copyWith(reason: reason, bookingErrorMessage: null));
 
   void resetBookingStatus() {
     emit(state.copyWith(successAppointmentData: null));

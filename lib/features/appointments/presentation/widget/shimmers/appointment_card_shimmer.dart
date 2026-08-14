@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:medics/core/utils/app_colors.dart';
 
 class AppointmentCardShimmer extends StatelessWidget {
@@ -8,18 +7,15 @@ class AppointmentCardShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseColor = Colors.grey[300]!;
-    final highlightColor = Colors.grey[200]!;
+    final baseColor = AppColors.highLightShimmerColor;
 
-    return Shimmer.fromColors(
-      baseColor: baseColor,
-      highlightColor: highlightColor,
+    return RepaintBoundary(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         height: 153.h,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppColors.surfaceBlur,
+          color: AppColors.baseShimmerColor,
           border: Border.all(color: AppColors.borderBlack, width: 1.w),
           borderRadius: BorderRadius.circular(24.r),
         ),

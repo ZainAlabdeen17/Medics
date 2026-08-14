@@ -14,6 +14,7 @@ class ReviewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,13 +23,14 @@ class ReviewItem extends StatelessWidget {
             SizedBox(width: 8.w),
             ReviewerInfo(review: review),
             Spacer(),
-            StarsRow(review: review),
+            StarsRow(rating: review.rating),
           ],
         ),
         SizedBox(height: 12.h),
         Text(
-          review.reviewText,
+          review.comment,
           style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
+          textAlign: TextAlign.start,
         ),
       ],
     );

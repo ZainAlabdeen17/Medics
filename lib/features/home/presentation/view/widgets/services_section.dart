@@ -7,8 +7,7 @@ import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/features/home/presentation/view/widgets/service_item.dart';
 
 class ServicesSection extends StatelessWidget {
-  ServicesSection({super.key});
-  final List<String> services = [AppStrings.appointments, AppStrings.faq];
+  const ServicesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +21,14 @@ class ServicesSection extends StatelessWidget {
           textAlign: TextAlign.start,
         ),
         SizedBox(height: 12.h),
-        SizedBox(
-          height: 200.h,
-          child: ListView.separated(
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return ServiceItem(
-                title: services[index],
-                onTap: () {
-                  context.push("/${services[index]}");
-                },
-              );
-            },
-            separatorBuilder: (context, index) => SizedBox(height: 8.h),
-            itemCount: 2,
-          ),
+        ServiceItem(
+          title: AppStrings.faq,
+          onTap: () {
+            context.push("/${AppStrings.faq}");
+          },
         ),
+        SizedBox(height: 8.h),
+        ServiceItem(title: "Connect with Medics", onTap: () {}),
       ],
     );
   }

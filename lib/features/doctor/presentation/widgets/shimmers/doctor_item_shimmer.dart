@@ -8,8 +8,8 @@ class DoctorItemShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color baseColor = Colors.grey[200]!;
-    final Color highlightColor = Colors.grey[50]!;
+    final Color baseColor = AppColors.baseShimmerColor;
+    final Color highlightColor = AppColors.highLightShimmerColor;
     return Stack(
       alignment: const Alignment(0, 1.2),
       children: [
@@ -22,43 +22,49 @@ class DoctorItemShimmer extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Shimmer.fromColors(
-                baseColor: baseColor,
-                highlightColor: highlightColor,
-                child: Container(
-                  width: 141.w,
-                  height: 141.h,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24.r),
+              RepaintBoundary(
+                child: Shimmer.fromColors(
+                  baseColor: baseColor,
+                  highlightColor: highlightColor,
+                  child: Container(
+                    width: 141.w,
+                    height: 141.h,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24.r),
+                    ),
                   ),
                 ),
               ),
               SizedBox(height: 12.h),
 
-              Shimmer.fromColors(
-                baseColor: baseColor,
-                highlightColor: highlightColor,
-                child: Container(
-                  width: 100.w,
-                  height: 16.h,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4.r),
+              RepaintBoundary(
+                child: Shimmer.fromColors(
+                  baseColor: baseColor,
+                  highlightColor: highlightColor,
+                  child: Container(
+                    width: 100.w,
+                    height: 16.h,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(4.r),
+                    ),
                   ),
                 ),
               ),
               SizedBox(height: 8.h),
 
-              Shimmer.fromColors(
-                baseColor: baseColor,
-                highlightColor: highlightColor,
-                child: Container(
-                  width: 65.w,
-                  height: 12.h,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4.r),
+              RepaintBoundary(
+                child: Shimmer.fromColors(
+                  baseColor: baseColor,
+                  highlightColor: highlightColor,
+                  child: Container(
+                    width: 65.w,
+                    height: 12.h,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(4.r),
+                    ),
                   ),
                 ),
               ),
@@ -66,15 +72,17 @@ class DoctorItemShimmer extends StatelessWidget {
           ),
         ),
 
-        Shimmer.fromColors(
-          baseColor: baseColor,
-          highlightColor: highlightColor,
-          child: Container(
-            height: 44.h,
-            width: 44.w,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
+        RepaintBoundary(
+          child: Shimmer.fromColors(
+            baseColor: baseColor,
+            highlightColor: highlightColor,
+            child: Container(
+              height: 44.h,
+              width: 44.w,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
             ),
           ),
         ),

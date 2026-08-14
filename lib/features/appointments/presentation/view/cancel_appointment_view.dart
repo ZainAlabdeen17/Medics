@@ -61,12 +61,18 @@ class _CancelAppointmentViewState extends State<CancelAppointmentView> {
             primaryColor: AppColors.iconRed,
             icon: Icon(Icons.cancel_outlined, color: AppColors.iconRed),
           );
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.read<AppointmentCubit>().getAppointments();
+          });
         }
       },
       builder: (context, state) {
         final appointmentCubit = context.read<AppointmentCubit>();
         return ModalProgressHUD(
           inAsyncCall: state is AppointmentActionLoading,
+          progressIndicator: CircularProgressIndicator(
+            color: AppColors.borderAccent,
+          ),
           child: Scaffold(
             body: SafeArea(
               child: Padding(
@@ -118,7 +124,7 @@ class _CancelAppointmentViewState extends State<CancelAppointmentView> {
                     Text(
                       'Note: Canceling this appointment means 30% of your first-time session payment is non-refundable. For further details, see our Terms & Policies or reach out to us.',
                       style: AppTextStyles.body3.copyWith(
-                        color: AppColors.textSecondary,
+                        color: AppColors.textRed,
                         fontFamily: 'Inter',
                       ),
                     ),

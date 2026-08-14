@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:medics/core/functions/show_custom_toast.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
+import 'package:medics/core/utils/app_constant.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/core/widgets/general_header.dart';
 import 'package:medics/features/appointments/data/models/appointment_model.dart';
@@ -155,8 +156,8 @@ class AppointmentDetailsView extends StatelessWidget {
                                 ? null
                                 : () {
                                     context.read<InvoiceCubit>().downloadInvoice(
-                                      "https://renewably-gladly-blitz.ngrok-free.dev/api/v1/invoices/${appointmentModel.invoiceId}/download",
-                                      "Invoice-${appointmentModel.id}.pdf",
+                                      "${AppConstant.baseUrl}/api/v1/invoices/${appointmentModel.invoiceId}/download",
+                                      "TIAB-${appointmentModel.id}",
                                     );
                                   },
                             child: state is DownloadInvoiceLoading
@@ -248,7 +249,7 @@ class InfoPiece extends StatelessWidget {
               SizedBox(width: 4.w),
               Text(
                 title,
-                style: AppTextStyles.body1.copyWith(
+                style: AppTextStyles.body2.copyWith(
                   color: AppColors.textSecondary,
                 ),
               ),
@@ -259,8 +260,10 @@ class InfoPiece extends StatelessWidget {
             style: AppTextStyles.body1.copyWith(
               color: value == 'pending'
                   ? AppColors.textOrange
-                  : value == 'completed'
+                  : value == 'completed' || value == "Medics Medical Center"
                   ? AppColors.textGreen
+                  : value == 'cancelled'
+                  ? AppColors.textRed
                   : AppColors.textSecondary,
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,

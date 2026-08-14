@@ -16,7 +16,6 @@ class ServiceItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 56.h,
-        width: 343.w,
         decoration: BoxDecoration(
           color: AppColors.surfaceBlur,
           borderRadius: BorderRadius.circular(100.r),

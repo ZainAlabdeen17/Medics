@@ -5,8 +5,8 @@ import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
 import 'package:medics/core/widgets/custom_text_field.dart';
-import 'package:medics/features/medical_records/presentation/cubit/health_cubit.dart';
-import 'package:medics/features/medical_records/presentation/cubit/health_state.dart';
+import 'package:medics/features/medical_records/presentation/cubit/health_cubit/health_cubit.dart';
+import 'package:medics/features/medical_records/presentation/cubit/health_cubit/health_state.dart';
 import 'package:medics/features/medical_records/presentation/view/widgets/general_header_health_metrics.dart';
 
 class Anamnesis extends StatelessWidget {

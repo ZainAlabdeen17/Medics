@@ -2,6 +2,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsImagesAnimationMedicalFrontliners
+  /// assets/images/animation/MedicalFrontliners.json
+  static const String assetsImagesAnimationMedicalFrontliners = "assets/images/animation/MedicalFrontliners.json";
+
   /// Assets for assetsImagesAppointmentsCalendar
   /// assets/images/appointments/calendar.svg
   static const String assetsImagesAppointmentsCalendar = "assets/images/appointments/calendar.svg";
@@ -86,6 +90,14 @@ class Assets {
   /// assets/images/icons/about_doctor/stethoscope.svg
   static const String assetsImagesIconsAboutDoctorStethoscope = "assets/images/icons/about_doctor/stethoscope.svg";
 
+  /// Assets for assetsImagesIconsGeneralAi
+  /// assets/images/icons/general/ai.svg
+  static const String assetsImagesIconsGeneralAi = "assets/images/icons/general/ai.svg";
+
+  /// Assets for assetsImagesIconsGeneralAi2
+  /// assets/images/icons/general/ai2.svg
+  static const String assetsImagesIconsGeneralAi2 = "assets/images/icons/general/ai2.svg";
+
   /// Assets for assetsImagesIconsGeneralArrow
   /// assets/images/icons/general/arrow.svg
   static const String assetsImagesIconsGeneralArrow = "assets/images/icons/general/arrow.svg";
@@ -101,6 +113,10 @@ class Assets {
   /// Assets for assetsImagesIconsGeneralAttache
   /// assets/images/icons/general/attache.svg
   static const String assetsImagesIconsGeneralAttache = "assets/images/icons/general/attache.svg";
+
+  /// Assets for assetsImagesIconsGeneralAttention
+  /// assets/images/icons/general/attention.svg
+  static const String assetsImagesIconsGeneralAttention = "assets/images/icons/general/attention.svg";
 
   /// Assets for assetsImagesIconsGeneralCalendar
   /// assets/images/icons/general/calendar.svg
@@ -161,6 +177,10 @@ class Assets {
   /// Assets for assetsImagesIconsGeneralHide
   /// assets/images/icons/general/hide.svg
   static const String assetsImagesIconsGeneralHide = "assets/images/icons/general/hide.svg";
+
+  /// Assets for assetsImagesIconsGeneralLocation
+  /// assets/images/icons/general/location.svg
+  static const String assetsImagesIconsGeneralLocation = "assets/images/icons/general/location.svg";
 
   /// Assets for assetsImagesIconsGeneralMedication
   /// assets/images/icons/general/medication.svg
@@ -270,9 +290,9 @@ class Assets {
   /// assets/images/icons/specializatios/gastroenterologist.svg
   static const String assetsImagesIconsSpecializatiosGastroenterologist = "assets/images/icons/specializatios/gastroenterologist.svg";
 
-  /// Assets for assetsImagesIconsSpecializatiosGeneralPractitioner
-  /// assets/images/icons/specializatios/general_practitioner.svg
-  static const String assetsImagesIconsSpecializatiosGeneralPractitioner = "assets/images/icons/specializatios/general_practitioner.svg";
+  /// Assets for assetsImagesIconsSpecializatiosGeneralpractitioner
+  /// assets/images/icons/specializatios/generalpractitioner.svg
+  static const String assetsImagesIconsSpecializatiosGeneralpractitioner = "assets/images/icons/specializatios/generalpractitioner.svg";
 
   /// Assets for assetsImagesIconsSpecializatiosGeneticist
   /// assets/images/icons/specializatios/geneticist.svg
@@ -298,9 +318,17 @@ class Assets {
   /// assets/images/icons/specializatios/otolaryngologist.svg
   static const String assetsImagesIconsSpecializatiosOtolaryngologist = "assets/images/icons/specializatios/otolaryngologist.svg";
 
+  /// Assets for assetsImagesIconsSpecializatiosPathologist
+  /// assets/images/icons/specializatios/pathologist.svg
+  static const String assetsImagesIconsSpecializatiosPathologist = "assets/images/icons/specializatios/pathologist.svg";
+
   /// Assets for assetsImagesIconsSpecializatiosPulmonologist
   /// assets/images/icons/specializatios/pulmonologist.svg
   static const String assetsImagesIconsSpecializatiosPulmonologist = "assets/images/icons/specializatios/pulmonologist.svg";
+
+  /// Assets for assetsImagesIconsSpecializatiosRadiologist
+  /// assets/images/icons/specializatios/radiologist.svg
+  static const String assetsImagesIconsSpecializatiosRadiologist = "assets/images/icons/specializatios/radiologist.svg";
 
   /// Assets for assetsImagesIconsSpecializatiosTraumatologist
   /// assets/images/icons/specializatios/traumatologist.svg

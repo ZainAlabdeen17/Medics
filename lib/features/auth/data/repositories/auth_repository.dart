@@ -27,10 +27,6 @@ class AuthRepository {
         key: 'token',
         value: authSessionModel.token,
       );
-      getIt<CacheHelper>().saveData(
-        key: 'patientId',
-        value: authSessionModel.user.patienId,
-      );
       UserFunctions.saveUser(authSessionModel.user);
 
       return Right(authSessionModel);
@@ -77,10 +73,6 @@ class AuthRepository {
       getIt<CacheHelper>().saveData(
         key: 'token',
         value: authSessionModel.token,
-      );
-      getIt<CacheHelper>().saveData(
-        key: 'patientId',
-        value: authSessionModel.user.patienId,
       );
       UserFunctions.saveUser(authSessionModel.user);
       return Right(authSessionModel);

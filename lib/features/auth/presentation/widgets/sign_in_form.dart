@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:medics/core/functions/show_custom_toast.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
@@ -19,29 +17,13 @@ class SignInForm extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserCubit, UserState>(
-      listener: (context, state) {
-        if (state is SignInSuccessState) {
-          if (state.isProfileCompleted) {
-            context.pushReplacement("/Home");
-          } else {
-            context.pushReplacement("/Patient");
-          }
-        }
-        if (state is SignInFailureState) {
-          showCustomToast(
-            context: context,
-            title: state.errorMessage,
-            primaryColor: AppColors.iconRed,
-            icon: Icon(Icons.cancel_outlined, color: AppColors.iconRed),
-          );
-        }
-      },
+    final userCubit = BlocProvider.of<UserCubit>(context);
+    return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
-        final userCubit = BlocProvider.of<UserCubit>(context);
         return Form(
           key: _formKey,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -70,7 +52,9 @@ class SignInForm extends StatelessWidget {
                 obscureText: userCubit.isObSecure,
                 suffixIcon: IconButton(
                   onPressed: () {
-                    userCubit.toggleObscurePassword();
+                    state is SignInLoadingState
+                        ? null
+                        : userCubit.toggleObscurePassword();
                   },
                   icon: SizedBox(
                     height: 24.h,
@@ -89,20 +73,21 @@ class SignInForm extends StatelessWidget {
                 validator: (value) => AppValidator.validatePassword(value),
               ),
               SizedBox(height: 32.h),
-              state is SignInLoadingState
-                  ? Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.surfaceAccent,
-                      ),
-                    )
-                  : CustomFillButton(
-                      text: AppStrings.login,
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          await userCubit.signIn();
-                        }
-                      },
-                    ),
+              // state is SignInLoadingState
+              //     ? Center(
+              //         child: CircularProgressIndicator(
+              //           color: AppColors.surfaceAccent,
+              //         ),
+              //       )
+              //     :
+              CustomFillButton(
+                text: AppStrings.login,
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    await userCubit.signIn();
+                  }
+                },
+              ),
             ],
           ),
         );
