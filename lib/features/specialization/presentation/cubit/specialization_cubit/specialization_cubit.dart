@@ -8,6 +8,7 @@ class SpecializationCubit extends Cubit<SpecializationState> {
   Future<void> getSpecializations() async {
     emit(SpecializationLoading());
     final result = await repo.getSpecializations();
+    if (isClosed) return;
     result.fold(
       (failure) => emit(SpecializationFailure(errorMessage: failure.message)),
       (specializations) =>

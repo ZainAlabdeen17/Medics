@@ -40,7 +40,7 @@ class ButtonClass {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.surfacePrimary,
+          backgroundColor: AppColors.surfaceCard,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32.r),
             side: BorderSide(color: AppColors.borderAccent, width: 1.w),

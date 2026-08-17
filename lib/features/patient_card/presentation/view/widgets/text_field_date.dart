@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
+import 'package:medics/core/utils/app_text_styles.dart';
 
 class TextFieldDate extends StatefulWidget {
   final String hintText;
@@ -61,11 +64,20 @@ class _TextFieldDateState extends State<TextFieldDate> {
       onTap: () {
         showDatePickerBottomSheet(context);
       },
+      style: AppTextStyles.body1.copyWith(color: AppColors.textPrimary),
       decoration: InputDecoration(
         hintText: widget.hintText,
+        hintStyle: AppTextStyles.body1.copyWith(color: AppColors.textSecondary),
         filled: true,
-        fillColor: AppColors.borderBlack,
-        suffixIcon: const Icon(Icons.calendar_today),
+        fillColor: AppColors.surfaceBlur,
+        suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 20, left: 5),
+          child: SizedBox(
+            width: 24.w,
+            height: 24.h,
+            child: SvgPicture.asset(Assets.assetsImagesAppointmentsCalendar),
+          ),
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
           borderSide: BorderSide(color: AppColors.borderBlack, width: 1.w),
@@ -86,10 +98,10 @@ class _TextFieldDateState extends State<TextFieldDate> {
     showDialog(
       context: context,
       builder: (context) {
-
         return StatefulBuilder(
           builder: (context, setDialogState) {
             return Dialog(
+              backgroundColor: AppColors.scaffoldColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -101,9 +113,8 @@ class _TextFieldDateState extends State<TextFieldDate> {
                     const SizedBox(height: 8),
                     Text(
                       AppStrings.chooseYourBirthDate,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                      style: AppTextStyles.head3.copyWith(
+                        color: AppColors.textPrimary,
                       ),
                     ),
 
@@ -130,6 +141,7 @@ class _TextFieldDateState extends State<TextFieldDate> {
                                     child: Text(
                                       "${index + 1}",
                                       style: TextStyle(
+                                        fontFamily: "Inter",
                                         fontSize: isSelected ? 18 : 14,
                                         fontWeight: isSelected
                                             ? FontWeight.bold
@@ -166,6 +178,7 @@ class _TextFieldDateState extends State<TextFieldDate> {
                                     child: Text(
                                       months[index],
                                       style: TextStyle(
+                                        fontFamily: "Inter",
                                         fontSize: isSelected ? 18 : 14,
                                         fontWeight: isSelected
                                             ? FontWeight.bold
@@ -202,6 +215,7 @@ class _TextFieldDateState extends State<TextFieldDate> {
                                     child: Text(
                                       "${1980 + index}",
                                       style: TextStyle(
+                                        fontFamily: "Inter",
                                         fontSize: isSelected ? 18 : 14,
                                         fontWeight: isSelected
                                             ? FontWeight.bold
@@ -240,13 +254,23 @@ class _TextFieldDateState extends State<TextFieldDate> {
 
                         Navigator.pop(context);
                       },
-                      child: const Text("Save date"),
+                      child: Text(
+                        "Save date",
+                        style: AppTextStyles.body3.copyWith(
+                          color: AppColors.textAccent,
+                        ),
+                      ),
                     ),
 
                     /// Cancel
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: const Text("Cancel"),
+                      child: Text(
+                        "Cancel",
+                        style: AppTextStyles.body3.copyWith(
+                          color: AppColors.textAccent,
+                        ),
+                      ),
                     ),
                   ],
                 ),

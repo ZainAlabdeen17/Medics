@@ -8,6 +8,7 @@ class DoctorDetailsCubit extends Cubit<DoctorDetailsState> {
   void getDays({required String doctorId}) async {
     emit(GetDaysLoading());
     final result = await repo.getBookingDays(doctorId);
+    if(isClosed) return;
     result.fold(
       (failure) {
         emit(GetDaysFailure(errorMessage: failure.message));

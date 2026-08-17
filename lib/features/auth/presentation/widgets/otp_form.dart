@@ -35,8 +35,16 @@ class OtpForm extends StatelessWidget {
         if (state is VerifySuccessState) {
           if (state.isProfileCompleted) {
             context.pushReplacement("/Home");
+            context.read<UserCubit>().signUpEmailController.clear();
+            context.read<UserCubit>().signUpPasswordController.clear();
+            context.read<UserCubit>().signUpFirstNameController.clear();
+            context.read<UserCubit>().signUpLastNameController.clear();
           } else {
             context.pushReplacement("/Patient");
+            context.read<UserCubit>().signUpEmailController.clear();
+            context.read<UserCubit>().signUpPasswordController.clear();
+            context.read<UserCubit>().signUpFirstNameController.clear();
+            context.read<UserCubit>().signUpLastNameController.clear();
           }
         }
         if (state is VerifyFailureState) {

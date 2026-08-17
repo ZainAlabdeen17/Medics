@@ -6,8 +6,11 @@ class PrescriptionCubit extends Cubit<PrescriptionState> {
   final MedicalRecordsRepository repository;
   PrescriptionCubit(this.repository) : super(PrescriptionInitial());
   Future<void> getPrescriptions() async {
-    emit(PrescriptionLoading());
+    if (!isClosed) {
+      emit(PrescriptionLoading());
+    }
     final result = await repository.getMedicalRecords();
+    if(isClosed) return;
     result.fold(
       (failure) => emit(PrescriptionError(message: failure.message)),
       (prescriptions) => emit(PrescriptionSuccess(prescriptions)),

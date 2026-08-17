@@ -104,7 +104,7 @@ class _PatientViewState extends State<PatientView> {
           if (state.isSuccess) {
             showCustomToast(
               context: context,
-              title: "Succesfull",
+              title: "Your Profile Completed Successfully",
               primaryColor: AppColors.borderGreen,
               icon: Icon(Icons.check_sharp, color: AppColors.borderGreen),
             );
@@ -127,7 +127,11 @@ class _PatientViewState extends State<PatientView> {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                 child: state.isLoading
-                    ? const Center(child: CircularProgressIndicator())
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.btnPrimary,
+                        ),
+                      )
                     : ButtonClass.customFillButton(
                         text: _currentPage == 3
                             ? AppStrings.saveData

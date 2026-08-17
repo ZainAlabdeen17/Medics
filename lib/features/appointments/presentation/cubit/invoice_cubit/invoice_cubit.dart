@@ -9,7 +9,9 @@ import 'package:path_provider/path_provider.dart';
 class InvoiceCubit extends Cubit<InvoiceState> {
   InvoiceCubit() : super(InvoiceInitial());
   Future<void> downloadInvoice(String url, String fileName) async {
-    emit(DownloadInvoiceLoading(progress: 0.0));
+    if (!isClosed) {
+      emit(DownloadInvoiceLoading(progress: 0.0));
+    }
     try {
       Directory? directory = Directory('/storage/emulated/0/Download');
       if (!await directory.exists()) {
@@ -24,13 +26,19 @@ class InvoiceCubit extends Cubit<InvoiceState> {
         onReceiveProgress: (count, total) {
           if (total != -1) {
             double progressPercentage = count / total;
-            emit(DownloadInvoiceLoading(progress: progressPercentage));
+            if (!isClosed) {
+              emit(DownloadInvoiceLoading(progress: progressPercentage));
+            }
           }
         },
       );
-      emit(DownloadInvoiceSuccess(savePath: savePath));
+      if (!isClosed) {
+        emit(DownloadInvoiceSuccess(savePath: savePath));
+      }
     } catch (e) {
-      emit(DownloadInvoiceFailure(errorMessage: e.toString()));
+      if (!isClosed) {
+        emit(DownloadInvoiceFailure(errorMessage: e.toString()));
+      }
     }
   }
 }

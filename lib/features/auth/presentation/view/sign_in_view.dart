@@ -23,8 +23,12 @@ class SignInView extends StatelessWidget {
         if (state is SignInSuccessState) {
           if (state.isProfileCompleted) {
             context.pushReplacement("/Home");
+            context.read<UserCubit>().signInEmailController.clear();
+            context.read<UserCubit>().signInPasswordController.clear();
           } else {
             context.pushReplacement("/Patient");
+            context.read<UserCubit>().signInEmailController.clear();
+            context.read<UserCubit>().signInPasswordController.clear();
           }
         }
         if (state is SignInFailureState) {

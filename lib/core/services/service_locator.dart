@@ -8,6 +8,7 @@ import 'package:medics/features/ai_chat/presentation/cubit/ai_chat_cubit/ai_chat
 import 'package:medics/features/appointments/data/repositories/appointment_repository.dart';
 import 'package:medics/features/appointments/presentation/cubit/appointment_cubit/appointment_cubit.dart';
 import 'package:medics/features/auth/data/repositories/auth_repository.dart';
+import 'package:medics/features/auth/presentation/cubit/logout_cubit/logout_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_cubit.dart';
 import 'package:medics/features/doctor/data/repository/booking_repositry.dart';
 import 'package:medics/features/doctor/data/repository/doctor_repository.dart';
@@ -22,6 +23,9 @@ import 'package:medics/features/medical_records/presentation/cubit/medical_tests
 import 'package:medics/features/medical_records/presentation/cubit/prescription_cubit/prescription_cubit.dart';
 import 'package:medics/features/medical_records/presentation/cubit/visits_cubit/visits_cubit.dart';
 import 'package:medics/features/patient_card/data/repositories/patient_repository.dart';
+import 'package:medics/features/payments/data/repositories/payments_repository.dart';
+import 'package:medics/features/payments/presentation/cubit/charge_wallet/charge_wallet_cubit.dart';
+import 'package:medics/features/payments/presentation/cubit/wallet_balance/wallet_balance_cubit.dart';
 import 'package:medics/features/specialization/data/repositories/specialization_repository.dart';
 import 'package:medics/features/specialization/presentation/cubit/specialization_cubit/specialization_cubit.dart';
 
@@ -90,6 +94,9 @@ void setupServiceLocator() {
   getIt.registerLazySingleton<AiChatRepository>(
     () => AiChatRepository(api: getIt<ApiConsumer>()),
   );
+  getIt.registerLazySingleton<PaymentsRepository>(
+    () => PaymentsRepository(api: getIt<ApiConsumer>()),
+  );
   getIt.registerFactory<AiChatCubit>(
     () => AiChatCubit(getIt<AiChatRepository>()),
   );
@@ -98,5 +105,14 @@ void setupServiceLocator() {
   );
   getIt.registerFactory<VisitsCubit>(
     () => VisitsCubit(getIt<MedicalRecordsRepository>()),
+  );
+  getIt.registerFactory<WalletBalanceCubit>(
+    () => WalletBalanceCubit(getIt<PaymentsRepository>()),
+  );
+  getIt.registerFactory<ChargeWalletCubit>(
+    () => ChargeWalletCubit(getIt<PaymentsRepository>()),
+  );
+  getIt.registerFactory<LogoutCubit>(
+    () => LogoutCubit(getIt<AuthRepository>()),
   );
 }

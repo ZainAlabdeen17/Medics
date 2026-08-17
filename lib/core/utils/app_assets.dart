@@ -182,6 +182,14 @@ class Assets {
   /// assets/images/icons/general/location.svg
   static const String assetsImagesIconsGeneralLocation = "assets/images/icons/general/location.svg";
 
+  /// Assets for assetsImagesIconsGeneralLogout
+  /// assets/images/icons/general/logout.svg
+  static const String assetsImagesIconsGeneralLogout = "assets/images/icons/general/logout.svg";
+
+  /// Assets for assetsImagesIconsGeneralLogout2
+  /// assets/images/icons/general/logout2.svg
+  static const String assetsImagesIconsGeneralLogout2 = "assets/images/icons/general/logout2.svg";
+
   /// Assets for assetsImagesIconsGeneralMedication
   /// assets/images/icons/general/medication.svg
   static const String assetsImagesIconsGeneralMedication = "assets/images/icons/general/medication.svg";
@@ -198,9 +206,17 @@ class Assets {
   /// assets/images/icons/general/note.svg
   static const String assetsImagesIconsGeneralNote = "assets/images/icons/general/note.svg";
 
+  /// Assets for assetsImagesIconsGeneralNotes
+  /// assets/images/icons/general/notes.svg
+  static const String assetsImagesIconsGeneralNotes = "assets/images/icons/general/notes.svg";
+
   /// Assets for assetsImagesIconsGeneralNotification
   /// assets/images/icons/general/notification.svg
   static const String assetsImagesIconsGeneralNotification = "assets/images/icons/general/notification.svg";
+
+  /// Assets for assetsImagesIconsGeneralPen
+  /// assets/images/icons/general/pen.svg
+  static const String assetsImagesIconsGeneralPen = "assets/images/icons/general/pen.svg";
 
   /// Assets for assetsImagesIconsGeneralPlus
   /// assets/images/icons/general/plus.svg
@@ -237,6 +253,10 @@ class Assets {
   /// Assets for assetsImagesIconsGeneralSuccessSpot
   /// assets/images/icons/general/success_spot.svg
   static const String assetsImagesIconsGeneralSuccessSpot = "assets/images/icons/general/success_spot.svg";
+
+  /// Assets for assetsImagesIconsGeneralSymptoms
+  /// assets/images/icons/general/symptoms.svg
+  static const String assetsImagesIconsGeneralSymptoms = "assets/images/icons/general/symptoms.svg";
 
   /// Assets for assetsImagesIconsGeneralTracker
   /// assets/images/icons/general/tracker.svg

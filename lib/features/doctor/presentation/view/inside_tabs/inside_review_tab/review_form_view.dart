@@ -28,7 +28,8 @@ class ReviewFormView extends StatelessWidget {
         if (state is ReviewFailure) {
           showCustomToast(
             context: context,
-            title: state.errorMessage,
+            title: "Failed to submit review",
+            descriptionText: state.errorMessage,
             primaryColor: AppColors.iconRed,
             icon: Icon(Icons.cancel_outlined, color: AppColors.iconRed),
           );

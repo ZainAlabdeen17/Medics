@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:medics/core/api/api_consumer.dart';
 import 'package:medics/core/error/exception.dart';
 import 'package:medics/core/error/failure.dart';
@@ -34,16 +35,44 @@ class BookingRepositry {
       if (doctorId.isNotEmpty && day.isNotEmpty) {
         queryParameters = {'doctor_id': doctorId, 'date': day};
       }
+
       final response = await api.get(
         path: "appointments/available-slots",
         queryParameters: queryParameters,
       );
+
       final List<dynamic>? slotsData =
           response['data']?['attributes']?['slots'];
 
-      final List<String> times = slotsData != null
+      List<String> times = slotsData != null
           ? List<String>.from(slotsData.map((e) => e.toString()))
           : [];
+
+      final now = DateTime.now();
+      final todayFormatted =
+          "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
+
+      if (day == todayFormatted) {
+        times = times.where((timeStr) {
+          try {
+            final parts = timeStr.split(':');
+            final slotHour = int.parse(parts[0]);
+            final slotMinute = int.parse(parts[1]);
+
+            final slotTime = DateTime(
+              now.year,
+              now.month,
+              now.day,
+              slotHour,
+              slotMinute,
+            );
+
+            return slotTime.isAfter(now);
+          } catch (e) {
+            return true;
+          }
+        }).toList();
+      }
       return right(times);
     } on ServerExeption catch (e) {
       return left(e.failure);
@@ -57,6 +86,33 @@ class BookingRepositry {
     required String reason,
   }) async {
     try {
+      final now = DateTime.now();
+      final todayFormatted =
+          "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
+
+      if (date == todayFormatted) {
+        try {
+          final parts = time.split(':');
+          final slotHour = int.parse(parts[0]);
+          final slotMinute = int.parse(parts[1]);
+
+          final slotTime = DateTime(
+            now.year,
+            now.month,
+            now.day,
+            slotHour,
+            slotMinute,
+          );
+
+          if (!slotTime.isAfter(now)) {
+            return left(
+              Failure(message: "Sorry, the time is not valid for booking."),
+            );
+          }
+        } catch (e) {
+          debugPrint("Error parsing slot time: $e");
+        }
+      }
       final response = await api.post(
         path: 'appointments/storeAppointment',
         data: {
@@ -66,6 +122,7 @@ class BookingRepositry {
           'reason': reason,
         },
       );
+
       final appointment = AppointmentModel.fromJson(response);
       return right(appointment);
     } on ServerExeption catch (e) {

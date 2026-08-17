@@ -33,7 +33,7 @@ class DoctorBookContent extends StatelessWidget {
               CustomDivider(),
               DaySlotsSection(doctor: doctor),
               CustomDivider(),
-              TimeSlotsSection(),
+              TimeSlotsSection(doctor: doctor),
               CustomDivider(),
               BookingReasonTextField(),
             ],

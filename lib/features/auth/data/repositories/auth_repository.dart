@@ -80,4 +80,19 @@ class AuthRepository {
       return Left(e.failure);
     }
   }
+
+  Future<Either<Failure, void>> logout() async {
+    try {
+      await Future.delayed(const Duration(seconds: 5));
+      await api.post(path: 'logout');
+    } catch (_) {
+    } finally {
+      await getIt<CacheHelper>().clearData();
+      await getIt<CacheHelper>().saveData(
+        key: "onBoardingVisited",
+        value: true,
+      );
+    }
+    return const Right(null);
+  }
 }

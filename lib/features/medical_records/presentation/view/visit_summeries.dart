@@ -16,88 +16,126 @@ import 'package:medics/features/medical_records/data/models/visit_model.dart';
 import 'package:medics/features/medical_records/presentation/cubit/visits_cubit/visits_cubit.dart';
 import 'package:medics/features/medical_records/presentation/cubit/visits_cubit/visits_state.dart';
 
-class VisitSummeries extends StatelessWidget {
+class VisitSummeries extends StatefulWidget {
   const VisitSummeries({super.key});
 
   @override
+  State<VisitSummeries> createState() => _VisitSummeriesState();
+}
+
+class _VisitSummeriesState extends State<VisitSummeries> {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(() {
+      setState(() {
+        _searchQuery = _searchController.text.trim().toLowerCase();
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: GeneralHeader(title: AppStrings.visitSummeries),
-              ),
-              SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-              SliverToBoxAdapter(
-                child: HomeSearchField(hintText: AppStrings.startTypingName),
-              ),
-              SliverToBoxAdapter(child: SizedBox(height: 16.h)),
-              BlocBuilder<VisitsCubit, VisitsState>(
-                builder: (context, state) {
-                  if (state is VisitsLoading) {
-                    return SliverFillRemaining(
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.borderAccent,
-                        ),
-                      ),
-                    );
-                  } else if (state is VisitsError) {
-                    return SliverFillRemaining(child: OnErrorWidget());
-                  } else if (state is VisitsSuccess) {
-                    if (state.visits.isEmpty) {
-                      return SliverFillRemaining(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 30.w),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 48.h,
-                                width: 48.w,
-                                child: SvgPicture.asset(
-                                  Assets.assetsImagesIconsGeneralNote,
-                                ),
-                              ),
-                              SizedBox(height: 24.h),
-                              Text(
-                                'No visits summaries found',
-                                style: AppTextStyles.head2.copyWith(
-                                  color: AppColors.textPrimary,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              SizedBox(height: 8.h),
-                              Text(
-                                'Your visits summaries will appear here once they are available.',
-                                style: AppTextStyles.body1.copyWith(
-                                  color: AppColors.textSecondary,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      behavior: HitTestBehavior.opaque,
+      child: Scaffold(
+        body: SafeArea(
+          child: RefreshIndicator(
+            onRefresh: () async {
+              await context.read<VisitsCubit>().getVisits();
+            },
+            backgroundColor: AppColors.surfaceCard,
+            color: AppColors.borderAccent,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: GeneralHeader(title: AppStrings.visitSummeries),
+                  ),
+                  SliverToBoxAdapter(child: SizedBox(height: 8.h)),
+                  SliverToBoxAdapter(
+                    child: HomeSearchField(
+                      hintText: AppStrings.startTypingDoctorName,
+                      controller: _searchController,
+                    ),
+                  ),
+                  SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+                  BlocBuilder<VisitsCubit, VisitsState>(
+                    builder: (context, state) {
+                      if (state is VisitsLoading) {
+                        return SliverFillRemaining(
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.borderAccent,
+                            ),
                           ),
-                        ),
-                      );
-                    }
-                    return SliverList.separated(
-                      itemCount: state.visits.length,
-                      itemBuilder: (context, i) {
-                        return VisitSummaryCard(visit: state.visits[i]);
-                      },
-                      separatorBuilder: (context, index) =>
-                          SizedBox(height: 12.h),
-                    );
-                  }
-                  return const SliverToBoxAdapter(child: SizedBox.shrink());
-                },
+                        );
+                      } else if (state is VisitsError) {
+                        return SliverFillRemaining(child: OnErrorWidget());
+                      } else if (state is VisitsSuccess) {
+                        final filteredList = state.visits.where((visit) {
+                          return visit.doctorName.toLowerCase().contains(
+                            _searchQuery,
+                          );
+                        }).toList();
+                        if (filteredList.isEmpty) {
+                          return SliverFillRemaining(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 30.w),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 48.h,
+                                    width: 48.w,
+                                    child: SvgPicture.asset(
+                                      Assets.assetsImagesIconsGeneralNote,
+                                    ),
+                                  ),
+                                  SizedBox(height: 24.h),
+                                  Text(
+                                    _searchQuery.isEmpty
+                                        ? 'No visits summeries found'
+                                        : 'No matching visit summeries found',
+                                    style: AppTextStyles.head2.copyWith(
+                                      color: AppColors.textPrimary,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  SizedBox(height: 8.h),
+                                  Text(
+                                    'Your visits summaries will appear here once they are available.',
+                                    style: AppTextStyles.body1.copyWith(
+                                      color: AppColors.textSecondary,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+                        return SliverList.separated(
+                          itemCount: filteredList.length,
+                          itemBuilder: (context, i) {
+                            return VisitSummaryCard(visit: filteredList[i]);
+                          },
+                          separatorBuilder: (context, index) =>
+                              SizedBox(height: 12.h),
+                        );
+                      }
+                      return const SliverToBoxAdapter(child: SizedBox.shrink());
+                    },
+                  ),
+                  SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+                ],
               ),
-              SliverToBoxAdapter(child: SizedBox(height: 16.h)),
-            ],
+            ),
           ),
         ),
       ),

@@ -15,7 +15,7 @@ class ExperienceAndGenderFilterSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FilterCubit, FilterState>(
       builder: (context, state) {
-        final experiences = ['<3 years', '3-10 years', '>10 years'];
+        final experiences = ['<3 years', '<10 years', '<25 years'];
         final genders = ['Male', 'Female'];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -24,7 +24,19 @@ class DoctorRepository {
         queryParams['specialization'] = specializations.join(',');
       }
       if (experience != null) {
-        queryParams['experience'] = experience;
+        switch (experience) {
+          case '<3 years':
+            queryParams['years_of_experience'] = '3';
+            break;
+          case '<10 years':
+            queryParams['years_of_experience'] = '10';
+            break;
+          case '<25 years':
+            queryParams['years_of_experience'] = '25';
+            break;
+          default:
+            queryParams['years_of_experience'] = experience;
+        }
       }
       if (gender != null) {
         queryParams['gender'] = gender;
@@ -63,7 +75,7 @@ class DoctorRepository {
   }
 
   Future<Either<Failure, String>> storeDoctorReview({
-    required String doctorId,
+    required int doctorId,
     required int rating,
     required String comment,
   }) async {

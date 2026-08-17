@@ -25,10 +25,11 @@ class ReviewCubit extends Cubit<ReviewState> {
   void submitReview({required String doctorId}) async {
     emit(ReviewLoading());
     final result = await doctorRepository.storeDoctorReview(
-      doctorId: doctorId,
+      doctorId: int.parse(doctorId),
       rating: rating,
       comment: reviewController.text,
     );
+    if (isClosed) return;
     result.fold(
       (failure) => emit(ReviewFailure(errorMessage: failure.message)),
       (success) => emit(ReviewSuccess()),
@@ -38,6 +39,7 @@ class ReviewCubit extends Cubit<ReviewState> {
   Future<void> getReviews({required String doctorId}) async {
     emit(GetReviewLoading());
     final result = await doctorRepository.getDoctorReviews(doctorId: doctorId);
+    if (isClosed) return;
     result.fold(
       (failure) => emit(GetReviewFailure(errorMessage: failure.message)),
       (reviews) => emit(GetReviewSuccess(reviews: reviews)),

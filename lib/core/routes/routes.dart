@@ -10,8 +10,10 @@ import 'package:medics/features/appointments/presentation/view/appointment_detai
 import 'package:medics/features/appointments/presentation/view/appointments_view.dart';
 import 'package:medics/features/appointments/presentation/view/cancel_appointment_view.dart';
 import 'package:medics/features/appointments/presentation/view/reschedule_appointment_view.dart';
+import 'package:medics/features/auth/presentation/cubit/logout_cubit/logout_cubit.dart';
 import 'package:medics/features/auth/presentation/view/otp_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_in_view.dart';
+import 'package:medics/features/auth/presentation/view/sign_out_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
 import 'package:medics/features/auth/presentation/view/success_verification_view.dart';
 import 'package:medics/features/chat/presentation/view/chat_view.dart';
@@ -45,6 +47,9 @@ import 'package:medics/features/medical_records/presentation/view/visit_summerie
 import 'package:medics/features/medical_records/presentation/view/x_rays_view.dart';
 import 'package:medics/features/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:medics/features/patient_card/presentation/view/patient_view.dart';
+import 'package:medics/features/payments/presentation/cubit/charge_wallet/charge_wallet_cubit.dart';
+import 'package:medics/features/payments/presentation/cubit/wallet_balance/wallet_balance_cubit.dart';
+import 'package:medics/features/payments/presentation/view/charge_wallet_view.dart';
 import 'package:medics/features/profile/presentation/view/profile_view.dart';
 import 'package:medics/features/root/presentation/view/root.dart';
 import 'package:medics/features/specialization/presentation/cubit/specialization_cubit/specialization_cubit.dart';
@@ -149,6 +154,13 @@ GoRouter route = GoRouter(
     GoRoute(
       path: "/SuccessVerification",
       builder: (context, state) => SuccessVerificationView(),
+    ),
+    GoRoute(
+      path: "/SignOut",
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<LogoutCubit>(),
+        child: SignOutView(),
+      ),
     ),
     GoRoute(
       path: "/SignIn",
@@ -388,6 +400,21 @@ GoRouter route = GoRouter(
       },
     ),
     GoRoute(path: "/AIChat", builder: (context, state) => AIChatView()),
+    GoRoute(
+      path: "/WalletCharge",
+      builder: (context, state) {
+        final walletBalanceCubit = state.extra as WalletBalanceCubit;
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: walletBalanceCubit),
+            BlocProvider(
+              create: (context) => getIt<ChargeWalletCubit>()..fetchPackages(),
+            ),
+          ],
+          child: ChargeWalletView(),
+        );
+      },
+    ),
     //
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
@@ -432,7 +459,11 @@ GoRouter route = GoRouter(
           routes: [
             GoRoute(
               path: "/Profile",
-              builder: (context, state) => ProfileView(),
+              builder: (context, state) => BlocProvider(
+                create: (context) =>
+                    getIt<WalletBalanceCubit>()..getWalletBalance(),
+                child: ProfileView(),
+              ),
             ),
           ],
         ),

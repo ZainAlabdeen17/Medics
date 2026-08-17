@@ -8,8 +8,11 @@ class VisitsCubit extends Cubit<VisitsState> {
   VisitsCubit(this.repository) : super(VisitsInitial());
 
   Future<void> getVisits() async {
-    emit(VisitsLoading());
+    if (!isClosed) {
+      emit(VisitsLoading());
+    }
     final result = await repository.getVisitsSummary();
+    if (isClosed) return;
     result.fold(
       (failure) => emit(VisitsError(message: failure.message)),
       (visits) => emit(VisitsSuccess(visits)),

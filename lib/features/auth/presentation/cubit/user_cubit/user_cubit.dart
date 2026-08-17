@@ -67,4 +67,15 @@ class UserCubit extends Cubit<UserState> {
       ),
     );
   }
+
+  @override
+  Future<void> close() {
+    signInEmailController.dispose();
+    signInPasswordController.dispose();
+    signUpEmailController.dispose();
+    signUpPasswordController.dispose();
+    signUpFirstNameController.dispose();
+    signUpLastNameController.dispose();
+    return super.close();
+  }
 }

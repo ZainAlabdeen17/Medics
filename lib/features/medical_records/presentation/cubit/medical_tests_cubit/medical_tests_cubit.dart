@@ -6,8 +6,11 @@ class MedicalTestsCubit extends Cubit<MedicalTestsState> {
   final MedicalRecordsRepository repository;
   MedicalTestsCubit(this.repository) : super(MedicalTestsInitial());
   Future<void> getMedicalTests() async {
-    emit(MedicalTestsLoading());
+    if (!isClosed) {
+      emit(MedicalTestsLoading());
+    }
     final result = await repository.getMedicalTests();
+    if (isClosed) return;
     result.fold(
       (failure) => emit(MedicalTestsError(message: failure.message)),
       (medicalTests) => emit(MedicalTestsSuccess(medicalTests)),
@@ -17,6 +20,7 @@ class MedicalTestsCubit extends Cubit<MedicalTestsState> {
   Future<void> getXRays() async {
     emit(MedicalTestsLoading());
     final result = await repository.getXRays();
+    if (isClosed) return;
     result.fold(
       (failure) => emit(MedicalTestsError(message: failure.message)),
       (xrays) => emit(MedicalTestsSuccess(xrays)),

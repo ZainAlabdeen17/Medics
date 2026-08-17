@@ -27,8 +27,6 @@ class ServicesSection extends StatelessWidget {
             context.push("/${AppStrings.faq}");
           },
         ),
-        SizedBox(height: 8.h),
-        ServiceItem(title: "Connect with Medics", onTap: () {}),
       ],
     );
   }

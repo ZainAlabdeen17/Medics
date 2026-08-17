@@ -71,7 +71,7 @@ class RescheduleAppointmentView extends StatelessWidget {
                     CustomDivider(),
                     DaySlotsSection(doctor: appointment.doctor),
                     CustomDivider(),
-                    TimeSlotsSection(),
+                    TimeSlotsSection(doctor: appointment.doctor),
                     CustomDivider(),
                     BookingReasonTextField(maxLines: 4),
                     SizedBox(height: 30.h),

@@ -52,4 +52,14 @@ class FilterCubit extends Cubit<FilterState> {
       emit(state.copyWith(hasFilter: false));
     }
   }
+
+  bool returnIfWeHaveActiveFilter() {
+    if (state.hasFilter == true) {
+      return true;
+    } else if (state.searchQuery.trim().isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

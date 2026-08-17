@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
@@ -93,6 +94,158 @@ class VisitSummaryDetails extends StatelessWidget {
                     color: AppColors.textPrimary,
                   ),
                   textAlign: TextAlign.start,
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+              SliverToBoxAdapter(
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 24.w,
+                      height: 24.h,
+                      child: SvgPicture.asset(
+                        Assets.assetsImagesIconsGeneralNotes,
+                      ),
+                    ),
+                    SizedBox(width: 4.w),
+                    Text(
+                      AppStrings.anamnesis,
+                      style: AppTextStyles.head3.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 4.h)),
+              SliverToBoxAdapter(
+                child: Text(
+                  visit.anamnesis,
+                  style: AppTextStyles.body1.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+              SliverToBoxAdapter(
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 24.w,
+                      height: 24.h,
+                      child: SvgPicture.asset(
+                        Assets.assetsImagesIconsGeneralSymptoms,
+                      ),
+                    ),
+                    SizedBox(width: 4.w),
+                    Text(
+                      AppStrings.symptoms,
+                      style: AppTextStyles.head3.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+              SliverToBoxAdapter(
+                child: visit.symptoms.isNotEmpty
+                    ? Wrap(
+                        spacing: 8.w,
+                        runSpacing: 8.h,
+                        children: visit.symptoms.map((symptom) {
+                          return Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 12.w,
+                              vertical: 4.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.surfaceBlur,
+
+                              borderRadius: BorderRadius.circular(100.r),
+                              border: Border.all(color: AppColors.borderBlack),
+                            ),
+                            child: Text(
+                              symptom,
+                              style: AppTextStyles.body1.copyWith(
+                                color: AppColors.textSecondary,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      )
+                    : Text(
+                        "No available data",
+                        style: AppTextStyles.body1.copyWith(
+                          color: AppColors.textSecondary,
+                        ),
+                      ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+              SliverToBoxAdapter(
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 24.w,
+                      height: 24.h,
+                      child: SvgPicture.asset(
+                        Assets.assetsImagesIconsGeneralPen,
+                      ),
+                    ),
+                    SizedBox(width: 4.w),
+                    Text(
+                      AppStrings.diagnosis,
+                      style: AppTextStyles.head3.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 8.h)),
+              SliverToBoxAdapter(
+                child: Text(
+                  visit.diagnosis,
+                  style: AppTextStyles.body1.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+              SliverToBoxAdapter(
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 22.w,
+                      height: 22.h,
+                      child: SvgPicture.asset(
+                        Assets.assetsImagesIconsGeneralCalendar,
+                      ),
+                    ),
+                    SizedBox(width: 4.w),
+                    Text(
+                      "Next visit date",
+                      style: AppTextStyles.head3.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 8.h)),
+              SliverToBoxAdapter(
+                child: Text(
+                  visit.nextVisitDate != null
+                      ? "${visit.nextVisitDate} (recommended)"
+                      : "No available data",
+                  style: AppTextStyles.body1.copyWith(
+                    color: AppColors.textSecondary,
+                    fontFamily: "Inter",
+                  ),
                 ),
               ),
             ],

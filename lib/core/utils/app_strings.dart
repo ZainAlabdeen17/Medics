@@ -139,6 +139,7 @@ class AppStrings {
   static const String radiologist = "Radiologist";
   //doctors
   static const String startTypingName = "Start Type Name";
+  static const String startTypingDoctorName = "Start Type Doctor Name";
   //filter
   static const String cancel = "Cancel";
   static const String filter = "Filter";
@@ -182,6 +183,8 @@ class AppStrings {
   //medical records
   static const String medicalRecords = "Medical records";
   static const String prescription = "Prescription";
+  static const String symptoms = "Symptoms";
+  static const String diagnosis = "Diagnosis";
   static const String labReports = "Lab reports";
   static const String xRays = "X-Rays";
   static const String healthMetrics = "Health metrics";

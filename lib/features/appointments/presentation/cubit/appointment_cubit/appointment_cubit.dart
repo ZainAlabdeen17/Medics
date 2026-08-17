@@ -15,18 +15,26 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     hasMoreData = true;
     isLoadingMore = false;
     allAppointments.clear();
-    emit(AppointmentsLoading());
+    if (!isClosed) {
+      emit(AppointmentsLoading());
+    }
     final result = await appointmentRepository.getAppointments(
       page: currentPage,
     );
     result.fold(
-      (failure) => emit(AppointmentsFailure(errorMessage: failure.message)),
+      (failure) {
+        if (!isClosed) {
+          emit(AppointmentsFailure(errorMessage: failure.message));
+        }
+      },
       (appointments) {
         allAppointments = appointments;
         if (allAppointments.length < 8) {
           hasMoreData = false;
         }
-        emit(AppointmentsSuccess(appointments: List.from(allAppointments)));
+        if (!isClosed) {
+          emit(AppointmentsSuccess(appointments: List.from(allAppointments)));
+        }
       },
     );
   }
@@ -34,7 +42,9 @@ class AppointmentCubit extends Cubit<AppointmentState> {
   void getNextPage() async {
     if (isLoadingMore || !hasMoreData) return;
     isLoadingMore = true;
-    emit(AppointmentsSuccess(appointments: List.from(allAppointments)));
+    if (!isClosed) {
+      emit(AppointmentsSuccess(appointments: List.from(allAppointments)));
+    }
     currentPage++;
     final result = await appointmentRepository.getAppointments(
       page: currentPage,
@@ -43,7 +53,9 @@ class AppointmentCubit extends Cubit<AppointmentState> {
       (failure) {
         isLoadingMore = false;
         currentPage--;
-        emit(AppointmentsSuccess(appointments: List.from(allAppointments)));
+        if (!isClosed) {
+          emit(AppointmentsSuccess(appointments: List.from(allAppointments)));
+        }
       },
       (newAppointments) {
         isLoadingMore = false;
@@ -54,24 +66,35 @@ class AppointmentCubit extends Cubit<AppointmentState> {
 
         if (newAppointments.isNotEmpty) {
           allAppointments.addAll(newAppointments);
-          emit(AppointmentsSuccess(appointments: List.from(allAppointments)));
+          if (!isClosed) {
+            emit(AppointmentsSuccess(appointments: List.from(allAppointments)));
+          }
         }
       },
     );
   }
 
-  void cancelAppointment({required String appointmentId,required String reason}) async {
-    emit(AppointmentActionLoading());
+  void cancelAppointment({
+    required String appointmentId,
+    required String reason,
+  }) async {
+    if (!isClosed) {
+      emit(AppointmentActionLoading());
+    }
     final result = await appointmentRepository.cancelAppointment(
       appointmentId: appointmentId,
       reason: reason,
     );
     result.fold(
       (failure) {
-        emit(AppointmentActionFailure(failure.message));
+        if (!isClosed) {
+          emit(AppointmentActionFailure(failure.message));
+        }
       },
       (message) {
-        emit(AppointmentCancelSuccess(message));
+        if (!isClosed) {
+          emit(AppointmentCancelSuccess(message));
+        }
       },
     );
   }

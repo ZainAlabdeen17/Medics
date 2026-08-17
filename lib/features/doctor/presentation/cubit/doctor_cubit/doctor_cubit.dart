@@ -20,6 +20,7 @@ class DoctorCubit extends Cubit<DoctorState> {
       experience: experience,
       gender: gender,
     );
+    if(isClosed) return;
     result.fold(
       (failure) {
         emit(DoctorFailure(errorMessage: failure.message));

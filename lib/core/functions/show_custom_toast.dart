@@ -10,6 +10,8 @@ void showCustomToast({
   required Icon icon,
   String? descriptionText,
   int? secondsDur,
+  AlignmentGeometry? alignment,
+  Color? backColor,
 }) {
   toastification.show(
     context: context,
@@ -28,8 +30,9 @@ void showCustomToast({
         : null,
     autoCloseDuration: Duration(seconds: secondsDur ?? 5),
     primaryColor: primaryColor,
+    backgroundColor: backColor,
     icon: icon,
-    alignment: Alignment.topCenter,
+    alignment: alignment ?? Alignment.topCenter,
     closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
     applyBlurEffect: true,
     borderSide: BorderSide.none,

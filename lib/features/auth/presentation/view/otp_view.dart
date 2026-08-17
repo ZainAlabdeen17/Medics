@@ -20,6 +20,9 @@ class OtpView extends StatelessWidget {
       builder: (context, state) {
         return ModalProgressHUD(
           inAsyncCall: state is VerifyLoadingState,
+          progressIndicator: CircularProgressIndicator(
+            color: AppColors.btnPrimary,
+          ),
           child: Scaffold(
             body: SafeArea(
               child: Padding(
