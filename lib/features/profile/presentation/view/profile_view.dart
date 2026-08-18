@@ -22,14 +22,6 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<WalletBalanceCubit>().getWalletBalance();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     final user = UserFunctions.getUser();
     return VisibilityDetector(

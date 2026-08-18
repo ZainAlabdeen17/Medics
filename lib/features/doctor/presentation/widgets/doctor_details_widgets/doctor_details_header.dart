@@ -38,16 +38,6 @@ class DoctorDetailsHeader extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: SizedBox(
-                        height: 24.h,
-                        width: 24.w,
-                        child: SvgPicture.asset(
-                          Assets.assetsImagesIconsGeneralFavourite,
-                        ),
-                      ),
-                    ),
                     SizedBox(width: 12.w),
                     GestureDetector(
                       onTap: () {},

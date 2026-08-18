@@ -10,6 +10,8 @@ import 'package:medics/features/appointments/presentation/cubit/appointment_cubi
 import 'package:medics/features/auth/data/repositories/auth_repository.dart';
 import 'package:medics/features/auth/presentation/cubit/logout_cubit/logout_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_cubit.dart';
+import 'package:medics/features/conversation/data/repositories/conversation_repository.dart';
+import 'package:medics/features/conversation/presentation/cubit/conversation_cubit/conversation_cubit.dart';
 import 'package:medics/features/doctor/data/repository/booking_repositry.dart';
 import 'package:medics/features/doctor/data/repository/doctor_repository.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_cubit.dart';
@@ -97,6 +99,9 @@ void setupServiceLocator() {
   getIt.registerLazySingleton<PaymentsRepository>(
     () => PaymentsRepository(api: getIt<ApiConsumer>()),
   );
+  getIt.registerLazySingleton<ConversationRepository>(
+    () => ConversationRepository(api: getIt<ApiConsumer>()),
+  );
   getIt.registerFactory<AiChatCubit>(
     () => AiChatCubit(getIt<AiChatRepository>()),
   );
@@ -111,6 +116,9 @@ void setupServiceLocator() {
   );
   getIt.registerFactory<ChargeWalletCubit>(
     () => ChargeWalletCubit(getIt<PaymentsRepository>()),
+  );
+  getIt.registerFactory<ConversationsCubit>(
+    () => ConversationsCubit(getIt<ConversationRepository>()),
   );
   getIt.registerFactory<LogoutCubit>(
     () => LogoutCubit(getIt<AuthRepository>()),

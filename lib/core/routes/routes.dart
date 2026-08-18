@@ -16,7 +16,8 @@ import 'package:medics/features/auth/presentation/view/sign_in_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_out_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
 import 'package:medics/features/auth/presentation/view/success_verification_view.dart';
-import 'package:medics/features/chat/presentation/view/chat_view.dart';
+import 'package:medics/features/conversation/presentation/cubit/conversation_cubit/conversation_cubit.dart';
+import 'package:medics/features/conversation/presentation/view/conversations_view.dart';
 import 'package:medics/features/doctor/data/models/doctor_model.dart';
 import 'package:medics/features/doctor/presentation/cubit/book_cubit/book_cubit.dart';
 import 'package:medics/features/doctor/presentation/cubit/doctor_cubit/doctor_cubit.dart';
@@ -452,7 +453,14 @@ GoRouter route = GoRouter(
         ),
         StatefulShellBranch(
           routes: [
-            GoRoute(path: "/Chat", builder: (context, state) => ChatView()),
+            GoRoute(
+              path: "/Chat",
+              builder: (context, state) => BlocProvider(
+                create: (context) =>
+                    getIt<ConversationsCubit>()..fetchConversations(),
+                child: ConversationsView(),
+              ),
+            ),
           ],
         ),
         StatefulShellBranch(
