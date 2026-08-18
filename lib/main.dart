@@ -2,7 +2,9 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medics/core/functions/auth_and_connect_socket.dart';
 import 'package:medics/core/routes/routes.dart';
+import 'package:medics/core/services/local_notification_service.dart';
 import 'package:medics/core/services/service_locator.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/database/cache/cache_helper.dart';
@@ -13,6 +15,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   await getIt<CacheHelper>().init();
+  await LocalNotificationService.init();
+  checkAuthAndConnectSocket();
   runApp(DevicePreview(enabled: false, builder: (context) => MedicsApp()));
 }
 

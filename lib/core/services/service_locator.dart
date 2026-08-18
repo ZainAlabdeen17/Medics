@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:medics/core/api/api_consumer.dart';
 import 'package:medics/core/api/dio_consumer.dart';
 import 'package:medics/core/database/cache/cache_helper.dart';
+import 'package:medics/core/services/new_pusher_service.dart';
 import 'package:medics/features/ai_chat/data/repositories/ai_chat_repository.dart';
 import 'package:medics/features/ai_chat/presentation/cubit/ai_chat_cubit/ai_chat_cubit.dart';
 import 'package:medics/features/appointments/data/repositories/appointment_repository.dart';
@@ -10,6 +11,13 @@ import 'package:medics/features/appointments/presentation/cubit/appointment_cubi
 import 'package:medics/features/auth/data/repositories/auth_repository.dart';
 import 'package:medics/features/auth/presentation/cubit/logout_cubit/logout_cubit.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_cubit.dart';
+import 'package:medics/features/chat/data/data_source/chat_remote_data_source.dart';
+import 'package:medics/features/chat/data/data_source/chat_remote_data_source_impl.dart';
+import 'package:medics/features/chat/data/repositories/chat_repository_impl.dart';
+import 'package:medics/features/chat/domain/repositories/chat_repository.dart';
+import 'package:medics/features/chat/domain/usecases/get_messages_use_case.dart';
+import 'package:medics/features/chat/domain/usecases/send_message_use_case.dart';
+import 'package:medics/features/chat/presentation/cubit/chat_cubit/chat_cubit.dart';
 import 'package:medics/features/conversation/data/repositories/conversation_repository.dart';
 import 'package:medics/features/conversation/presentation/cubit/conversation_cubit/conversation_cubit.dart';
 import 'package:medics/features/doctor/data/repository/booking_repositry.dart';
@@ -122,5 +130,27 @@ void setupServiceLocator() {
   );
   getIt.registerFactory<LogoutCubit>(
     () => LogoutCubit(getIt<AuthRepository>()),
+  );
+  //
+  getIt.registerLazySingleton<PusherServices>(() => PusherServices());
+  //
+  getIt.registerLazySingleton<ChatRemoteDataSource>(
+    () => ChatRemoteDataSourceImpl(api: getIt<ApiConsumer>()),
+  );
+
+  getIt.registerLazySingleton<ChatRepository>(
+    () => ChatRepositoryImpl(remoteDataSource: getIt<ChatRemoteDataSource>()),
+  );
+
+  getIt.registerLazySingleton<GetMessagesUseCase>(
+    () => GetMessagesUseCase(repository: getIt<ChatRepository>()),
+  );
+
+  getIt.registerLazySingleton<SendMessageUseCase>(
+    () => SendMessageUseCase(repository: getIt<ChatRepository>()),
+  );
+  //
+  getIt.registerFactory<ChatCubit>(
+    () => ChatCubit(getIt<GetMessagesUseCase>(), getIt<SendMessageUseCase>()),
   );
 }

@@ -1,13 +1,23 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medics/core/services/new_pusher_service.dart';
+import 'package:medics/core/services/service_locator.dart';
 import 'package:medics/features/conversation/data/repositories/conversation_repository.dart';
 import 'package:medics/features/conversation/presentation/cubit/conversation_cubit/conversation_state.dart';
 
 class ConversationsCubit extends Cubit<ConversationsState> {
   final ConversationRepository repository;
-  ConversationsCubit(this.repository) : super(ConversationsInitial());
-  Future<void> fetchConversations() async {
+  StreamSubscription? _socketSubscription;
+  ConversationsCubit(this.repository) : super(ConversationsInitial()) {
+    fetchConversations();
+    startListeningToSocketUpdates();
+  }
+  Future<void> fetchConversations({bool? withoutLoading}) async {
     if (state is! ConversationsLoaded) {
-      emit(ConversationsLoading());
+      if (withoutLoading != true) {
+        emit(ConversationsLoading());
+      }
     }
     final result = await repository.getDoctorThreads();
     result.fold(
@@ -19,19 +29,19 @@ class ConversationsCubit extends Cubit<ConversationsState> {
       },
     );
   }
-  //after merging my-learning-zone branch on main branch you should to make this cubit related with this below code
 
-  // void startListeningToSocketUpdates() {
-  //   _socketSubscription?.cancel();
+  void startListeningToSocketUpdates() {
+    _socketSubscription?.cancel();
 
-  //   _socketSubscription = getIt<PusherService>().globalStream.listen((_) {
-  //     fetchConversations();
-  //   });
-  // }
+    _socketSubscription = getIt<PusherServices>().globalStream.listen((data) {
+      debugPrint("📡 [Socket] Data received in Global Listener: $data");
+      fetchConversations();
+    });
+  }
 
-  // @override
-  // Future<void> close() {
-  //   _socketSubscription?.cancel();
-  //   return super.close();
-  // }
+  @override
+  Future<void> close() {
+    _socketSubscription?.cancel();
+    return super.close();
+  }
 }

@@ -16,6 +16,9 @@ import 'package:medics/features/auth/presentation/view/sign_in_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_out_view.dart';
 import 'package:medics/features/auth/presentation/view/sign_up_view.dart';
 import 'package:medics/features/auth/presentation/view/success_verification_view.dart';
+import 'package:medics/features/chat/presentation/cubit/chat_cubit/chat_cubit.dart';
+import 'package:medics/features/chat/presentation/cubit/input_cubit/input_cubit.dart';
+import 'package:medics/features/chat/presentation/view/chat_view.dart';
 import 'package:medics/features/conversation/presentation/cubit/conversation_cubit/conversation_cubit.dart';
 import 'package:medics/features/conversation/presentation/view/conversations_view.dart';
 import 'package:medics/features/doctor/data/models/doctor_model.dart';
@@ -402,6 +405,22 @@ GoRouter route = GoRouter(
     ),
     GoRoute(path: "/AIChat", builder: (context, state) => AIChatView()),
     GoRoute(
+      path: "/ChatView",
+      builder: (context, state) {
+        final doctor = state.extra as DoctorModel;
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  getIt<ChatCubit>()..loadMessages(receiverId: doctor.userId),
+            ),
+            BlocProvider(create: (context) => InputCubit()),
+          ],
+          child: ChatView(doctor: doctor),
+        );
+      },
+    ),
+    GoRoute(
       path: "/WalletCharge",
       builder: (context, state) {
         final walletBalanceCubit = state.extra as WalletBalanceCubit;
@@ -454,7 +473,7 @@ GoRouter route = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: "/Chat",
+              path: "/Conversations",
               builder: (context, state) => BlocProvider(
                 create: (context) =>
                     getIt<ConversationsCubit>()..fetchConversations(),

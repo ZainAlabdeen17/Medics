@@ -194,6 +194,10 @@ class Assets {
   /// assets/images/icons/general/medication.svg
   static const String assetsImagesIconsGeneralMedication = "assets/images/icons/general/medication.svg";
 
+  /// Assets for assetsImagesIconsGeneralMessageSend
+  /// assets/images/icons/general/message_send.svg
+  static const String assetsImagesIconsGeneralMessageSend = "assets/images/icons/general/message_send.svg";
+
   /// Assets for assetsImagesIconsGeneralMicroscope
   /// assets/images/icons/general/microscope.svg
   static const String assetsImagesIconsGeneralMicroscope = "assets/images/icons/general/microscope.svg";

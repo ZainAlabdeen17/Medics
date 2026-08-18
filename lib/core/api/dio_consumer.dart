@@ -35,13 +35,13 @@ class DioConsumer extends ApiConsumer {
     if (kDebugMode) {
       dio.interceptors.add(
         PrettyDioLogger(
-          enabled: true,
-          request: true,
-          requestHeader: true,
-          requestBody: true,
+          enabled: false,
+          request: false,
+          requestHeader: false,
+          requestBody: false,
           responseHeader: false,
-          responseBody: true,
-          error: true,
+          responseBody: false,
+          error: false,
         ),
       );
     }

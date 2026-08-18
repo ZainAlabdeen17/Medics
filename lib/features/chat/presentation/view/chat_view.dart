@@ -1,107 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medics/core/utils/app_colors.dart';
-import 'package:medics/core/utils/app_strings.dart';
-import 'package:medics/core/utils/app_text_styles.dart';
-import 'package:medics/features/chat/data/chat_model.dart';
-import 'package:medics/features/home/presentation/view/widgets/home_search_field.dart';
+import 'package:medics/features/chat/presentation/widgets/custom_chat_header.dart';
+import 'package:medics/features/chat/presentation/widgets/custom_circle_progress_indicator.dart';
+import 'package:medics/features/chat/presentation/cubit/chat_cubit/chat_cubit.dart';
+import 'package:medics/features/chat/presentation/cubit/chat_cubit/chat_state.dart';
+import 'package:medics/features/chat/presentation/widgets/messages_list_builder.dart';
+import 'package:medics/features/chat/presentation/widgets/centerlized_text.dart';
+import 'package:medics/features/chat/presentation/widgets/text_input_field.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 
-class ChatView extends StatelessWidget {
-  const ChatView({super.key});
+class ChatView extends StatefulWidget {
+  const ChatView({super.key, required this.doctor});
+  final DoctorModel doctor;
 
   @override
+  State<ChatView> createState() => _ChatViewState();
+}
+
+class _ChatViewState extends State<ChatView> {
+  @override
   Widget build(BuildContext context) {
-    final recentChats = ChatModel.getRecentChats();
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 8.h),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Text(
-                    AppStrings.messages,
-                    style: AppTextStyles.head1.copyWith(
-                      color: AppColors.textPrimary,
-                    ),
+    return BlocConsumer<ChatCubit, ChatState>(
+      listener: (context, state) {
+        final chatCubit = context.read<ChatCubit>();
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (chatCubit.scrollController.hasClients) {
+            chatCubit.scrollController.animateTo(
+              0,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeIn,
+            );
+          }
+        });
+
+        if (state.errorMessage != null && state.errorMessage!.isNotEmpty) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
+        }
+      },
+      builder: (context, state) {
+        debugPrint('UI MESSAGES COUNT => ${state.messages.length}');
+        final messages = state.messages.reversed.toList();
+        return Scaffold(
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Column(
+                children: [
+                  CustomChatHeader(doctor: widget.doctor),
+                  Divider(
+                    height: 0.h,
+                    color: AppColors.borderPrimary,
+                    thickness: 1.w,
                   ),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 12.h,
-                  ),
-                  child: HomeSearchField(hintText: AppStrings.searchByName),
-                ),
-              ),
-              SliverList.builder(
-                itemCount: recentChats.length,
-                itemBuilder: (context, index) {
-                  final chat = recentChats[index];
-                  return Container(
-                    height: 84.h,
-                    padding: EdgeInsets.all(16.w),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: AppColors.borderPrimary,
-                          width: 0.5.w,
-                        ),
-                      ),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: AssetImage(chat['image']),
-                          radius: 24,
-                          backgroundColor: AppColors.borderPrimary,
-                        ),
-                        SizedBox(width: 12.w),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              chat['name'],
-                              style: AppTextStyles.head3.copyWith(
-                                color: AppColors.textPrimary,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 223.w,
-                              child: Text(
-                                chat['lastMessage'],
-                                style: AppTextStyles.body1.copyWith(
-                                  color: AppColors.textSecondary,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Spacer(),
-                        Text(
-                          chat['time'],
-                          style: AppTextStyles.body3.copyWith(
-                            color: AppColors.textSecondary,
-                            fontFamily: 'Inter',
+                  Expanded(
+                    child: state.isLoading
+                        ? CustomCircleProgressIndicator()
+                        : state.messages.isEmpty && state.errorMessage == null
+                        ? CenerlizedText(
+                            note: "Say Hello To ${widget.doctor.firstName}",
+                          )
+                        : state.messages.isEmpty && state.errorMessage != null
+                        ? CenerlizedText(note: state.errorMessage!)
+                        : MessagesListBuilder(
+                            messages: messages,
+                            sender: widget.doctor.firstName,
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                  ),
+                  TextInputField(receiverId: widget.doctor.userId),
+                ],
               ),
-              SliverToBoxAdapter(child: SizedBox(height: 104.h)),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

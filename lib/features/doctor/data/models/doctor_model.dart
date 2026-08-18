@@ -3,6 +3,7 @@ import 'package:medics/core/utils/app_constant.dart';
 
 class DoctorModel {
   final String id;
+  final int userId;
   final String firstName;
   final String lastName;
   final String email;
@@ -19,6 +20,7 @@ class DoctorModel {
 
   DoctorModel({
     required this.id,
+    required this.userId,
     required this.firstName,
     required this.lastName,
     required this.email,
@@ -45,6 +47,7 @@ class DoctorModel {
     }
     return DoctorModel(
       id: json["id"] ?? "",
+      userId: user["id"] ?? 0,
       firstName: user["first_name"] ?? "",
       lastName: user["last_name"] ?? "",
       email: user["email"] ?? "",

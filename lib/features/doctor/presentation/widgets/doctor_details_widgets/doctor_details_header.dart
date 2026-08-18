@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medics/core/utils/app_assets.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 
 class DoctorDetailsHeader extends StatelessWidget {
-  const DoctorDetailsHeader({super.key});
+  final DoctorModel doctor;
+  const DoctorDetailsHeader({super.key, required this.doctor});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,9 @@ class DoctorDetailsHeader extends StatelessWidget {
                   children: [
                     SizedBox(width: 12.w),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.push('/ChatView', extra: doctor);
+                      },
                       child: SizedBox(
                         height: 24.h,
                         width: 24.w,

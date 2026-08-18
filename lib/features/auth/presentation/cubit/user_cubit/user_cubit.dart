@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medics/core/functions/auth_and_connect_socket.dart';
 import 'package:medics/features/auth/data/repositories/auth_repository.dart';
 import 'package:medics/features/auth/presentation/cubit/user_cubit/user_state.dart';
 
@@ -31,14 +32,16 @@ class UserCubit extends Cubit<UserState> {
       email: signInEmailController.text,
       password: signInPasswordController.text,
     );
-    result.fold(
-      (failure) => emit(SignInFailureState(failure.message)),
-      (authSession) => emit(
+    result.fold((failure) => emit(SignInFailureState(failure.message)), (
+      authSession,
+    ) {
+      emit(
         SignInSuccessState(
           isProfileCompleted: authSession.user.isProfileCompleted,
         ),
-      ),
-    );
+      );
+      checkAuthAndConnectSocket();
+    });
   }
 
   Future<void> signUp() async {
@@ -58,14 +61,16 @@ class UserCubit extends Cubit<UserState> {
   Future<void> verify({required String email, required String code}) async {
     emit(VerifyLoadingState());
     final result = await authRepository.verifyEmail(email: email, code: code);
-    result.fold(
-      (failure) => emit(VerifyFailureState(failure.message)),
-      (authSession) => emit(
+    result.fold((failure) => emit(VerifyFailureState(failure.message)), (
+      authSession,
+    ) {
+      emit(
         VerifySuccessState(
           isProfileCompleted: authSession.user.isProfileCompleted,
         ),
-      ),
-    );
+      );
+      checkAuthAndConnectSocket();
+    });
   }
 
   @override

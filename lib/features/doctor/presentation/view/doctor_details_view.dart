@@ -52,7 +52,9 @@ class DoctorDetailsView extends StatelessWidget {
                 child: NestedScrollView(
                   headerSliverBuilder: (context, innerBoxIsScrolled) {
                     return [
-                      SliverToBoxAdapter(child: DoctorDetailsHeader()),
+                      SliverToBoxAdapter(
+                        child: DoctorDetailsHeader(doctor: doctor),
+                      ),
                       SliverToBoxAdapter(
                         child: DoctorDetailsBadge(doctor: doctor),
                       ),
