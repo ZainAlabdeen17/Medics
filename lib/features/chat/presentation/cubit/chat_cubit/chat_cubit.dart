@@ -38,7 +38,7 @@ class ChatCubit extends Cubit<ChatState> {
         if (conversation.conversationId != null) {
           getIt<PusherServices>().currentActiveConversationId =
               conversation.conversationId;
-          getIt<PusherServices>().subscribeToChat(
+          await getIt<PusherServices>().subscribeToChat(
             conversationId: conversation.conversationId!,
           );
 

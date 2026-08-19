@@ -15,6 +15,7 @@ class PusherServices {
   StreamSubscription? _globalEventSubscription;
   StreamSubscription? _chatEventSubscription;
   StreamSubscription? _connectionSubscription;
+  Completer<void>? _connectionReady;
 
   final StreamController<Map<String, dynamic>> _globalStreamController =
       StreamController<Map<String, dynamic>>.broadcast();
@@ -36,12 +37,13 @@ class PusherServices {
       }
 
       _cachedToken = token;
+      _connectionReady = Completer<void>();
 
       final hostOptions = PusherChannelsOptions.fromHost(
         scheme: 'ws',
         host: AppConstant.ipAddress,
         port: 8080,
-        key: 'my-super-secret-key',
+        key: 'localkey',
         shouldSupplyMetadataQueries: true,
         metadata: PusherChannelsOptionsMetadata.byDefault(),
       );
@@ -90,6 +92,9 @@ class PusherServices {
         debugPrint(
           "🚀 Global WebSocket Connected! Subscribing to Global User Channel...",
         );
+        if (!(_connectionReady?.isCompleted ?? true)) {
+          _connectionReady!.complete();
+        }
         _globalUserChannel!.subscribe();
       });
 
@@ -100,7 +105,7 @@ class PusherServices {
     }
   }
 
-  void subscribeToChat({required int conversationId}) {
+  Future<void> subscribeToChat({required int conversationId}) async {
     if (_client == null || _cachedToken == null) {
       debugPrint(
         "🚨 Cannot subscribe to chat: Client or Token is null. Call connectGlobal first.",
@@ -138,6 +143,18 @@ class PusherServices {
       }
     });
 
+    _chatChannel!.bind('pusher:subscription_error').listen((event) {
+      debugPrint('🚨 Chat channel subscription error: ${event.data}');
+    });
+
+    try {
+      await _connectionReady?.future.timeout(const Duration(seconds: 10));
+    } catch (e) {
+      debugPrint('🚨 Timed out waiting for Reverb connection: $e');
+      return;
+    }
+
+    if (_chatChannel == null) return;
     _chatChannel!.subscribe();
   }
 
@@ -168,6 +185,7 @@ class PusherServices {
       _chatChannel = null;
       _client = null;
       _cachedToken = null;
+      _connectionReady = null;
 
       debugPrint(
         "🔒 Fully disconnected from Reverb server and cached token cleared.",
