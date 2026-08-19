@@ -2,6 +2,7 @@ import 'package:dart_pusher_channels/dart_pusher_channels.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
+import 'package:medics/core/utils/app_constant.dart';
 
 class PusherServices {
   int? currentActiveConversationId;
@@ -38,7 +39,7 @@ class PusherServices {
 
       final hostOptions = PusherChannelsOptions.fromHost(
         scheme: 'ws',
-        host: '10.65.11.6',
+        host: AppConstant.ipAddress,
         port: 8080,
         key: 'my-super-secret-key',
         shouldSupplyMetadataQueries: true,
@@ -58,7 +59,7 @@ class PusherServices {
         authorizationDelegate:
             EndpointAuthorizableChannelTokenAuthorizationDelegate.forPrivateChannel(
               authorizationEndpoint: Uri.parse(
-                'http://10.65.11.6:8000/broadcasting/auth',
+                '${AppConstant.baseUrl}/broadcasting/auth',
               ),
               headers: {
                 'Authorization': 'Bearer $token',
@@ -116,7 +117,7 @@ class PusherServices {
       authorizationDelegate:
           EndpointAuthorizableChannelTokenAuthorizationDelegate.forPrivateChannel(
             authorizationEndpoint: Uri.parse(
-              'http://10.65.11.6:8000/broadcasting/auth',
+              '${AppConstant.baseUrl}/broadcasting/auth',
             ),
             headers: {
               'Authorization': 'Bearer $_cachedToken',

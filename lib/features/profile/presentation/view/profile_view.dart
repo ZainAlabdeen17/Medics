@@ -74,7 +74,9 @@ class _ProfileViewState extends State<ProfileView> {
                     child: ProfileOption(
                       title: "About Us",
                       icon: Assets.assetsImagesAppointmentsVerification,
-                      onTap: () {},
+                      onTap: () {
+                        context.push('/AboutUs');
+                      },
                     ),
                   ),
                   SliverToBoxAdapter(

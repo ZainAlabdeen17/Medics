@@ -1,4 +1,5 @@
 import 'package:medics/core/utils/app_constant.dart';
+import 'package:medics/features/doctor/data/models/doctor_model.dart';
 
 class DoctorThreadModel {
   final int userId;
@@ -8,6 +9,7 @@ class DoctorThreadModel {
   final String? lastMessage;
   final String? lastMessageTime;
   final int unreadCount;
+  final DoctorModel doctor;
 
   DoctorThreadModel({
     required this.userId,
@@ -17,6 +19,7 @@ class DoctorThreadModel {
     this.lastMessage,
     this.lastMessageTime,
     required this.unreadCount,
+    required this.doctor,
   });
 
   factory DoctorThreadModel.fromJson(Map<String, dynamic> json) {
@@ -35,6 +38,7 @@ class DoctorThreadModel {
       lastMessage: json['last_message'],
       lastMessageTime: json['last_message_time'],
       unreadCount: json['unread_count'] ?? 0,
+      doctor: DoctorModel.fromJson(json),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medics/core/functions/user_functions.dart';
-import 'package:medics/core/services/new_pusher_service.dart';
+import 'package:medics/core/services/pusher_service.dart';
 import 'package:medics/core/services/service_locator.dart';
 import 'package:medics/features/chat/data/models/message_model.dart';
 import 'package:medics/features/chat/domain/usecases/get_messages_use_case.dart';

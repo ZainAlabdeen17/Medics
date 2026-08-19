@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medics/core/services/service_locator.dart';
+import 'package:medics/features/FAQ/presentation/about_us.dart';
+import 'package:medics/features/FAQ/presentation/faq_view.dart';
 import 'package:medics/features/ai_chat/presentation/view/ai_chat_view.dart';
 import 'package:medics/features/appointments/data/models/appointment_model.dart';
 import 'package:medics/features/appointments/presentation/cubit/appointment_cubit/appointment_cubit.dart';
@@ -434,6 +436,11 @@ GoRouter route = GoRouter(
           child: ChargeWalletView(),
         );
       },
+    ),
+    GoRoute(path: '/FAQ', builder: (context, state) => const FaqScreen()),
+    GoRoute(
+      path: '/AboutUs',
+      builder: (context, state) => const AboutUsScreen(),
     ),
     //
     StatefulShellRoute.indexedStack(

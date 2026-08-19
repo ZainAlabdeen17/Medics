@@ -94,6 +94,10 @@ class DoctorDetailsBadge extends StatelessWidget {
                         IdChip(id: int.parse(doctor.id)),
                       ],
                     ),
+                    SizedBox(height: 4.h),
+                    doctor.onLeave
+                        ? OnLeaveChip(o: doctor.onLeave ? "On leave" : "")
+                        : SizedBox.shrink(),
                   ],
                 ),
               ),

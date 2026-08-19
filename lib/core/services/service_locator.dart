@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:medics/core/api/api_consumer.dart';
 import 'package:medics/core/api/dio_consumer.dart';
 import 'package:medics/core/database/cache/cache_helper.dart';
-import 'package:medics/core/services/new_pusher_service.dart';
+import 'package:medics/core/services/pusher_service.dart';
 import 'package:medics/features/ai_chat/data/repositories/ai_chat_repository.dart';
 import 'package:medics/features/ai_chat/presentation/cubit/ai_chat_cubit/ai_chat_cubit.dart';
 import 'package:medics/features/appointments/data/repositories/appointment_repository.dart';

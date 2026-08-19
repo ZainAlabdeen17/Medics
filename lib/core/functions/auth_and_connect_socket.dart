@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medics/core/database/cache/cache_helper.dart';
 import 'package:medics/core/functions/user_functions.dart';
 import 'package:medics/core/services/local_notification_service.dart';
-import 'package:medics/core/services/new_pusher_service.dart';
+import 'package:medics/core/services/pusher_service.dart';
 import 'package:medics/core/services/service_locator.dart';
 
 void checkAuthAndConnectSocket() async {

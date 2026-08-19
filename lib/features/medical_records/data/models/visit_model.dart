@@ -44,11 +44,11 @@ class VisitModel {
       doctorName: doctor['name'] ?? '',
       doctorSpecialization: doctor['specialization'] ?? '',
       doctorPhotoUrl: formattedPhotoUrl,
-      anamnesis: consultation['anamnesis'] ?? '',
+      anamnesis: consultation['anamnesis'] ?? 'not specified',
       symptoms: consultation['symptoms'] != null
           ? List<String>.from(consultation['symptoms'])
-          : [],
-      diagnosis: consultation['diagnosis'] ?? '',
+          : ["not specified"],
+      diagnosis: consultation['diagnosis'] ?? 'not specified',
       nextVisitDate: consultation['next_visit_date'],
     );
   }

@@ -24,7 +24,7 @@ class ServicesSection extends StatelessWidget {
         ServiceItem(
           title: AppStrings.faq,
           onTap: () {
-            context.push("/${AppStrings.faq}");
+            context.push("/FAQ");
           },
         ),
       ],

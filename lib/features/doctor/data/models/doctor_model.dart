@@ -15,6 +15,7 @@ class DoctorModel {
   final String licenseNumber;
   final String bio;
   final String sessionPrice;
+  final bool onLeave;
   final String photoUrl;
   final double rating;
 
@@ -32,6 +33,7 @@ class DoctorModel {
     required this.licenseNumber,
     required this.bio,
     required this.sessionPrice,
+    required this.onLeave,
     required this.photoUrl,
     required this.rating,
   });
@@ -59,6 +61,7 @@ class DoctorModel {
       licenseNumber: attributes["license_number"] ?? "",
       bio: attributes["bio"] ?? "",
       sessionPrice: attributes["session_price"] ?? "",
+      onLeave: attributes["on_leave"] ?? false,
       photoUrl: rawPhotoUrl ?? "",
       rating: attributes["average_rating"]?.toDouble() ?? 0.0,
     );

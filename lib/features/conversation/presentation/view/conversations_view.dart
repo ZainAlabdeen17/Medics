@@ -1,17 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:medics/core/utils/app_assets.dart';
 import 'package:medics/core/utils/app_colors.dart';
 import 'package:medics/core/utils/app_strings.dart';
 import 'package:medics/core/utils/app_text_styles.dart';
+import 'package:medics/core/widgets/on_error_widget.dart';
 import 'package:medics/features/conversation/data/models/doctor_thread_model.dart';
 import 'package:medics/features/conversation/presentation/cubit/conversation_cubit/conversation_cubit.dart';
 import 'package:medics/features/conversation/presentation/cubit/conversation_cubit/conversation_state.dart';
 import 'package:medics/features/home/presentation/view/widgets/home_search_field.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class ConversationsView extends StatelessWidget {
+class ConversationsView extends StatefulWidget {
   const ConversationsView({super.key});
+
+  @override
+  State<ConversationsView> createState() => _ConversationsViewState();
+}
+
+class _ConversationsViewState extends State<ConversationsView> {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(() {
+      setState(() {
+        _searchQuery = _searchController.text.trim().toLowerCase();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,33 +69,71 @@ class ConversationsView extends StatelessWidget {
                       horizontal: 16.w,
                       vertical: 12.h,
                     ),
-                    child: HomeSearchField(hintText: AppStrings.searchByName),
+                    child: HomeSearchField(
+                      hintText: AppStrings.searchByName,
+                      controller: _searchController,
+                    ),
                   ),
                 ),
                 BlocBuilder<ConversationsCubit, ConversationsState>(
                   builder: (context, state) {
                     if (state is ConversationsLoading) {
                       return const SliverFillRemaining(
-                        child: Center(child: CircularProgressIndicator()),
-                      );
-                    } else if (state is ConversationsError) {
-                      return SliverFillRemaining(
                         child: Center(
-                          child: Text(
-                            state.message,
-                            style: AppTextStyles.body1.copyWith(
-                              color: Colors.red,
-                            ),
+                          child: CircularProgressIndicator(
+                            color: AppColors.btnPrimary,
                           ),
                         ),
                       );
+                    } else if (state is ConversationsError) {
+                      return SliverFillRemaining(child: OnErrorWidget());
                     } else if (state is ConversationsLoaded) {
-                      final List<DoctorThreadModel> chats = state.conversations;
-
+                      final chats = state.conversations.where((conversation) {
+                        final doctorFullName =
+                            "${conversation.doctor.firstName} ${conversation.doctor.lastName}";
+                        return doctorFullName.toLowerCase().contains(
+                          _searchQuery,
+                        );
+                      }).toList();
                       if (chats.isEmpty) {
-                        return const SliverFillRemaining(
-                          child: Center(
-                            child: Text('There is no conversations yet'),
+                        return SliverFillRemaining(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 30.w),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 48.h,
+                                  width: 48.w,
+                                  child: SvgPicture.asset(
+                                    Assets.assetsImagesIconsGeneralSend,
+                                    colorFilter: ColorFilter.mode(
+                                      AppColors.iconAccent,
+                                      BlendMode.srcIn,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 24.h),
+                                Text(
+                                  _searchQuery.isEmpty
+                                      ? 'No Threads found'
+                                      : 'No matching Threads found',
+                                  style: AppTextStyles.head2.copyWith(
+                                    color: AppColors.textPrimary,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(height: 8.h),
+                                Text(
+                                  'Your Threads will appear here once they are available.',
+                                  style: AppTextStyles.body1.copyWith(
+                                    color: AppColors.textSecondary,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       }
@@ -84,7 +144,9 @@ class ConversationsView extends StatelessWidget {
                           final DoctorThreadModel chat = chats[index];
 
                           return InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              context.push('/ChatView', extra: chat.doctor);
+                            },
                             child: Container(
                               height: 84.h,
                               padding: EdgeInsets.all(16.w),
@@ -99,13 +161,21 @@ class ConversationsView extends StatelessWidget {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  CircleAvatar(
-                                    backgroundImage: NetworkImage(
-                                      chat.doctorImage ?? '',
+                                  GestureDetector(
+                                    onTap: () {
+                                      context.push(
+                                        '/DoctorDetails',
+                                        extra: {"doctor": chat.doctor},
+                                      );
+                                    },
+                                    child: CircleAvatar(
+                                      backgroundImage: NetworkImage(
+                                        chat.doctorImage ?? '',
+                                      ),
+                                      radius: 24,
+                                      backgroundColor: AppColors.borderPrimary,
+                                      onBackgroundImageError: (_, __) {},
                                     ),
-                                    radius: 24,
-                                    backgroundColor: AppColors.borderPrimary,
-                                    onBackgroundImageError: (_, __) {},
                                   ),
                                   SizedBox(width: 12.w),
                                   Expanded(

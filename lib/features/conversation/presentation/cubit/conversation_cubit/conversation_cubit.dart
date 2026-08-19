@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medics/core/services/new_pusher_service.dart';
+import 'package:medics/core/services/pusher_service.dart';
 import 'package:medics/core/services/service_locator.dart';
 import 'package:medics/features/conversation/data/repositories/conversation_repository.dart';
 import 'package:medics/features/conversation/presentation/cubit/conversation_cubit/conversation_state.dart';
