@@ -12,9 +12,9 @@ class DioConsumer extends ApiConsumer {
   late Dio dio;
   DioConsumer({required this.dio}) {
     dio.options.baseUrl = "${AppConstant.baseUrl}/api/v1/";
-    dio.options.receiveTimeout = const Duration(seconds: 25);
-    dio.options.connectTimeout = const Duration(seconds: 25);
-    dio.options.sendTimeout = const Duration(seconds: 25);
+    dio.options.receiveTimeout = const Duration(seconds: 50);
+    dio.options.connectTimeout = const Duration(seconds: 20);
+    dio.options.sendTimeout = const Duration(seconds: 20);
     dio.options.headers = {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -24,7 +24,7 @@ class DioConsumer extends ApiConsumer {
       RetryInterceptor(
         dio: dio,
         logPrint: print,
-        retries: 2,
+        retries: 1,
         retryDelays: const [
           Duration(seconds: 1),
           Duration(seconds: 2),

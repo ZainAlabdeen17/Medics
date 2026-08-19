@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:medics/core/services/service_locator.dart';
 import 'package:medics/features/FAQ/presentation/about_us.dart';
 import 'package:medics/features/FAQ/presentation/faq_view.dart';
+import 'package:medics/features/ai_chat/presentation/cubit/ai_chat_cubit/ai_chat_cubit.dart';
 import 'package:medics/features/ai_chat/presentation/view/ai_chat_view.dart';
 import 'package:medics/features/appointments/data/models/appointment_model.dart';
 import 'package:medics/features/appointments/presentation/cubit/appointment_cubit/appointment_cubit.dart';
@@ -405,7 +406,13 @@ GoRouter route = GoRouter(
         );
       },
     ),
-    GoRoute(path: "/AIChat", builder: (context, state) => AIChatView()),
+    GoRoute(
+      path: "/AIChat",
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<AiChatCubit>(),
+        child: AiChatView(),
+      ),
+    ),
     GoRoute(
       path: "/ChatView",
       builder: (context, state) {
