@@ -20,7 +20,7 @@ class MedicationItem extends StatelessWidget {
         context.push("/MedicationDetails", extra: medication);
       },
       child: Container(
-        height: 145.h,
+        height: 150.h,
         width: double.infinity,
         padding: EdgeInsets.all(20.w),
         decoration: BoxDecoration(

@@ -78,7 +78,7 @@ class _BuildLabReportCardState extends State<BuildLabReportCard> {
     ).format(widget.medicalTest.createdAt);
 
     return Container(
-      height: 154.h,
+      height: 162.h,
       width: 343.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24.r),

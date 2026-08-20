@@ -106,7 +106,9 @@ class DoctorItem extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              context.push("/DoctorDetails", extra: doctor);
+              context.push("/DoctorDetails", extra: {
+                'doctor': doctor,
+              });
             },
             child: Container(
               height: 44.h,
