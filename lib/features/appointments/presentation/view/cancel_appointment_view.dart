@@ -122,7 +122,7 @@ class _CancelAppointmentViewState extends State<CancelAppointmentView> {
                     ),
                     SizedBox(height: 16.h),
                     Text(
-                      'Note: Canceling this appointment means 30% of your first-time session payment is non-refundable. For further details, see our Terms & Policies or reach out to us.',
+                      'Note: Canceling this appointment means 50% of your first-time session payment is non-refundable. For further details, see our Terms & Policies or reach out to us.',
                       style: AppTextStyles.body3.copyWith(
                         color: AppColors.textRed,
                         fontFamily: 'Inter',

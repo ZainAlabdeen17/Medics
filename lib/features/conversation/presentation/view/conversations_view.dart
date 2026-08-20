@@ -206,12 +206,50 @@ class _ConversationsViewState extends State<ConversationsView> {
                                   ),
 
                                   SizedBox(width: 8.w),
-                                  Text(
-                                    _formatTime(chat.lastMessageTime),
-                                    style: AppTextStyles.body3.copyWith(
-                                      color: AppColors.textSecondary,
-                                      fontFamily: 'Inter',
-                                    ),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        _formatTime(chat.lastMessageTime),
+                                        style: AppTextStyles.body3.copyWith(
+                                          color: (chat.unreadCount) > 0
+                                              ? AppColors.btnPrimary
+                                              : AppColors.textSecondary,
+                                          fontFamily: 'Inter',
+                                        ),
+                                      ),
+
+                                      if ((chat.unreadCount) > 0) ...[
+                                        SizedBox(height: 6.h),
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 6.w,
+                                            vertical: 2.h,
+                                          ),
+                                          constraints: BoxConstraints(
+                                            minWidth: 20.w,
+                                            minHeight: 20.h,
+                                          ),
+                                          decoration: const BoxDecoration(
+                                            color: AppColors.btnPrimary,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '${chat.unreadCount}',
+                                              style: AppTextStyles.head4
+                                                  .copyWith(
+                                                    color: AppColors
+                                                        .textStaticWhite,
+                                                    fontFamily: 'Inter',
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ],
                                   ),
                                 ],
                               ),
