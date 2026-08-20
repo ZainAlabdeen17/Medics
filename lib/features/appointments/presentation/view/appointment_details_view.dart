@@ -127,7 +127,7 @@ class AppointmentDetailsView extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: Container(
                       width: double.infinity,
-                      height: 152.h,
+                      height: 155.h,
                       padding: EdgeInsets.all(12.w),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24.r),
@@ -147,7 +147,7 @@ class AppointmentDetailsView extends StatelessWidget {
                               color: AppColors.textSecondary,
                               fontFamily: 'Inter',
                             ),
-                            maxLines: 3,
+                            maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                           SizedBox(height: 12.h),
