@@ -24,7 +24,7 @@ class DioConsumer extends ApiConsumer {
       RetryInterceptor(
         dio: dio,
         logPrint: print,
-        retries: 1,
+        retries: 0,
         retryDelays: const [
           Duration(seconds: 1),
           Duration(seconds: 2),
@@ -35,13 +35,13 @@ class DioConsumer extends ApiConsumer {
     if (kDebugMode) {
       dio.interceptors.add(
         PrettyDioLogger(
-          enabled: false,
-          request: false,
-          requestHeader: false,
-          requestBody: false,
+          enabled: true,
+          request: true,
+          requestHeader: true,
+          requestBody: true,
           responseHeader: false,
-          responseBody: false,
-          error: false,
+          responseBody: true,
+          error: true,
         ),
       );
     }
